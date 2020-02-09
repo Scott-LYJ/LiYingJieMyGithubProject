@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="interface-provider" />
+        <module name="project-provider" />
+        <module name="role-provider" />
+        <module name="user-provider" />
+        <module name="wormhole-service-consumer" />
+        <module name="wormholecommon" />
+        <module name="wormholeserviceapi" />
+        <module name="wormholeserviceprovider" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wormhole-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wormhole-service-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wormhole-service-consumer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wormhole-service-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wormhole-service-provider/interface-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wormhole-service-provider/project-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wormhole-service-provider/role-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wormhole-service-provider/user-provider" charset="UTF-8" />
+  </component>
+</project>
