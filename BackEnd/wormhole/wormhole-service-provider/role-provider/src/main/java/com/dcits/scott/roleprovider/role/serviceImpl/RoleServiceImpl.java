@@ -8,6 +8,9 @@ import com.dcits.scott.roleprovider.role.mapper.RoleMapper;
 import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
+import javax.management.relation.Role;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author fendyguo
@@ -21,5 +24,15 @@ public class RoleServiceImpl extends ProtoServiceImpl<AuthRole> implements RoleS
   @Override
   protected ProtoMapper<AuthRole> getMapper() {
     return this.roleMapper;
+  }
+
+  @Override
+  public List<AuthRole> queryRoleUserList(List<Integer> list) {
+    return roleMapper.queryRoleUserList(list);
+  }
+
+  @Override
+  public List<AuthRole> selectList(Map<String, Object> map) throws Exception {
+    return roleMapper.selectList(map);
   }
 }

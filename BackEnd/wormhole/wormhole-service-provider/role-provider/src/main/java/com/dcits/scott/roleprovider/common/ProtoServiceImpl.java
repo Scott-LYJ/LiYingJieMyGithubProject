@@ -1,6 +1,6 @@
 package com.dcits.scott.roleprovider.common;
 
-import com.dcits.scott.admin.pojo.common.ProtoBean;
+import com.dcits.scott.common.ProtoBean;
 import com.dcits.scott.auth.common.ProtoService;
 
 import java.util.List;

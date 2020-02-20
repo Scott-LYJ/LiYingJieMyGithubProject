@@ -120,7 +120,7 @@
 				</el-form-item>
          &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
         <el-form-item label="手机" prop="mobile">
-					<el-input v-model="addForm.mobile" auto-complete="off"></el-input>
+					<el-input v-model="addForm.phone" auto-complete="off"></el-input>
 				</el-form-item>
         <el-form-item label="邮件" prop="email">
 					<el-input v-model="addForm.email" auto-complete="off"></el-input>
@@ -262,7 +262,7 @@
 					<el-input v-model="editForm.loginName" auto-complete="off"></el-input>
 				</el-form-item>
 
-        	<el-form-item label="登录密码" prop="password">
+        	<el-form-item label="登录密码" prop="password" >
 					<el-input v-model="editForm.password" auto-complete="off"></el-input>
 				</el-form-item>
         <el-form-item label="" prop="">

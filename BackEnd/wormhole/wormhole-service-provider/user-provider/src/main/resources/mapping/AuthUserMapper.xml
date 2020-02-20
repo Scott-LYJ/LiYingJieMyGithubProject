@@ -58,15 +58,39 @@
       #{cdt,jdbcType=TIMESTAMP}, #{udt,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.dcits.scott.admin.pojo.AuthUser" >
+  <insert id="addUser" useGeneratedKeys="true" parameterType="com.dcits.scott.admin.pojo.AuthUser" keyProperty="id">
+    insert into auth_user ( NAME, PASSWORD,
+      CDT,UDT,AVATAR,
+      ADDRESS, PHONE)
+    values ( #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{cdt,jdbcType=TIMESTAMP}, #{udt,jdbcType=TIMESTAMP},#{avatar,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateUser" parameterType="com.dcits.scott.admin.pojo.AuthUser" >
     update auth_user
-    set NAME = #{name,jdbcType=VARCHAR},
-      PASSWORD = #{password,jdbcType=VARCHAR},
-      CDT = #{cdt,jdbcType=TIMESTAMP},
-      UDT = #{udt,jdbcType=TIMESTAMP},
-      AVATAR = #{avatar,jdbcType=VARCHAR},
-      ADDRESS = #{address,jdbcType=VARCHAR},
-      PHONE = #{phone,jdbcType=VARCHAR}
+    <set>
+      <if test="name != null">
+        name = #{name},
+      </if>
+      <if test="password != null">
+        password = #{password},
+      </if>
+      <if test="avatar != null||avatar!=''">
+        avatar = #{avatar},
+      </if>
+      <if test="phone != null">
+        phone = #{phone},
+      </if>
+      <if test="address != null">
+        address = #{address},
+      </if>
+      <if test="udt != null">
+        udt = #{udt},
+      </if>
+      <if test="cdt != null">
+        cdt = #{cdt},
+      </if>
+    </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -85,4 +109,27 @@
       NAME =#{name}
     </where>
   </select>
+  <select id="selectByList"  resultType="com.dcits.scott.admin.pojo.AuthUser" parameterType="Map">
+    select ID, NAME, PASSWORD, CDT, UDT, AVATAR, ADDRESS, PHONE
+    from auth_user
+    where id in 
+    <foreach collection="userIds" item="id" close=")" open="(" separator=",">
+      #{id}
+    </foreach>
+    <if test="size != null or skip != null">
+      LIMIT #{skip}, #{size}
+    </if>
+  </select>
+
+  <delete id="delSysUserByUserId" parameterType="Map">
+    DELETE FROM auth_user
+    <where>
+      <if test="userIds != null">
+        id in
+        <foreach collection="userIds" item="item" index="index" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+  </delete>
 </mapper>

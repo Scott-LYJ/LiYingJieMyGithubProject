@@ -44,5 +44,36 @@ public class AuthUserServiceImpl implements AuthUserService {
         return authUserMapper.selectCount();
     }
 
+    @Override
+    public void delSysUserByUserId(Map<String, Object> map) {
+        authUserMapper.delSysUserByUserId(map);
+    }
+
+    @Override
+    public Integer addUser(AuthUser authUser) {
+        Integer id = authUserMapper.addUser(authUser);
+        return id;
+    }
+
+    @Override
+    public void updateUser(AuthUser authUser) {
+        authUserMapper.updateUser(authUser);
+    }
+
+    @Override
+    public List<AuthUser> selectByList(Map<String,Object> map1) {
+        return authUserMapper.selectByList(map1);
+    }
+
+    @Override
+    public AuthUser selectPasswordByName(AuthUser authUser) {
+        return this.authUserMapper.selectPasswordByName(authUser);
+    }
+
+    @Override
+    public AuthUser selectByPrimaryKey(Integer createrid) {
+        return this.authUserMapper.selectByPrimaryKey(createrid);
+    }
+
 
 }

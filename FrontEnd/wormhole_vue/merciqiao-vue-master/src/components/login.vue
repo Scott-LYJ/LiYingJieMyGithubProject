@@ -82,6 +82,7 @@ $input_width:300px;
 </style>
 <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
 <script>
+  import {formatDate} from '../common/date.js'
 import apis from '../apis/apis';
 export default {
     name: 'login',
@@ -143,12 +144,24 @@ export default {
                 this.$common.setSessionStorage('token', json.userInfo.password);
                 console.log('token',this.$common.getSessionStorage('token'))
                 this.$common.setSessionStorage('username',json.userInfo.name);
-                console.log('username',this.$common.getSessionStorage('username'))
+                this.$common.setSessionStorage('id',json.userInfo.id);
+                this.$common.setSessionStorage('cdt',formatDate(new Date(json.userInfo.cdt), 'yyyy-MM-dd hh:mm'));
+                this.$common.setSessionStorage('udt',formatDate(new Date(json.userInfo.udt), 'yyyy-MM-dd hh:mm'));
+                this.$common.setSessionStorage('phone',json.userInfo.phone);
+                this.$common.setSessionStorage('avatar',json.userInfo.avatar);
+                this.$common.setSessionStorage('address',json.userInfo.address);
+
+                this.$common.setSessionStorage('userInfo',json.userInfo)
+                console.log('userInfo',this.$common.getSessionStorage('userInfo'))
                 this.$common.setSessionStorage('lev',json.sysRoleVoList);
                 console.log('lev',this.$common.getSessionStorage('lev'))
                 //存入菜单,渲染菜单
                 this.$store.dispatch("add_Menus",json.sysMenuVoList);
                 console.log('add_Menus',json.sysMenuVoList)
+                //存入头像
+                this.$common.setSessionStorage('icon',json.userInfo.avatar);
+                console.log('icon',json.userInfo.avatar)
+
 
                 //动态设置路由
                 this.$store.dispatch("add_Routes", json.sysMenuVoList);

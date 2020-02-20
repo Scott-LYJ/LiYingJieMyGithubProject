@@ -1,5 +1,6 @@
 package com.dcits.scott.userprovider.mapper;
 
+import com.alibaba.druid.sql.ast.statement.SQLForeignKeyImpl;
 import com.dcits.scott.admin.pojo.AuthUser;
 import org.springframework.stereotype.Repository;
 
@@ -24,4 +25,12 @@ public interface AuthUserMapper {
     List<AuthUser> querySysUserList(Map<String,Object> map);
 
     Integer selectCount();
+
+    void delSysUserByUserId(Map<String,Object> map);
+
+    Integer addUser(AuthUser authUser);
+
+    void updateUser(AuthUser authUser);
+
+    List<AuthUser> selectByList(Map<String,Object> map1);
 }

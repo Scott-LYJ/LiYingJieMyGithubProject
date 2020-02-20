@@ -5,6 +5,7 @@ import com.dcits.scott.roleprovider.common.ProtoMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author fendyguo
@@ -35,5 +36,6 @@ public abstract interface AuthorizationMapper extends ProtoMapper<AuthAuthorizat
   public abstract List<AuthAuthorization> selectByUserId(Integer paramInteger) throws Exception;
 
 
+  void delUserAuthorizationById(Map<String,Object> map);
 }
 

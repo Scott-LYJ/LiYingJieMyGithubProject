@@ -47,9 +47,9 @@ const dynamicRouter = [
     }
   },
   {
-    name: 'tabpage',
-    path: '/tabpage',
-    component: resolve => require(['@/components/tabpage/tabpage.vue'], resolve),
+    name: 'groupAndapi',
+    path: '/groupAndapi',
+    component: resolve => require(['@/components/project/groupAndapi.vue'], resolve),
     meta: {
       title: '标签选项卡'
     }
@@ -128,17 +128,29 @@ const dynamicRouter = [
     meta: { title: '角色权限管理' }
   },
   {
+    name: 'GatewayApiGroup',
+    path: '/GatewayApiGroup',
+    component: resolve => require(['@/components/project/GatewayApiGroup.vue'], resolve),
+    meta: { title: '分组管理' }
+  },
+  {
+    name: 'api',
+    path: '/api',
+    component: resolve => require(['@/components/project/api.vue'], resolve),
+    meta: { title: '接口' }
+  },
+  {
     name: 'msg',
     path: '/msg',
     component: resolve => require(['@/components/message/msg.vue'], resolve),
     meta: { title: '建议留言' }
   },
   {
-    name: 'messageboard',
-    path: '/messageboard',
-    component: resolve => require(['@/components/tablepage/messageboard.vue'], resolve),
+    name: 'gatewayproject',
+    path: '/gatewayproject',
+    component: resolve => require(['@/components/project/GatewayProject.vue'], resolve),
     meta: {
-      title: '增删改查'
+      title: '项目管理'
     }
   },
   {

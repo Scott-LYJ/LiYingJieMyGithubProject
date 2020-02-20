@@ -8,7 +8,7 @@
         <div class="header-right">
             <div class="header-user-con">
                 <!-- <marquee onMouseOver="this.start()" style="font-size:18px;padding-bottom:4px;width:100px;" scrollamount="1">{{getlev}}</marquee> -->
-                <div style="font-size:18px;padding-bottom:4px;width:60px;">{{getlev}}</div>
+                <div style="font-size:18px;padding-bottom:4px;width:100px;">{{getlev}}</div>
                 <!-- 全屏显示 -->
                 <div class="btn-fullscreen" @click="handleFullScreen">
                     <el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
@@ -25,23 +25,22 @@
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
                 <!-- 用户头像 -->
-                <div class="user-avator"><img src="static/img/img.jpg"></div>
+                <div class="user-avator"><img :src="geticon"></div>
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
                         {{username}} <i class="el-icon-caret-bottom"></i>
                     </span>
-                    
+
                     <el-dropdown-menu slot="dropdown">
-                        
-                        <a  href="https://github.com/merciqiao" target="_blank">
-                            <el-dropdown-item>关于作者</el-dropdown-item>
+                        <a  target="_blank">
+                          <el-dropdown-item style="color:orange;" @click="toUserEdit"><router-link to="/routedev">个人管理</router-link></el-dropdown-item>
                         </a>
                         <a href="https://github.com/merciqiao/merciqiao-vue" target="_blank">
                             <el-dropdown-item>项目仓库</el-dropdown-item>
                         </a>
-                        <a href="/zanzhu" target="_blank">
-                            <el-dropdown-item style="color:orange;">赞助作者</el-dropdown-item>
+                        <a  href="https://github.com/merciqiao" target="_blank">
+                          <el-dropdown-item>关于作者</el-dropdown-item>
                         </a>
                         <el-dropdown-item divided  command="changeZh">切换中文</el-dropdown-item>
                         <el-dropdown-item command="changeEn">切换英文</el-dropdown-item>
@@ -70,19 +69,28 @@
                 return username ? username : this.name;
             },
             getlev(){
-        
+
                 let levList = this.$common.getSessionStorage('lev',true);
                 let lev='';
                 if(levList){
                     for(var i=0;i<levList.length;i++){
-                        lev+=levList[i].roleName;
+                        lev+=levList[i].name;
                     }
                 }
-               
-                return lev ? lev : this.lev;
-            }
+
+                return levList ? levList[0].name : this.lev;
+            },
+          geticon(){
+              //let path='E://ScottProject//LiYingJieMyGithubProject//image'
+           // require('C://tmp//'+item.url+'.png')
+            let userIcon = this.$common.getSessionStorage('icon');
+            return userIcon ? userIcon:'static/img/user/hongbao.png'
+          }
         },
         methods:{
+          toUserEdit(){
+
+          },
             // 用户名下拉菜单选择事件
             handleCommand(command) {
                 if(command == 'loginout'){

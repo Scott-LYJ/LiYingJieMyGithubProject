@@ -18,6 +18,14 @@
         </where>
     </sql>
 
+    <select id="querPermissionList" parameterType="java.util.List" resultMap="result">
+        SELECT * FROM auth_permission WHERE role_id in
+        <foreach collection="list" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
     <select id="selectById" parameterType="Integer" resultMap="result">
         SELECT * FROM auth_permission WHERE id = #{id}
     </select>
@@ -95,10 +103,10 @@
         INSERT INTO auth_permission (res_id, role_id, cdt, udt) VALUES (#{resId}, #{roleId}, now(), now())
     </insert>
 
-    <insert id="insertList" parameterType="ArrayList">
-        INSERT INTO auth_permission (res_id, role_id, cdt, udt) VALUES
-        <foreach collection="list" item="permission" index="index" separator=",">
-            (#{permission.resId}, #{permission.roleId}, now(), now())
+    <insert id="insertList" parameterType="Map">
+        INSERT IGNORE  INTO auth_permission (res_id, role_id, cdt, udt) VALUES
+        <foreach collection="resourceids" item="resourceid" index="index" separator=",">
+            (#{resourceid}, #{roleId}, now(), now())
         </foreach>
     </insert>
 

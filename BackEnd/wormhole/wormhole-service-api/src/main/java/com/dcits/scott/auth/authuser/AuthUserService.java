@@ -16,4 +16,17 @@ public interface AuthUserService  {
     List<AuthUser> querySysUserList(Map<String,Object> map);
 
     Integer  selectCount();
+
+    void delSysUserByUserId(Map<String,Object> map);
+
+
+    Integer addUser(AuthUser authUser);
+
+    void updateUser(AuthUser authUser);
+
+    List<AuthUser> selectByList(Map<String,Object> map1);
+
+    AuthUser selectPasswordByName(AuthUser authUser);
+
+    AuthUser selectByPrimaryKey(Integer createrid);
 }

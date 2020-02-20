@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dcits.scott.projectprovider.gatewayproject.mapper.GatewayProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.dcits.scott.gateway.pojo.GatewayProjectDO" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DES" property="des" jdbcType="VARCHAR" />
+    <result column="AVATAR" property="avatar" jdbcType="VARCHAR" />
+    <result column="CDT" property="cdt" jdbcType="TIMESTAMP" />
+    <result column="CREATERID" property="createrid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="where">
+    <where>
+      <if test="id != null">id = #{id}</if>
+      <if test="name != null">and name like concat('%', #{name}, '%')</if>
+      <if test="createrid != null">and createrid like concat('%', #{createrid}, '%')</if>
+      <if test="cdt != null">
+        <![CDATA[
+                  and cdt between date_format(#{cdt}, '%Y-%m-%d 00:00:00') and date_format(#{cdt}, '%Y-%m-%d 23:59:59')
+                ]]>
+      </if>
+
+    </where>
+  </sql>
+  <select id="queryProjectList" parameterType="Map" resultMap="BaseResultMap">
+      select * from gateway_project
+      <include refid="where"></include>
+    ORDER BY id DESC
+      <if test="size != null or skip != null">
+        LIMIT #{skip}, #{size}
+      </if>
+  </select>
+  <delete id="deleteBatch" parameterType="Map">
+    delete from gateway_project where
+    id in
+    <foreach collection="ids" separator="," open="(" close=")" item="id">
+        #{id}
+    </foreach>
+  </delete>
+  
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gateway_project
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="Map" >
+    insert into gateway_project ( NAME, DES,
+      AVATAR, CDT, CREATERID
+      )
+    values ( #{name,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR},
+      #{avatar,jdbcType=VARCHAR}, now(), #{createrid,jdbcType=INTEGER}      )
+  </insert>
+    <insert id="insertByDO" parameterType="com.dcits.scott.gateway.pojo.GatewayProjectDO" >
+    insert into gateway_project ( NAME, DESC,
+      AVATAR, CDT, CREATERID
+      )
+    values ( #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR},
+      #{avatar,jdbcType=VARCHAR}, now(), #{createrid,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.scott.gateway.pojo.GatewayProjectDO" >
+    update gateway_project
+    set NAME = #{name,jdbcType=VARCHAR},
+      DESC = #{desc,jdbcType=VARCHAR},
+      AVATAR = #{avatar,jdbcType=VARCHAR},
+      CDT = #{cdt,jdbcType=TIMESTAMP},
+      CREATERID = #{createrid,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByMap" parameterType="Map" >
+    update gateway_project
+    set NAME = #{name,jdbcType=VARCHAR},
+      DES = #{des,jdbcType=VARCHAR},
+      <if test="avatar!=null||avatar!=''">
+      AVATAR = #{avatar,jdbcType=VARCHAR},
+      </if>
+      CREATERID = #{createrid,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ID, NAME, DESC, AVATAR, CDT, CREATERID
+    from gateway_project
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, NAME, DESC, AVATAR, CDT, CREATERID
+    from gateway_project
+  </select>
+</mapper>

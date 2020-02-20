@@ -3,8 +3,8 @@ import {lazy} from './lazyLoading'
  * 拼接动态路由
  */
 export default (routerList,routeHideList, sysMenuList) => {
-    toRoutes(routerList,routeHideList, sysMenuList)
-    //toRoutes2(routerList,routeHideList, sysMenuList)
+    //toRoutes(routerList,routeHideList, sysMenuList)
+    toRoutes2(routerList,routeHideList, sysMenuList)
 }
 function toRoutes(routerList,routeHideList, sysMenuList) {
     if (sysMenuList) {
@@ -61,8 +61,8 @@ function toRoutes2(routerList,routeHideList, sysMenuList) {
         };
         console.log("component+++++++++++"+lazy(code));
         //子节点存在
-        if (sysMenuNode.authResourceList && sysMenuNode.authResourceList.length > 0) {
-          toRoutes2(routeNode.children,routeHideList,sysMenuNode.authResourceList);
+        if (sysMenuNode.children && sysMenuNode.children.length > 0) {
+          toRoutes2(routeNode.children,routeHideList,sysMenuNode.children);
         }
         if(code&&code!=''){
           if(sysMenuNode.isShow=='1'){
@@ -75,8 +75,8 @@ function toRoutes2(routerList,routeHideList, sysMenuList) {
       }
       else{
         //子节点存在
-        if (sysMenuNode.authResourceList && sysMenuNode.authResourceList.length > 0) {
-          toRoutes2(routerList,routeHideList,sysMenuNode.authResourceList);
+        if (sysMenuNode.children && sysMenuNode.children.length > 0) {
+          toRoutes2(routerList,routeHideList,sysMenuNode.children);
         }
       }
     }

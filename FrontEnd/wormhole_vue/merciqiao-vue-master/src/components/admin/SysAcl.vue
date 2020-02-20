@@ -15,31 +15,29 @@
                 <div style=" width:50%;float:left;">
                     <div>
                         角色名称：
-                        <el-input v-model="s_rolename" label="角色编码" placeholder="角色编码" style="width:200px; heght:30px;" size="mini"></el-input>
+                        <el-input v-model="s_rolename" label="角色名称" placeholder="角色名称" style="width:200px; heght:30px;" size="mini"></el-input>
+                      <br/>
                         角色编码：
                         <el-input v-model="s_rolecode" label="角色编码" placeholder="角色编码" style="width:200px; heght:30px;" size="mini"></el-input>
-                        <el-button type="success" icon="el-icon-search" @click="getResult(1)" size="mini">搜索</el-button>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <el-button type="success" icon="el-icon-search" @click="getResult(1)" size="mini" >搜索</el-button>
 
                     </div>
 
                     <!--表格数据及操作-->
                     <el-table :data="tableData" class="mgt20" border style="width: 100%" stripe ref="multipleTable" tooltip-effect="dark" @row-click="clickRow">
                         <!--勾选框-->
-                        <el-table-column type="selection" width="55">
+                        <el-table-column type="selection" style="width: 10%">
                             <template slot-scope="scope">
                                 <el-radio v-model="curentroleid" :label="scope.row.id">{{null}}</el-radio>
                             </template>
                         </el-table-column>
                         <!--索引-->
-                        <el-table-column type="index" :index="indexMethod">
+                        <el-table-column type="index" :index="indexMethod" style="width: 10%">
                         </el-table-column>
-                        <el-table-column prop="roleName" label="角色名称" width="180" sortable>
+                        <el-table-column prop="name" label="角色名称" style="width: 40%" sortable>
                         </el-table-column>
-                        <el-table-column prop="roleCode" label="角色编码" width="180">
-                        </el-table-column>
-                        <el-table-column prop="roleType" label="角色类型">
-                        </el-table-column>
-                        <el-table-column prop="id" label="id">
+                        <el-table-column prop="id" label="角色编码" style="width: 40%">
                         </el-table-column>
                     </el-table>
                     <br>
@@ -69,7 +67,7 @@ export default {
             input: "",
             curentroleid: "",
             curentrow: null,
-            //列表Loading加载   
+            //列表Loading加载
             listLoading: false,
             //添加按钮Loading加载
             addLoading: false,
@@ -100,10 +98,10 @@ export default {
 
             var _this = this;
             this.listLoading = true;
-            let param = Object.assign({}, { currentPage: val, pageSize: 10, roleName: this.s_rolename, roleCode: this.s_rolecode });
+            let param = Object.assign({}, { skip: (val-1)*10, size: 10, name: this.s_rolename?this.s_rolename:null, id: this.s_rolecode?this.s_rolecode:null });
             this.$ajax({
                 method: "post",
-                url: "/api/sysrole-api/querySysRoleList",
+                url: "/role/querySysRoleList",
                 data: param
             }).then(
                 function(resultData) {
@@ -126,17 +124,18 @@ export default {
         },
         getresourceData() {
             var _this = this;
-            //this.listLoading = true;  
+            //this.listLoading = true;
 
             let param = Object.assign({}, {});
             this.$ajax({
                 method: "post",
-                url: "/api/sysResource_api/getSysResourceList",
+                url: "/resource/getSysResourceList",
                 data: param
             }).then(
                 function(resultData) {
+                  console.log(resultData)
                     _this.treeData = resultData.data.data;
-                    // console.log(JSON.stringify(_this.treeData));
+                     console.log(_this.treeData);
 
                 },
                 function(resultData) {
@@ -153,15 +152,17 @@ export default {
             let param = Object.assign({}, { roleId: _this.curentroleid });
             this.$ajax({
                 method: "post",
-                url: "/api/sysAcl-api/getSysAclList",
+                url: "/permission/getSysAclList",
                 data: param
             }).then(
                 function(resultData) {
+                  console.log(resultData)
                     let list = [];
 
-                    resultData.data.data.forEach(item => {
-                        list.push(item.resoureId);
-                    });
+                    // resultData.data.data.forEach(item => {
+                    //     list.push(item.resoureId);
+                    // });
+                    list = resultData.data.data
                     //alert(list);
                     console.log(JSON.stringify(list))
                     _this.$refs.tree.setCheckedKeys(list);
@@ -195,7 +196,7 @@ export default {
                 let param = Object.assign({}, { id: 0, roleId: roleid, resourceids: sellist });
                 this.$ajax({
                     method: "post",
-                    url: "/api/sysAcl-api/insertSysAcl",
+                    url: "/permission/insertSysAcl",
                     data: param
                 }).then(
                     function(resultData) {
@@ -211,7 +212,7 @@ export default {
     },
     mounted() {
         //获取列表
-        this.getResult();
+        this.getResult(1);
         this.getresourceData();
 
 

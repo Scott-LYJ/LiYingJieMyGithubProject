@@ -1,6 +1,6 @@
 package com.dcits.scott.auth.common;
 
-import com.dcits.scott.admin.pojo.common.ProtoBean;
+import com.dcits.scott.common.ProtoBean;
 
 import java.util.List;
 import java.util.Map;

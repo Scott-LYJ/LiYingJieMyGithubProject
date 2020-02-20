@@ -72,11 +72,26 @@
         INSERT INTO auth_authorization (user_id, role_id, cdt, udt) VALUES (#{userId}, #{roleId}, now(), now())
     </insert>
 
-    <insert id="insertList" parameterType="ArrayList">
+    <insert id="insertList" parameterType="Map">
         INSERT INTO auth_authorization (user_id, role_id, cdt, udt) VALUES
         <foreach collection="list" item="authz" index="index" separator=",">
             (#{authz.userId}, #{authz.roleId}, now(), now())
         </foreach>
     </insert>
 
+
+
+    <delete id="delUserAuthorizationById" parameterType="Map">
+        DELETE FROM auth_authorization
+        <where>
+            <if test="userIds != null">
+                user_id in
+                <foreach collection="userIds" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            and
+            role_id=#{roleId}
+        </where>
+    </delete>
 </mapper>

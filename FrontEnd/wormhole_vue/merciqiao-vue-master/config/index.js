@@ -34,12 +34,76 @@ module.exports = {
           pathRewrite: {
             '^/user': '/user',
           }
+      },
+      '/role': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/role': '/role',
+        }
+      },
+      '/resource': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/resource': '/resource',
+        }
+      },
+      '/authorization': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/authorization': '/authorization',
+        }
+      },
+      '/permission': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/permission': '/permission',
+        }
+      },
+      '/project': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/project': '/project',
+        }
+      },
+      '/group': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/group': '/group',
+        }
+      },
+      '/picture/user': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/picture/user': '/picture/user',
+        }
+      },
+      '/picture/project': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/picture/project': '/picture/project',
+        }
       }
     },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 6003, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 6002, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,

@@ -117,15 +117,17 @@ public class UserRealm extends AuthorizingRealm {
         AuthUser oringnAuthUser = authUserService.loginAuthentication(authUser);
         //盐值
         ByteSource credentialsSalt = ByteSource.Util.bytes(authUser.getName());
+
         System.out.println(oringnAuthUser.toString());
-        return new SimpleAuthenticationInfo(oringnAuthUser,oringnAuthUser.getPassword(),credentialsSalt,getName());
+        //return new SimpleAuthenticationInfo(userEntity, credentials,new MySimpleByteSource(userCode),getName());
+        return new SimpleAuthenticationInfo(oringnAuthUser,oringnAuthUser.getPassword(),new MySimpleByteSource(authUser.getName()),getName());
     }
     //md5加密测试
     public static void main(String[] args) {
         String hashAlgorithName = "MD5";
         String password = "123456";
         int hashIterations = 1024;//加密次数
-        ByteSource credentialsSalt = ByteSource.Util.bytes("root");
+        ByteSource credentialsSalt = ByteSource.Util.bytes("admin");
         Object obj = new SimpleHash(hashAlgorithName, password, credentialsSalt, hashIterations);
         System.out.println(obj);
     }

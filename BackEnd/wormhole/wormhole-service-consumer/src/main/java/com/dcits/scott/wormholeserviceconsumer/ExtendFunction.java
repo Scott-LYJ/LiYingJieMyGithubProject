@@ -1,20 +1,17 @@
 package com.dcits.scott.wormholeserviceconsumer;
 
-import com.alibaba.fastjson.JSONObject;
 import com.dcits.scott.admin.pojo.*;
-import com.dcits.scott.admin.pojo.support.result.Info;
-import com.dcits.scott.admin.pojo.support.result.Menu;
-import com.dcits.scott.admin.pojo.support.result.ResultInfo;
+import com.dcits.scott.support.result.Info;
+import com.dcits.scott.support.result.ResultInfo;
 import com.dcits.scott.auth.authauthorization.AuthorizationService;
 import com.dcits.scott.auth.authpermission.PermissionService;
 import com.dcits.scott.auth.authresource.ResourceService;
 import com.dcits.scott.auth.authrole.RoleService;
-import com.dcits.scott.wormholeserviceconsumer.controller.LoginController;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.shiro.SecurityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ExtendFunction {
@@ -50,10 +47,10 @@ public class ExtendFunction {
             }
 
             map1.put("roleIds", roleIds);
-            List<AuthRole> authRoleList = roleService.selectList(map1);
-
-
-            permissionList = permissionService.selectList(map1);
+          //  List<AuthRole> authRoleList = roleService.selectList(map1);
+            List<AuthRole> authRoleList = roleService.queryRoleUserList(roleIds);
+           // permissionList = permissionService.selectList(map1);
+            permissionList = permissionService.querPermissionList(roleIds);
             for (AuthPermission permission : permissionList) {
                 resourceIds.add(permission.getResId());
             }
@@ -103,7 +100,7 @@ public class ExtendFunction {
         }
         // 为一级菜单设置子菜单，getChild是递归调用的
         for (AuthResource authResource : menuList) {
-            authResource.setAuthResourceList(getChild(authResource.getId(), rootResource));
+            authResource.setChildren(getChild(authResource.getId(), rootResource));
         }
 //        Map<String,Object> jsonMap = new HashMap<>();
 //        jsonMap.put("menu", menuList);
@@ -138,12 +135,29 @@ public class ExtendFunction {
 
                 if (!"a".equals(menu.getCategory())){
                 // 递归
-                menu.setAuthResourceList(getChild(menu.getId(), rootMenu));
+                menu.setChildren(getChild(menu.getId(), rootMenu));
             }
         } // 递归退出条件
         if (childList.size() == 0) {
             return null;
         }
         return childList;
+    }
+
+    public static String changeDate(Object object){
+        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Long cdt = Long.parseLong(String.valueOf(object));
+
+        String d = format.format(cdt);
+        Date date= null;
+        try {
+            date = format.parse(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Format To String(Date):"+d);
+        System.out.println("Format To Date:"+date);
+      return d;
     }
 }

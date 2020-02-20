@@ -1,7 +1,7 @@
 package com.dcits.scott.admin.pojo;
 
-import com.dcits.scott.admin.pojo.common.CommonDO;
-import com.dcits.scott.admin.pojo.common.ProtoBean;
+import com.dcits.scott.common.CommonDO;
+import com.dcits.scott.common.ProtoBean;
 
 import java.util.Date;
 

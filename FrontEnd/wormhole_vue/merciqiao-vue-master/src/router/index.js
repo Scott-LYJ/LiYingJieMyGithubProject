@@ -57,6 +57,8 @@ axios.interceptors.request.use(
     if (sessionStorage.getItem("token")) {
       headers.token = sessionStorage.getItem("token");
     }
+    // console.log(headers)
+
     return config;
   },
   error => {

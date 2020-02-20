@@ -6,11 +6,25 @@
 var routeDevList = [
     {
         path: '/routedev',
-        component: resolve => require(['../components/test/RouteDev'], resolve),
+        component: resolve => require(['../components/admin/UserEdit'], resolve),
         meta: {
-            title: '静态菜单路由'
+            title: '个人信息修改'
         }
     },
+  {
+    path: '/groupAndapi',
+    component: resolve => require(['../components/project/groupAndapi'], resolve),
+    meta: {
+      title: '分组/接口'
+    }
+  },
+  {
+    path: '/api',
+    component: resolve => require(['../components/project/api'], resolve),
+    meta: {
+      title: '接口'
+    }
+  },
 
 ];
 //静态菜单
@@ -18,11 +32,11 @@ var menuDevList = [
     {
         icon: 'el-icon-date',
         index: Math.random()+'',
-        title: '静态菜单Demo',
+        title: '个人管理',
         subs: [
             {
                 index: 'routedev',
-                title: '静态菜单和路由'
+                title: '个人信息修改'
             },
         ]
     }

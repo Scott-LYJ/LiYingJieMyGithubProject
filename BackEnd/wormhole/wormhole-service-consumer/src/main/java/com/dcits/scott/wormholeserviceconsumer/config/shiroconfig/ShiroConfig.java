@@ -39,11 +39,13 @@ public class ShiroConfig {
                  */
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/hello", "anon");
-//        filterMap.put("/login", "anon");
-        filterMap.put("/loginn", "anon");
-       // filterMap.put("/*", "authc");
+        filterMap.put("/login", "anon");
+        filterMap.put("/picture/user/**", "anon");
+        filterMap.put("/static/**", "anon");
+        filterMap.put("/*", "authc");
         // 配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了, 位置放在 anon、authc下面
         filterMap.put("/logout", "logout");
+
 
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         // 配器shirot认登录累面地址，前后端分离中登录累面跳转应由前端路由控制，后台仅返回json数据, 对应LoginController中unauth请求

@@ -12,51 +12,51 @@
         <div class="container">
             <!-- 页面内容区begin -->
             <div id="app">
-                <div style=" width:50%;float:left;">
+                <div style=" width:55%;float:left;">
+                    {{$t('SysRole.rolename')}}：
+                    <el-input v-model="s_rolename" label="角色名称" :placeholder="$t('SysRole.rolename')" style="width:200px; heght:30px;" size="mini"></el-input>
+                  <br/>
+                  {{$t('SysRole.roleid')}}：
+                    <el-input v-model="s_rolecode" label="角色编码" :placeholder="$t('SysRole.roleid')" style="width:200px; heght:30px;" size="mini"></el-input>
+                  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    <span style="float: right;">
 
-                    角色名称：
-                    <el-input v-model="s_rolename" label="角色编码" placeholder="角色编码" style="width:200px; heght:30px;" size="mini"></el-input>
+                      <el-button type="success" icon="el-icon-search" @click="getResult(1)" size="mini">{{$t('SysRole.search')}}</el-button>
 
-                    角色编码：
-                    <el-input v-model="s_rolecode" label="角色编码" placeholder="角色编码" style="width:200px; heght:30px;" size="mini"></el-input>
-
-                    <el-button type="success" icon="el-icon-search" @click="getResult(1)" size="mini">搜索</el-button>
+                    </span>
                     <br>
                     <br>
 
                     <!--新增按钮-->
                     <div class="clearfix">
                         <el-col :span="1" class="grid">
-                            <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleAdd" size="mini" round>新增</el-button>
+                            <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleAdd" size="mini" round>{{$t('SysRole.add')}}</el-button>
                         </el-col>
                     </div>
 
                     <!--表格数据及操作-->
                     <el-table :data="tableData" class="mgt20" border style="width: 100%" stripe ref="multipleTable" tooltip-effect="dark" @row-click="clickRow">
                         <!--勾选框-->
-                        <el-table-column type="radio" width="50">
+                        <el-table-column type="radio" style="width: 10%">
                               <template slot-scope="scope">
                                 <el-radio v-model="curentroleid" :label="scope.row.id">{{null}}</el-radio>
                             </template>
                         </el-table-column>
                         <!--索引-->
-                        <el-table-column type="index" :index="indexMethod">
+                        <el-table-column type="index" style="width: 10%" :index="indexMethod">
                         </el-table-column>
-                        <el-table-column prop="roleName" label="角色名称" width="150" sortable>
+                        <el-table-column prop="name" :label="$t('SysRole.rolename')" style="width: 20%" sortable>
                         </el-table-column>
-                        <el-table-column prop="roleCode" label="角色编码" width="150">
+                        <el-table-column prop="id" :label="$t('SysRole.id')" style="width: 20%">
                         </el-table-column>
-                        <el-table-column prop="roleType" label="角色类型">
-                        </el-table-column>
-
-                        <el-table-column label="编辑" width="100">
+                        <el-table-column :label="$t('SysRole.edit')"style="width: 20%">
                             <template slot-scope="scope">
-                                <el-button type="primary" icon="el-icon-edit" size="mini" @click="enditRole(scope.row)">编辑</el-button>
+                                <el-button type="primary" icon="el-icon-edit" size="mini" @click="enditRole(scope.row)">{{$t('SysRole.edit')}}</el-button>
                             </template>
                         </el-table-column>
-                        <el-table-column label="删除" width="100">
+                        <el-table-column :label="$t('SysRole.delete')" style="width: 20%">
                             <template slot-scope="scope">
-                                <el-button type="danger" icon="el-icon-delete" @click="delRole(scope.row)" size="mini">删除</el-button>
+                                <el-button type="danger" icon="el-icon-delete" @click="delRole(scope.row)" size="mini">{{$t('SysRole.delete')}}</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -67,86 +67,105 @@
                     <el-pagination @size-change="handleSizeChange" @current-change="getResult" :current-page="currentPage" :page-size="pageSize" layout="total, prev, pager, next" :total="roletotal">
                     </el-pagination>
                     <!--新增界面-->
-                    <el-dialog title="新增" :visible.sync="addFormVisible" :close-on-click-modal="false">
+                    <el-dialog :title="$t('SysRole.add')" :visible.sync="addFormVisible" :close-on-click-modal="false">
                         <el-form :model="addForm" :rules="addFormRules" ref="addForm" label-width="166px">
-                            <el-form-item label="角色名称" prop="roleName">
-                                <el-input v-model="addForm.roleName" auto-complete="off" style="width:400px;"></el-input>
+                            <el-form-item :label="$t('SysRole.rolename')" prop="name">
+                                <el-input v-model="addForm.name" auto-complete="off" ></el-input>
                             </el-form-item>
-                            <el-form-item label="角色编码" prop="roleCode">
-                                <el-input v-model="addForm.roleCode" auto-complete="off" style="width:400px;"></el-input>
-                            </el-form-item>
-                            <el-form-item label="角色类型" prop="roleType">
-                                <!-- <select v-model="addForm.roleType"  style="width:200px;" >
-                         <option v-for="(item,index) in roleTypeData":value="item.dictDetailValue">{{ item.dictDetailName }}</option>
-                     </select>					 -->
-                                <el-select v-model="addForm.roleType" placeholder="请选择" clearable>
-                                    <el-option v-for="item in roleTypeData" :key="item.value" :label="item.dictDetailName" :value="item.dictDetailValue"></el-option>
-                                </el-select>
+                            <el-form-item :label="$t('SysRole.desc')" prop="des" >
+                                <!--<el-input v-model="addForm.des" auto-complete="off" style="width:400px;"></el-input>-->
+                              <el-input type="textarea" v-model="addForm.des" auto-complete="off" ></el-input>
                             </el-form-item>
                         </el-form>
                         <div slot="footer" class="dialog-footer">
-                            <el-button @click="addFormVisible = false">取消</el-button>
-                            <el-button type="primary" @click="addSubmit" :loading="addLoading">提交</el-button>
+                            <el-button @click="addFormVisible = false">{{$t('SysRole.cancle')}}</el-button>
+                            <el-button type="primary" @click="addSubmit" :loading="addLoading">{{$t('SysRole.submit')}}</el-button>
                         </div>
                     </el-dialog>
-                </div>
-                <div style=" width:45%;float:right;">
-                    <div class="clearfix">
-                        <el-col :span="3" class="grid">
-                            <el-button type="success" icon="el-icon-circle-plus-outline" @click="addRoleUser(1)" size="mini" round>新增</el-button>
-                        </el-col>
-                        <el-col :span="1" class="grid">
-                            <el-button type="danger" icon="el-icon-delete" @click="deleteUserRole" size="mini" round>删除</el-button>
-                        </el-col>
+
+                  <!--编辑界面-->
+                  <el-dialog :title="$t('SysRole.edit')" :visible.sync="editFormVisible" :close-on-click-modal="true">
+                    <el-form :model="editForm" :rules="editFormRules" ref="editForm" label-width="166px">
+                      <el-form-item :label="$t('SysRole.roleid')" prop="name">
+                        <el-input v-model="editForm.id" auto-complete="off" :disabled="true"></el-input>
+                      </el-form-item>
+                      <el-form-item :label="$t('SysRole.rolename')" prop="name">
+                        <el-input v-model="editForm.name" auto-complete="off" ></el-input>
+                      </el-form-item>
+                      <el-form-item :label="$t('SysRole.desc')" prop="des" >
+                        <el-input type="textarea" v-model="editForm.des" auto-complete="off" ></el-input>
+                      </el-form-item>
+                      <el-form-item label="创建时间" prop="cdt">
+                        <el-date-picker  v-model="editForm.cdt" type="date"  placeholder="选择日期" value-format="yyyy-MM-dd" disabled> </el-date-picker>
+                      </el-form-item>
+                      <el-form-item label="修改时间" prop="udt">
+                        <el-date-picker  v-model="editForm.udt" type="date"  placeholder="选择日期" value-format="yyyy-MM-dd" disabled> </el-date-picker>
+                      </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                      <el-button @click="editCancle">{{$t('SysRole.cancle')}}</el-button>
+                      <el-button type="primary" @click="editSubmit" :loading="addLoading">{{$t('SysRole.submit')}}</el-button>
                     </div>
-                    
+                  </el-dialog>
+                </div>
+                <div style=" width:40%;float:right;margin-top:74px; ">
+                    <div class="clearfix">
+                        <!--<el-col :span="3" class="grid">-->
+                            <el-button type="success" icon="el-icon-circle-plus-outline" @click="addRoleUser(1)" size="mini" round>{{$t('SysRole.add')}}</el-button>
+                        <!--</el-col>-->
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!--<el-col :span="7" class="grid">-->
+                            <el-button type="danger" icon="el-icon-delete" @click="deleteUserRole" size="mini" round>{{$t('SysRole.delete')}}</el-button>
+                        <!--</el-col>-->
+                    </div>
+
                     <el-table :data="roleUserList" class="mgt20" @selection-change="roleuserSelectChange" border style="width: 100%" stripe ref="roleUserList" tooltip-effect="dark">
                         <!--勾选框-->
-                        <el-table-column type="selection" width="55">
+                        <el-table-column type="selection" style="width: 20%">
                         </el-table-column>
                         <!--索引-->
-                        <el-table-column type="index" :index="indexMethod">
+                        <el-table-column type="index"style="width: 20%" :index="indexMethod">
                         </el-table-column>
-                        <el-table-column prop="userName" label="用户名称" width="180" sortable>
+                        <el-table-column prop="name" :label="$t('SysRole.name')" style="width: 30%" sortable>
                         </el-table-column>
-                        <el-table-column prop="targetId" label="用户编号" width="180">
+                        <el-table-column prop="id" :label="$t('SysRole.id')" style="width: 30%" sortable>
                         </el-table-column>
-                        <el-table-column prop="id" label="id" width="180">
-                        </el-table-column>
+
                     </el-table>
                     <el-pagination @current-change="getRoleUserList" :current-page="roleusercurrentPage" :page-size="pageSize" layout="total, prev, pager, next" :total="roleusercount">
                     </el-pagination>
                     <br>
                     <!--新增界面-->
-                    <el-dialog title="新增用户" :visible.sync="addRoleUserVisible" :close-on-click-modal="false">
+                    <el-dialog :title="$t('SysRole.adduser')" :visible.sync="addRoleUserVisible" :close-on-click-modal="false">
                         <el-row>
                             <el-col :span="200" class="grid">
-                                <el-input v-model="s_username" label="用户名称" placeholder="请输入内容" style="width:200px; heght:30px;" size="mini"></el-input>
+                                <el-input v-model="s_username" :label="$t('SysRole.name')" placeholder="请输入用户名称" style="width:200px; heght:30px;" size="mini"></el-input>
                             </el-col>
                             <el-col :span="1" class="grid">
-                                <el-button type="success" @click="addRoleUser(1)" icon="el-icon-search" size="mini">搜索</el-button>
+                                <el-button type="success" @click="addRoleUser(1)" icon="el-icon-search" size="mini">{{$t('SysRole.search')}}</el-button>
                             </el-col>
                         </el-row>
                         <br>
                         <el-table :data="userData" @selection-change="userSelectionChange" border style="width: 100%" stripe ref="multipleTable" tooltip-effect="dark">
                             <!--勾选框-->
-                            <el-table-column type="selection" width="55">
+                            <el-table-column type="selection"style="width: 20%">
                             </el-table-column>
                             <!--索引-->
-                            <el-table-column type="index" :index="indexMethod">
+                            <el-table-column type="index" :index="indexMethod" style="width: 20%">
                             </el-table-column>
-                            <el-table-column prop="userName" label="用户名称" width="180">
+                            <el-table-column prop="name" :label="$t('SysRole.name')" style="width: 30%">
                             </el-table-column>
-                            <el-table-column prop="id" label="用户编号">
+                            <el-table-column prop="id" :label="$t('SysRole.id')" style="width: 30%" sortable>
                             </el-table-column>
-
+                            <el-table-column prop="cdt" :label="$t('SysRole.cdt')" style="width: 30%" sortable>
+                            </el-table-column>
                         </el-table>
                         <el-pagination @current-change="addRoleUser" :current-page="usercurrentPage" :page-size="pageSize" layout="total, prev, pager, next" :total="usercount">
                         </el-pagination>
                         <br>
                         <div slot="footer" class="dialog-footer">
-                            <el-button type="primary" @click="saveUserRole" :loading="addLoading">保存</el-button>
-                            <el-button @click="addRoleUserVisible= false">关闭</el-button>
+                            <el-button type="primary" @click="saveUserRole" :loading="addLoading">{{$t('SysRole.save')}}</el-button>
+                            <el-button @click="addRoleUserVisible= false">{{$t('SysRole.close')}}</el-button>
                         </div>
                     </el-dialog>
                 </div>
@@ -157,6 +176,7 @@
     <!-- 页面表格end -->
 </template>
 <script>
+  import {formatDate} from '../../common/date.js'
 export default {
     data() {
         return {
@@ -168,10 +188,12 @@ export default {
             input: "",
             curentroleid: "",
             curentrow: null,
-            //列表Loading加载   
+            //列表Loading加载
             listLoading: false,
             //新增界面是否显示
             addFormVisible: false,
+            //编辑界面是否显示
+            editFormVisible:false,
             //添加按钮Loading加载
             addLoading: false,
             //新增角色用户
@@ -190,17 +212,31 @@ export default {
             //     s_roleType:"",
             //输入框验证
             addFormRules: {
-                roleName: [{ required: true, message: "请输入角色名称", trigger: "blur" }],
-                roleCode: [{ required: true, message: "请输入角色编码", trigger: "blur" }],
-                roleType: [{ required: true, message: "请输入角色类型", trigger: "blur" }]
-            },
+                name: [{ required: true, message: "请输入角色名称", trigger: "blur" }],
+            des: [{ required: true, message: "请输入角色描述", trigger: "blur" }]
+            },    //输入框验证
+          editFormRules: {
+            name: [{ required: true, message: "请输入角色名称", trigger: "blur" }],
+            des: [{ required: true, message: "请输入角色描述", trigger: "blur" }]
+          },
             //新增界面数据
             addForm: [],
+            editForm:{
+              id:"",
+              name:"",
+              des:"",
+              cdt:"",
+              udt:""
+            },
             UserSelection: []
         }
     },
 
     methods: {
+        editCancle(){
+          this.editFormVisible = false
+          this.$refs["editForm"].resetFields();
+        },
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
         },
@@ -212,16 +248,18 @@ export default {
 
             var _this = this;
             this.listLoading = true;
-            let param = Object.assign({}, { currentPage: val, pageSize: 10, roleName: this.s_rolename, roleCode: this.s_rolecode });
+              let param = Object.assign({}, { skip: (val-1)*10, size: 10, name: this.s_rolename?this.s_rolename:null, id: this.s_rolecode?this.s_rolecode:null });
             this.$ajax({
                 method: "post",
-                url: "/api/sysrole-api/querySysRoleList",
+                url: "/role/querySysRoleList",
                 data: param
             }).then(
                 function(resultData) {
-
+                  console.log(resultData)
+                 let count =  resultData.data.count
+                  console.log( resultData.data.data)
                     _this.tableData = resultData.data.data;
-                    _this.roletotal = resultData.data.count;
+                    _this.roletotal = count;
                     _this.listLoading = false;
                 },
                 function(resultData) {
@@ -245,7 +283,7 @@ export default {
                         let param = Object.assign({}, this.addForm);
                         this.$ajax({
                             method: "post",
-                            url: "/api/sysrole-api/addRole",
+                            url: "/role/addRole",
                             data: param
                         }).then(res => {
                             this.addLoading = false;
@@ -261,6 +299,32 @@ export default {
                 }
             });
         },
+      //编辑提交
+      editSubmit:function(){
+        this.$refs.editForm.validate(valid => {
+          if (valid) {
+            this.$confirm("确认提交吗？", "提示", {}).then(() => {
+              // this.editLoading = true;
+              let param = Object.assign({}, this.editForm);
+              this.$ajax({
+                method: "post",
+                url: "/role/editRole",
+                data: param
+              }).then(res => {
+                // this.addLoading = false;
+                this.$message({
+                  message: "提交成功",
+                  type: "success"
+                });
+                this.$refs["editForm"].resetFields();
+                 this.editFormVisible = false;
+                this.getResult(1);
+              });
+            });
+          }
+        });
+
+      },
         getRoleType: function() {
 
             var _this = this;
@@ -287,52 +351,61 @@ export default {
         handleAdd: function() {
             this.addFormVisible = true;
             this.addForm = {
-                id: 0,
-                roleName: "",
-                roleCode: "",
-                roleType: ""
+                name: "",
+                des: "",
             };
         },
         //显示编辑角色界面
         enditRole: function(row) {
             var _this = this;
             this.listLoading = true;
-            this.addFormVisible = true;
+            this.editFormVisible = true;
             let param = new URLSearchParams();
             param.append("id", row.id);
-
-            this.$ajax({
-                method: "post",
-                url: "/api/sysrole-api/getSysRoleByid",
-                data: param
-            }).then(
-                function(resultData) {
-
-                    _this.addForm = resultData.data.data;
-                    _this.listLoading = false;
-                }
-                );
+            this.editForm.id = row.id,
+            this.editForm.name=row.name
+            this.editForm.des=row.des
+            this.editForm.cdt=formatDate(new Date(row.cdt), 'yyyy-MM-dd hh:mm:ss')
+            console.log(formatDate(new Date(row.cdt), 'yyyy-MM-dd hh:mm')+"===============")
+            this.editForm.udt=formatDate(new Date(row.udt), 'yyyy-MM-dd hh:mm:ss')
+          console.log(formatDate(new Date(row.udt), 'yyyy-MM-dd hh:mm')+"===============")
+            // this.$ajax({
+            //     method: "post",
+            //     url: "/api/sysrole-api/getSysRoleByid",
+            //     data: param
+            // }).then(
+            //     function(resultData) {
+            //
+            //         _this.addForm = resultData.data.data;
+            //         _this.listLoading = false;
+            //     }
+            //     );
         },
         delRole: function(row) {
-            let param = new URLSearchParams();
-            param.append("id", row.id);
+            // let param = new URLSearchParams();
+            // param.append("id", row.id);
+            let param = {
+              id:row.id
+            }
 
             this.$ajax({
                 method: "post",
-                url: "/api/sysrole-api/deleteSysRoleByid",
+                url: "/role/deleteSysRoleByid",
                 data: param
             })
             .then(()=>{
                   this.$message({
                         message: "删除成功",
                         type: "success"
-                    });   
+                    });
+              this.getResult(1)
             })
             .catch(()=>{
                 this.$message({
                         message: "删除失败",
                         type: "success"
                     });
+              this.getResult(1)
             })
             ;
 
@@ -340,20 +413,25 @@ export default {
         getRoleUserList: function(val) {
             var _this = this;
             this.listLoading = true;
-            let param = Object.assign({}, { currentPage: val, pageSize: 10, roleId: this.curentroleid });
+            let param = Object.assign({}, { skip: (val-1)*10, size: 10, roleId: this.curentroleid });
             this.$ajax({
                 method: "post",
-                url: "/api/sysrole-api/queryRoleUserList",
+                url: "/authorization/getRoleUserList",
                 data: param
             }).then(
                 function(resultData) {
-
+                    console.log(resultData)
                     _this.roleUserList = resultData.data.data;
                     _this.roleusercount = resultData.data.count;
                     //alert(_this.tableData);
                     //_this.listLoading = false;
                 }
-                );
+                ).catch(
+              function(resultData) {
+                _this.roleUserList=null
+                _this.roleusercount = null;
+              }
+            )
         },
         clickRow: function(row) {
             this.roleuserSelect = [];
@@ -368,16 +446,22 @@ export default {
             this.addRoleUserVisible = true;
             var _this = this;
             this.listLoading = true;
-            let param = Object.assign({}, { currentPage: val, pageSize: 10, userName: this.s_username });
+            let param = Object.assign({}, { currentPage: (val-1)*10, pageSize: 10, name: this.s_username });
             this.$ajax({
                 method: "post",
-                url: "/api/sysuser-api/querySysUserList",
+                url: "/user/querySysUserList",
                 data: param
             }).then(
                 function(resultData) {
-
-                    _this.userData = resultData.data.data;
-                    _this.usercount = resultData.data.count;
+                    console.log(resultData)
+                 let dataList =  resultData.data.result.dataList;
+                  for (var i = 0;i<dataList.length;i++){
+                    let cdt = dataList[i].cdt;
+                    var dateCdt = new Date(cdt);
+                    dataList[i].cdt=formatDate(dateCdt, 'yyyy-MM-dd hh:mm')
+                  }
+                    _this.userData =dataList
+                    _this.usercount = resultData.data.result.count;
                     //alert(_this.tableData);
                     //_this.listLoading = false;
                 }
@@ -413,21 +497,46 @@ export default {
             }
             var rows = this.UserSelection;
             if (rows) {
-                rows.forEach(row => {
-                    var _this = this;
-                    this.listLoading = true;
-                    let param = Object.assign({}, { id: 0, roleId: this.curentroleid, targetId: row.id });
-                    this.$ajax({
-                        method: "post",
-                        url: "/api/sysrole-api/saveRoleUser",
-                        data: param
-                    }).then(
-                        function(resultData) {
+                // rows.forEach(row => {
+                //     var _this = this;
+                //     this.listLoading = true;
+                //     let param = Object.assign({}, { id: 0, roleId: this.curentroleid, targetId: row.id });
+                //     this.$ajax({
+                //         method: "post",
+                //         url: "/api/sysrole-api/saveRoleUser",
+                //         data: param
+                //     }).then(
+                //         function(resultData) {
+                //
+                //         }
+                //         );
+                //     // alert(row.id)
+                // });
+              console.log(rows)
+              let userIds=[];
+              for (var i=0;i<rows.length;i++){
+                userIds[i]=rows[i].id
+              }
+              console.log(userIds)
+              var _this = this;
+              this.listLoading = true;
+              let param= {
+                roleId:this.curentroleid,
+                userIds
+              }
+              this.$ajax({
+                method: "post",
+                url: "/authorization/saveRoleUser",
+                data: param
+            }).then(
+                function(resultData) {
 
-                        }
-                        );
-                    // alert(row.id)
-                });
+                  // alert("成功")
+                 getRoleUserList()
+                }
+                ).catch(function (result) {
+                getRoleUserList()
+              })
             }
             // this.$refs["addRoleUser"].resetFields();
             this.addRoleUserVisible = false;
@@ -437,21 +546,44 @@ export default {
         deleteUserRole: function() {
             var rows = this.roleuserSelect;
             if (rows) {
-                rows.forEach(row => {
-                    var _this = this;
-                    this.listLoading = true;
-                    let param = new URLSearchParams();
-                    param.append("id", row.id);
-                    this.$ajax({
-                        method: "post",
-                        url: "/api/sysrole-api/deleteSysRoleUserByid",
-                        data: param
-                    }).then(
-                        function(resultData) {
+                // rows.forEach(row => {
+                //     var _this = this;
+                //     this.listLoading = true;
+                //     let param = {
+                //       id:row.id
+                //     }
+                //     this.$ajax({
+                //         method: "post",
+                //         url: "/authorization/deleteSysRoleUserByid",
+                //         data: param
+                //     }).then(
+                //         function(resultData) {
+                //
+                //         }
+                //         );
+                // });
+              let userIds=[];
+              for (var i=0;i<rows.length;i++){
+                userIds[i]=rows[i].id
+              }
+              console.log(userIds)
+              var _this = this;
+              this.listLoading = true;
+              let param= {
+                roleId:this.curentroleid,
+                userIds
+              }
+                  this.$ajax({
+                      method: "post",
+                      url: "/authorization/deleteSysRoleUserByid",
+                      data: param
+                  }).then(
+                      function(resultData) {
+                        getRoleUserList(1)
+                      }
+                      );
 
-                        }
-                        );
-                });
+
             }
             this.addRoleUserVisible = false;
             this.clickRow(this.curentrow);
@@ -459,7 +591,7 @@ export default {
     },
     mounted() {
         //获取列表
-        this.getResult();
+          this.getResult(1);
         // this.getRoleType();
 
     }
@@ -475,6 +607,6 @@ export default {
 /* #roleuser {
         font-family: Helvetica, sans-serif;
         text-align: center;
-    }    
+    }
     el-input{width:200px;height: 50px;} */
 </style>

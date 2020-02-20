@@ -1,6 +1,6 @@
 //package com.dcits.scott.auth.common;
 //
-//import com.dcits.scott.admin.pojo.common.ProtoBean;
+//import com.dcits.scott.common.ProtoBean;
 //import com.kaistart.gateway.support.json.JsonResp;
 //import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.RequestBody;

@@ -12,8 +12,8 @@ exports.install = function (Vue,options){
      */
     Common.OpenNewPage=function($this,routePath,param){
         let routeData=$this.$router.resolve({
-            path:routePath,
-            query:param
+            path:param,
+
         });
         window.open(routeData.href,'_blank');
     }

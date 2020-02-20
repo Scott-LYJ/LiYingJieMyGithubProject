@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author fendyguo
@@ -46,6 +47,16 @@ public class AuthorizationServiceImpl extends ProtoServiceImpl<AuthAuthorization
   @Override
   public List<AuthAuthorization> selectByUserId(Integer userId) throws Exception {
     return this.authorizationMapper.selectByUserId(userId);
+  }
+
+  @Override
+  public void insertList(List<AuthAuthorization> authAuthorizationList) throws Exception {
+    this.authorizationMapper.insertList(authAuthorizationList);
+  }
+
+  @Override
+  public void delUserAuthorizationById(Map<String, Object> map) {
+    this.authorizationMapper.delUserAuthorizationById(map);
   }
 
 }

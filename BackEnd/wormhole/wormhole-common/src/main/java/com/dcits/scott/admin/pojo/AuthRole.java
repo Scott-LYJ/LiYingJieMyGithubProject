@@ -1,7 +1,7 @@
 package com.dcits.scott.admin.pojo;
 
-import com.dcits.scott.admin.pojo.common.CommonDO;
-import com.dcits.scott.admin.pojo.common.ProtoBean;
+import com.dcits.scott.common.CommonDO;
+import com.dcits.scott.common.ProtoBean;
 
 import java.util.Date;
 
@@ -13,6 +13,16 @@ public class AuthRole extends ProtoBean {
     private Date cdt;
 
     private Date udt;
+
+    private String des;
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
 
     public Integer getId() {
         return id;

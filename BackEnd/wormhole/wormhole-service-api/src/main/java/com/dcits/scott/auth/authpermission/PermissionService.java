@@ -5,6 +5,8 @@ import com.dcits.scott.admin.pojo.AuthPermission;
 import com.dcits.scott.auth.common.ProtoService;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * 权限认证服务接口
  * @author scott lee
@@ -26,4 +28,10 @@ public abstract interface PermissionService extends ProtoService<AuthPermission>
      * @throws Exception
      */
     public abstract List<AuthPermission> selectByRoleId(Integer paramInteger) throws Exception;
+
+    List<AuthPermission> querPermissionList(List<Integer> roleIds);
+
+    void insertList(Map<String,Object> map);
+
+    void deleteByRoleId(int roleId);
 }

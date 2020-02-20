@@ -1,7 +1,7 @@
 package com.dcits.scott.admin.pojo;
 
-import com.dcits.scott.admin.pojo.common.CommonDO;
-import com.dcits.scott.admin.pojo.common.ProtoBean;
+import com.dcits.scott.common.CommonDO;
+import com.dcits.scott.common.ProtoBean;
 
 import java.util.Date;
 import java.util.List;
@@ -45,7 +45,7 @@ public class AuthResource extends ProtoBean {
         this.isShow = isShow;
     }
 
-    List<AuthResource> authResourceList;
+    List<AuthResource> children;
 
     public Integer getId() {
         return id;
@@ -119,11 +119,11 @@ public class AuthResource extends ProtoBean {
         this.icon = icon == null ? null : icon.trim();
     }
 
-    public List<AuthResource> getAuthResourceList() {
-        return authResourceList;
+    public List<AuthResource> getChildren() {
+        return children;
     }
 
-    public void setAuthResourceList(List<AuthResource> authResourceList) {
-        this.authResourceList = authResourceList;
+    public void setChildren(List<AuthResource> children) {
+        this.children = children;
     }
 }

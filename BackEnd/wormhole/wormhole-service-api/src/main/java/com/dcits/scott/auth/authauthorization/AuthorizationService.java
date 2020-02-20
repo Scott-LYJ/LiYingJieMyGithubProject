@@ -4,6 +4,8 @@ import com.dcits.scott.admin.pojo.AuthAuthorization;
 import com.dcits.scott.auth.common.ProtoService;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * 权限认证服务接口
  * @author scott lee
@@ -27,4 +29,7 @@ public interface AuthorizationService extends ProtoService<AuthAuthorization> {
     public abstract List<AuthAuthorization> selectByUserId(Integer paramInteger) throws Exception;
 
 
+    void insertList(List<AuthAuthorization> authAuthorizationList) throws Exception;
+
+    void delUserAuthorizationById(Map<String,Object> map);
 }

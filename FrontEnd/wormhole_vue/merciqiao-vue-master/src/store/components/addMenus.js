@@ -22,8 +22,8 @@ const addMenus = {
     add_Menus(state, param) {
         if(param){
             var menuList=[];
-            _addMenu(menuList,param);
-         //addMenu2(menuList,param);
+            //_addMenu(menuList,param);
+         addMenu2(menuList,param);
              state.menuList=menuList;
              console.log("执行add_Menus")
         }
@@ -69,8 +69,8 @@ const addMenus = {
           // menu.index=menuParam.orderBy;
           menu.index=menuParam.perm;
           menu.title=menuParam.name;
-          if(menuParam.authResourceList&&menuParam.authResourceList.length>0){
-            addMenu2(menu.subs,menuParam.authResourceList);
+          if(menuParam.children&&menuParam.children.length>0){
+            addMenu2(menu.subs,menuParam.children);
           }
           menuList.push(menu);
 

@@ -1,6 +1,6 @@
 package com.dcits.scott.roleprovider.common;
 
-import com.dcits.scott.admin.pojo.common.ProtoBean;
+import com.dcits.scott.common.ProtoBean;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -7,12 +7,14 @@
         <result column="name" property="name"/>
         <result column="cdt" property="cdt"/>
         <result column="udt" property="udt"/>
+        <result column="des" property="des"/>
     </resultMap>
 
     <sql id="where">
         <where>
             <if test="id != null">id = #{id}</if>
             <if test="name != null">and name like concat('%', #{name}, '%')</if>
+            <if test="describe != null">and describe like concat('%', #{describe}, '%')</if>
             <if test="cdt != null">
                 <![CDATA[
                   and cdt between date_format(#{cdt}, '%Y-%m-%d 00:00:00') and date_format(#{cdt}, '%Y-%m-%d 23:59:59')
@@ -25,6 +27,13 @@
             </if>
         </where>
     </sql>
+    <select id="queryRoleUserList" parameterType="java.util.List" resultMap="result">
+        SELECT * FROM auth_role WHERE id in
+        <foreach collection="list" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 
     <select id="selectById" parameterType="Integer" resultMap="result">
         SELECT * FROM auth_role WHERE id = #{id}
@@ -57,6 +66,9 @@
             <if test="name != null">
                 name = #{name},
             </if>
+            <if test="des != null">
+                des = #{des},
+            </if>
             udt = now()
         </set>
 
@@ -80,7 +92,7 @@
     </delete>
 
     <insert id="insert" parameterType="com.dcits.scott.admin.pojo.AuthRole">
-        INSERT INTO auth_role (name, cdt, udt) VALUES (#{name}, now(), now())
+        INSERT INTO auth_role (name, cdt, udt,des) VALUES (#{name}, now(), now(),#{des})
     </insert>
 
 </mapper>

@@ -5,6 +5,7 @@ import com.dcits.scott.roleprovider.common.ProtoMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author fendyguo
@@ -33,4 +34,7 @@ public abstract interface PermissionMapper extends ProtoMapper<AuthPermission> {
    * @throws Exception
    */
   public abstract void insertList(List<AuthPermission> paramList) throws Exception;
+
+    List<AuthPermission> querPermissionList(List<Integer> roleIds);
+    void insertList(Map<String,Object> map);
 }

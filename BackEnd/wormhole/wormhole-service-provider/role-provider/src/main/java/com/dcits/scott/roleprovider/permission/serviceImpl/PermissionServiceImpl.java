@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 权限服务接口
@@ -48,4 +49,25 @@ public class PermissionServiceImpl extends ProtoServiceImpl<AuthPermission> impl
   public List<AuthPermission> selectByRoleId(Integer roleId) throws Exception {
     return this.permissionMapper.selectByRoleId(roleId);
   }
+
+  @Override
+  public List<AuthPermission> querPermissionList(List<Integer> roleIds) {
+    return permissionMapper.querPermissionList(roleIds);
+  }
+
+  @Override
+  public void insertList(Map<String, Object> map) {
+     permissionMapper.insertList(map);
+  }
+
+  @Override
+  public void deleteByRoleId(int roleId) {
+    try {
+      permissionMapper.deleteByRoleId(roleId);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 }
+
+

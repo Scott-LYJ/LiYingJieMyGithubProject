@@ -1,34 +1,24 @@
 package com.dcits.scott.wormholeserviceconsumer.controller;
 
-import com.dcits.scott.admin.pojo.AuthAuthorization;
-import com.dcits.scott.admin.pojo.AuthPermission;
-import com.dcits.scott.admin.pojo.AuthResource;
 import com.dcits.scott.admin.pojo.AuthUser;
-import com.dcits.scott.admin.pojo.support.result.Result;
+import com.dcits.scott.support.result.Result;
 import com.dcits.scott.auth.authauthorization.AuthorizationService;
 import com.dcits.scott.auth.authpermission.PermissionService;
 import com.dcits.scott.auth.authresource.ResourceService;
 import com.dcits.scott.auth.authrole.RoleService;
 import com.dcits.scott.auth.authuser.AuthUserService;
 import com.dcits.scott.wormholeserviceconsumer.ExtendFunction;
-import org.apache.catalina.util.RequestUtil;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import java.io.Console;
 import java.util.*;
 
 @RestController

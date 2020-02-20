@@ -14,7 +14,7 @@ export default {};
   height: 100%;
   .img {
     height: 100%;
-    background-image: url("/static/img/honor.jpg");
+    background-image: url("/static/img/user/honor.jpg");
     background-clip: content-box;
     background-size: contain;
     background-repeat: no-repeat;
