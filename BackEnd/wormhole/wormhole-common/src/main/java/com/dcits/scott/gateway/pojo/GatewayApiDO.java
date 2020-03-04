@@ -115,12 +115,40 @@ public class GatewayApiDO extends CommonDO {
    * @mbg.generated
    */
   private Integer version;
-  
+
+  private String interfaceName;
+
+  public static long getSerialVersionUID() {
+    return serialVersionUID;
+  }
+
+  public String getInterfaceName() {
+    return interfaceName;
+  }
+
+  public void setInterfaceName(String interfaceName) {
+    this.interfaceName = interfaceName;
+  }
+
   /**
    * 回调响应头信息
    */
   private String responseHeader;
-  
+
+  private String zookeeper;
+
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
+
+  public String getZookeeper() {
+    return zookeeper;
+  }
+
+  public void setZookeeper(String zookeeper) {
+    this.zookeeper = zookeeper;
+  }
+
   public String getResponseHeader() {
     return responseHeader;
   }
@@ -133,7 +161,15 @@ public class GatewayApiDO extends CommonDO {
    * 输入参数
    */
 //  private List<GatewayServiceRequestDO> paramList;
-  
+
+  public String getGroupName() {
+    return groupName;
+  }
+
+  public void setGroupName(String groupName) {
+    this.groupName = groupName;
+  }
+
   /**
    * 分组名称
    */

@@ -75,12 +75,28 @@ module.exports = {
           '^/project': '/project',
         }
       },
+      '/projectGroup': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/projectGroup': '/projectGroup',
+        }
+      },
       '/group': {
         // target: 'http://101ycy.com:10001',
         target: 'http://192.168.247.1:8085',
         changeOrigin: true,
         pathRewrite: {
           '^/group': '/group',
+        }
+      },
+      '/interface': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/interface': '/',
         }
       },
       '/picture/user': {

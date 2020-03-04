@@ -18,7 +18,7 @@ public class GatewayApiGroupServiceImpl extends AbstractCommonServiceImpl<Gatewa
     GatewayApiGroupMapper gatewayApiGroupMapper;
     @Override
     protected CommonMapper<GatewayApiGroupDO> getMapper() {
-        return null;
+        return gatewayApiGroupMapper;
     }
 
     @Override

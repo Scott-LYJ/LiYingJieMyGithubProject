@@ -5,7 +5,6 @@
 // import axios from 'axios'
 
 
-
 import App from './App'
 import router from './router'
 
@@ -17,12 +16,14 @@ import store from './store'
 window.moment=require('moment')
 
 
-// import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/index.css';
 // import '../static/css/theme-green/index.css';
 
 //引入多语言支持
 import i18n from './common/i18n'
 
+import VueClipboard from 'vue-clipboard2'
+Vue.use(VueClipboard)
 
 Vue.prototype.$ajax=axios
 Vue.config.productionTip = false

@@ -119,4 +119,5 @@ public class ProjectController {
         gatewayProjectService.deleteByPrimaryKey(id);
         return new Result<>("200","删除成功");
     }
+
 }

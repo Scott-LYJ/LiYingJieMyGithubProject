@@ -35,7 +35,6 @@
 
       </div>
         <div class="pagepath">
-
         </div>
         <!--<el-breadcrumb separator="/" style="padding:10px;border:1px solid #ddd;background:#fff;margin-bottom:1px;">-->
             <!--<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>-->
@@ -48,10 +47,19 @@
         <el-tabs type="border-card">
             <el-tab-pane label="分组">
                 分组授权
-              <vgroup-detail></vgroup-detail>
+              <vgroup-detail :message="projectId" ></vgroup-detail>
             </el-tab-pane>
             <el-tab-pane label="接口">接口<br/></el-tab-pane>
-            <el-tab-pane label="图表">图表</el-tab-pane>
+            <el-tab-pane label="图表" >
+              <div>
+                <div style="float: left">
+              <group-chart :message="projectId" ></group-chart>
+                </div>
+                <div>
+                  dada
+                </div>
+              </div>
+            </el-tab-pane>
             <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
         </el-tabs>
     </div>
@@ -71,14 +79,20 @@
 <script>
 import vSearchinput from '../searchinput/searchinput.vue';
 import vgroupDetail from './GroupDetail.vue'
+import groupChart from '../chart/GroupChart.vue'
+import interfaceChart from '../chart/InterfaceChart.vue'
+
 export default {
-  name: 'tabpage',
+  name: 'groupAndapi',
   components: {
     vSearchinput,
-    vgroupDetail
+    vgroupDetail,
+    groupChart,
+    interfaceChart,
   },
   data() {
     return {
+      projectId:'',
       labelPosition: "right", //lable对齐方式
       labelWidth: "80px", //lable宽度
       userIcon: null,
@@ -93,11 +107,23 @@ export default {
     }
   },
     methods: {
-
+      // reload () {
+      //   this.update = false
+      //   this.$nextTick(() => (this.update = true))
+      // },
+      // updateView(update){
+      //   this.update=false;
+      //   this.$nextTick(() => (this.update = true))
+      //   alert(this.update)
+      // },
+        fun(){
+          alert("dasdasd");
+        }
     },
     mounted(){
       var project = this.$route.query.project;
       this.project.id=project.id
+      this.projectId=project.id
       this.project.name=project.name
       this.project.des = project.des
       this.project.creater = project.authUser.name

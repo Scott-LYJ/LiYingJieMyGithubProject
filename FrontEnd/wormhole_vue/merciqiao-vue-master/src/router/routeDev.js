@@ -25,7 +25,13 @@ var routeDevList = [
       title: '接口'
     }
   },
-
+  // {
+  //   path: '/TestInterface',
+  //   component: resolve => require(['../components/interfacemanager/TestInterface/TestInterface.vue'], resolve),
+  //   meta: {
+  //     title: '接口测试'
+  //   }
+  // },
 ];
 //静态菜单
 var menuDevList = [

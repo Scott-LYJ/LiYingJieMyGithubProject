@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dcits.scott.projectprovider.gatewayprojectgroup.mapper.GatewayProjectGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.dcits.scott.gateway.pojo.GatewayProjectGroupDO" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="INTEGER" />
+    <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
+    <result column="API_ID" property="apiId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gateway_project_group
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dcits.scott.gateway.pojo.GatewayProjectGroupDO" >
+    insert into gateway_project_group (ID, PROJECT_ID, GROUP_ID, 
+      API_ID)
+    values (#{id,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, 
+      #{apiId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertByProGou" parameterType="Map">
+        insert into gateway_project_group (PROJECT_ID,GROUP_ID)
+        values ( #{projectId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER})
+    </insert>
+    <delete id="deleteByProGou" parameterType="Map">
+        delete from gateway_project_group
+        where PROJECT_ID = #{projectId,jdbcType=INTEGER} and GROUP_ID = #{groupId,jdbcType=INTEGER}
+    </delete>
+  <update id="updateByPrimaryKey" parameterType="com.dcits.scott.gateway.pojo.GatewayProjectGroupDO" >
+    update gateway_project_group
+    set PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      GROUP_ID = #{groupId,jdbcType=INTEGER},
+      API_ID = #{apiId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ID, PROJECT_ID, GROUP_ID, API_ID
+    from gateway_project_group
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByProjectId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ID, PROJECT_ID, GROUP_ID, API_ID
+    from gateway_project_group
+    where PROJECT_ID = #{projectId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, PROJECT_ID, GROUP_ID, API_ID
+    from gateway_project_group
+  </select>
+  <select id="selectCount" resultType="Integer" parameterType="Map">
+    select count(*)
+    from gateway_project_group
+    where PROJECT_ID=#{projectId}
+  </select>
+</mapper>

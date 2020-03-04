@@ -134,6 +134,18 @@ const dynamicRouter = [
     meta: { title: '分组管理' }
   },
   {
+    name: 'GroupDetail',
+    path: '/GroupDetail',
+    component: resolve => require(['@/components/project/GroupDetail.vue'], resolve),
+    meta: { title: '分组管理' }
+  },
+  {
+    name: 'InterfaceManager',
+    path: '/InterfaceManager',
+    component: resolve => require(['@/components/interfacemanager/InterfaceManage/InterfaceManager.vue'], resolve),
+    meta: { title: '接口管理' }
+  },
+  {
     name: 'api',
     path: '/api',
     component: resolve => require(['@/components/project/api.vue'], resolve),

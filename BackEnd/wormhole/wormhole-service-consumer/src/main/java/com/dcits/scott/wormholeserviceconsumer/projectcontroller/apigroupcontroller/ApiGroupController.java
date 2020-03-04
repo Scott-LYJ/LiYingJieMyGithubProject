@@ -2,6 +2,7 @@ package com.dcits.scott.wormholeserviceconsumer.projectcontroller.apigroupcontro
 
 import com.dcits.scott.gateway.pojo.GatewayApiGroupDO;
 import com.dcits.scott.project.gatewayapigroup.GatewayApiGroupService;
+import com.dcits.scott.project.gatewayproject.GatewayProjectService;
 import com.dcits.scott.support.result.Result;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,5 +52,6 @@ public class ApiGroupController {
         gatewayApiGroupService.updateGroupByMap(map);
         return new Result<>("200","更新成功");
     }
+
 
 }

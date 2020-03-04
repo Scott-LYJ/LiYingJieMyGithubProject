@@ -53,6 +53,20 @@ public class GatewayApiGroupDO extends CommonDO {
    */
   private Integer version;
 
+  private Boolean Authorized;
+
+  public static long getSerialVersionUID() {
+    return serialVersionUID;
+  }
+
+  public Boolean getAuthorized() {
+    return Authorized;
+  }
+
+  public void setAuthorized(Boolean authorized) {
+    Authorized = authorized;
+  }
+
   /**
    * @mbg.generated
    */
