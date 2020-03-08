@@ -112,12 +112,16 @@
         },
         methods: {
           onSave() {
+            console.log(this.dubboDetailForm)
+            console.log("map:",this.pageTotal.providerNameMap)
+
             this.$notify({
               title: '提示',
               message:  'dubbo信息保存成功',
               type: 'success'
             });
             console.log('save!');
+
             this.$emit("dubboDetailSave",this.dubboDetailForm)
             console.log('submit!');
           },

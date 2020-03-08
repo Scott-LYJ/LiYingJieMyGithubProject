@@ -89,8 +89,8 @@ public class GenericDubboConsumer {
 
           //  GenericService service = DubboGenericFactory.get(template.getRegistry(),template.getDubboUrl(),template.getInterfaceName(),template.getVersion());
 
-//            String methodName = template.getMethodName();
-            String methodName = "selectByPrimaryKey";
+            String methodName = template.getMethodName();
+//            String methodName = "selectByPrimaryKey";
 
             String[] parameterTypes = template.getParamTypes().toArray(new String[]{});
 

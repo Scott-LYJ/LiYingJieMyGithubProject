@@ -3,6 +3,8 @@ package com.dcits.scott.gateway.pojo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 import com.dcits.scott.common.CommonDO;
 import com.dcits.scott.tool.DateUtil;
 
@@ -117,6 +119,16 @@ public class GatewayApiDO extends CommonDO {
   private Integer version;
 
   private String interfaceName;
+
+  private Set<GatewayServiceRequestDO> gatewayServiceRequestDOS;
+
+  public Set<GatewayServiceRequestDO> getGatewayServiceRequestDOS() {
+    return gatewayServiceRequestDOS;
+  }
+
+  public void setGatewayServiceRequestDOS(Set<GatewayServiceRequestDO> gatewayServiceRequestDOS) {
+    this.gatewayServiceRequestDOS = gatewayServiceRequestDOS;
+  }
 
   public static long getSerialVersionUID() {
     return serialVersionUID;

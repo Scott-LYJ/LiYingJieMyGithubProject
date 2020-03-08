@@ -45,7 +45,7 @@
 
         <el-col :span="9">
           <el-form-item label="方法：" label-width="60px">
-            <el-select v-model="pageArray[pageIndex].methodName" placeholder="必填，请选择方法名称" filterable npm run dev>
+            <el-select v-model="pageArray[pageIndex].methodName" placeholder="必填，请选择方法名称" filterable npm run dev @change="changeMethodName">
               <el-option v-for="(option,index) in pageArray[pageIndex].methodNames" :key="index" v-bind:value="option" :label="option">
                 {{ option }}
               </el-option>
@@ -607,9 +607,10 @@
               duration: 1 * 1000
             }
           );
-        }).finally(() => {
-          this.$NProgress.done();
-        });
+        })
+          // .finally(() => {
+          //   this.$NProgress.done();
+          // });
       },
       getZkList(){
         let para = {};
@@ -674,6 +675,7 @@
         });
 
         getTemplate(params).then((res) => {
+
           let ms = res.data.data;
           let code = res.data.code;
           let error = res.data.error;
@@ -682,7 +684,9 @@
             loading.close();
             this.$message.error("请求异常:"+error);
           }else{
-            this.pageArray[this.pageIndex].request = JSON.stringify(ms);
+            console.log(ms.methodExample)
+            // this.pageArray[this.pageIndex].request = JSON.stringify(ms);
+            this.pageArray[this.pageIndex].request = ms.methodExample;
             this.formatContent();
             loading.close();
           }
@@ -819,9 +823,9 @@
           return;
         }
 
-        this.pageArray[this.pageIndex].groupNames = [];
-        //this.pageArray[this.pageIndex].groupName = '';
-        this.pageArray[this.pageIndex].caseName = '';
+        // this.pageArray[this.pageIndex].groupNames = [];
+        // //this.pageArray[this.pageIndex].groupName = '';
+        // this.pageArray[this.pageIndex].caseName = '';
 
         this.pageArray[this.pageIndex].request = '';
         this.pageArray[this.pageIndex].response = '';
@@ -896,7 +900,7 @@
           for(let item in ms){
             pageItem.providers.push(item);
           }
-
+          this.getRequest();
 
 
         }

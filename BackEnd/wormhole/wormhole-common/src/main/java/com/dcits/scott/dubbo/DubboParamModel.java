@@ -25,6 +25,7 @@
 package com.dcits.scott.dubbo;
 
 
+import com.dcits.scott.common.CommonDO;
 import lombok.Data;
 
 /**
@@ -32,11 +33,46 @@ import lombok.Data;
  *
  */
 
-public class DubboParamModel {
+public class DubboParamModel extends CommonDO {
+    private static final long serialVersionUID = -3220563338269708158L;
 
     String name;
 
     String type;
 
+    String example;
 
+    String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

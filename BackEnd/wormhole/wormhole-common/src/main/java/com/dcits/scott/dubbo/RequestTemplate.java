@@ -56,7 +56,17 @@ public class RequestTemplate implements Cloneable,Serializable{
     
     private String group;
 
+    private String methodExample;
+
     private int retries = 0;
+
+    public String getMethodExample() {
+        return methodExample;
+    }
+
+    public void setMethodExample(String methodExample) {
+        this.methodExample = methodExample;
+    }
 
     private List<RequestParam> matcherParams = new ArrayList<>();
 

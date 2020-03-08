@@ -38,4 +38,6 @@ public interface GatewayApiMapper extends CommonMapper<GatewayApiDO> {
     Integer insertByMap(Map<String,Object> map);
 
     void insertByDO(GatewayApiDO gatewayApiDO);
+
+    void deleteByIds(Map<String,Object> map);
 }

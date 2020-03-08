@@ -24,8 +24,9 @@
               <el-form-item>
               dubbo方法名:<el-input v-model="filters.methodName"  placeholder="dubbo方法名" style="width:200px; heght:30px;" size="mini"></el-input>
             </el-form-item>
-              <el-form-item>
-                接口分组:<el-select v-model="groupId" placeholder="请选择" size="mini">
+              <el-form-item label="接口分组:">
+
+              <el-select v-model="groupId" placeholder="请选择" size="mini">
                 <el-option
                   v-for="item in groupIds"
                   :key="item.id"
@@ -40,35 +41,88 @@
             </el-form>
           </el-col>
         </div> <!-- 搜索区end -->
-        <!--新增按钮-->
-        <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleAdd" size="mini" round>{{$t("SysUser.add")}}</el-button>
+        <!--删除按钮-->
         <el-button type="danger" icon="el-icon-delete" @click="handleDeleteList" size="mini" round>{{$t("SysUser.delete")}}</el-button>
         <template>
           <!--表格数据及操作-->
           <el-table :data="tableData" size="mini"  highlight-current-row border   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" v-loading="listLoading" @selection-change="selectChange">
             <!--//展开行-->
-            <el-table-column type="expand">
+            <el-table-column type="expand"  >
               <template slot-scope="props">
-                <el-form label-position="left"  class="demo-table-expand" :inline="true">
-                  <el-form-item label="API名称">
-                    <span>{{ props.row.name }}</span>
-                  </el-form-item>
-                  <el-form-item label="APIid">
-                    <span>{{ props.row.id }}</span>
-                  </el-form-item>
-                  <el-form-item label="版本">
-                    <span>{{ props.row.version }}</span>
-                  </el-form-item>
-                  <el-form-item label="隶属分组">
-                    <span>{{ props.row.groupName }}</span>
-                  </el-form-item>
-                  <el-form-item label="接口状态">
-                    <span>{{ props.row.status?'启用':'禁止' }}</span>
-                  </el-form-item>
-                  <el-form-item label="接口描述">
-                    <span>{{ props.row.description }}</span>
-                  </el-form-item>
-                </el-form>
+
+                <el-tabs type="border-card" style="width:1000px;height: 300px">
+                  <el-tab-pane label="接口基本信息">
+                    <el-form label-position="left"  class="demo-table-expand" :inline="true">
+                      <el-form-item label="API名称">
+                        <span>{{ props.row.name }}</span>
+                      </el-form-item>
+                      <el-form-item label="APIid">
+                        <span>{{ props.row.id }}</span>
+                      </el-form-item>
+                      <el-form-item label="版本">
+                        <span>{{ props.row.version }}</span>
+                      </el-form-item>
+                      <el-form-item label="隶属分组">
+                        <span>{{ props.row.groupName }}</span>
+                      </el-form-item>
+                      <el-form-item label="接口状态">
+                        <span>{{ props.row.status?'启用':'禁止' }}</span>
+                      </el-form-item>
+                      <el-form-item label="接口描述">
+                        <span>{{ props.row.description }}</span>
+                      </el-form-item>
+                    </el-form>
+                  </el-tab-pane>
+                  <el-tab-pane label="dubbo相关信息">
+                    <el-form label-position="left"  class="demo-table-expand" :inline="true">
+                      <el-form-item label="ZK地址">
+                        <span>{{ props.row.zookeeper }}</span>
+                      </el-form-item>
+                      <el-form-item label="服务名称">
+                        <span>{{ props.row.serviceName }}</span>
+                      </el-form-item>
+                      <el-form-item label="接口名称">
+                        <span>{{ props.row.interfaceName }}</span>
+                      </el-form-item>
+                      <el-form-item label="方法名称">
+                        <span>{{ props.row.serviceMethod }}</span>
+                      </el-form-item>
+                      <el-form-item label="接口状态">
+                        <span>{{ props.row.status?'启用':'禁止' }}</span>
+                      </el-form-item>
+                      <el-form-item label="接口描述">
+                        <span>{{ props.row.description }}</span>
+                      </el-form-item>
+                    </el-form>
+                  </el-tab-pane>
+                  <el-tab-pane label="请求参数信息">
+                    <!--<el-table :data="props.row.gatewayServiceRequestDOS" size="mini" style="width: 1000px"  highlight-current-row border   max-height="400"   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" >-->
+                      <!--<el-table-column prop="paramsIndex" label="参数位置" style="width: 20%">-->
+                      <!--</el-table-column>-->
+                      <!--<el-table-column prop="typeName" label="参数类型" style="width: 20%">-->
+                      <!--</el-table-column>-->
+                      <!--<el-table-column prop="example" label="参数示例" style="width: 30%">-->
+                      <!--</el-table-column>-->
+                      <!--<el-table-column prop="description" label="参数描述" style="width: 30%">-->
+                      <!--</el-table-column>-->
+                    <!--</el-table>-->
+                    <el-table
+                      :data="props.row.gatewayServiceRequestDOS"
+                      height="250"
+                      border
+                      style="width: 100%">
+                      <el-table-column prop="paramsIndex" label="参数位置" style="width: 100px;">
+                      </el-table-column>
+                      <el-table-column prop="typeName" label="参数类型">
+                      </el-table-column>
+                      <el-table-column prop="example" label="参数示例">
+                      </el-table-column>
+                      <el-table-column prop="description" label="参数描述">
+                      </el-table-column>
+                    </el-table>
+                  </el-tab-pane>
+                </el-tabs>
+
               </template>
             </el-table-column>
             <!--勾选框-->
@@ -119,67 +173,95 @@
         </el-pagination>
       </div><!-- 页面内容区end-->
     </div><!-- 页面表格end -->
-    <!--新增界面-->
-    <el-dialog :title="$t('SysUser.add')" :visible.sync="addFormVisible" :close-on-click-modal="false">
-      <el-form :inline="true" :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
-        <el-form-item label="分组名称" prop="name">
-          <el-input v-model="addForm.name" auto-complete="off"></el-input>
-        </el-form-item>
-        <br/>
-        <el-form-item label="是否启用" prop="">
-          <el-radio v-model="addForm.status" label="1" border>启用</el-radio>
-          <el-radio v-model="addForm.status" label="0" border>禁用</el-radio>
-        </el-form-item>
-        <br/>
-
-        <el-form-item label="版本" prop="">
-          <el-select v-model="addForm.version" placeholder="请选择">
-            <el-option
-              v-for="item in versions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <br/>
-        <el-form-item label="分组描述" prop="description">
-          <el-input type="textarea" v-model="addForm.description" ></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="addCancle">{{$t("SysUser.cancle")}}</el-button>
-        <el-button type="primary" @click="addSubmit" :loading="addLoading">{{$t("SysUser.submit")}}</el-button>
-      </div>
-    </el-dialog>
     <!--编辑界面-->
     <el-dialog :title="$t('SysUser.edit')" :visible.sync="editFormVisible" :close-on-click-modal="false">
-      <el-form :inline="true" :model="editForm" label-width="80px"  ref="editForm">
-        <el-form-item label="分组名称" >
-          <el-input v-model="editForm.name" auto-complete="off"></el-input>
-        </el-form-item>
-        <br/>
-        <el-form-item label="是否启用" >
-          <el-radio v-model="editForm.status" label="1" border>启用</el-radio>
-          <el-radio v-model="editForm.status" label="0" border >禁用</el-radio>
-        </el-form-item>
-        <br/>
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="接口基本信息修改" name="first">
+          <el-form ref="apiEdit" :model="apiEdit" label-width="80px">
+            <el-form-item label="API名称">
+              <el-input v-model="apiEdit.name"></el-input>
+            </el-form-item>
+            <el-form-item label="API编号">
+              <el-input v-model="apiEdit.id" :disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="版本">
+              <el-input-number v-model="apiEdit.version" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
+            </el-form-item>
+            <el-form-item label="分组名称">
+              <el-select v-model="apiEdit.groupId" placeholder="请选择" >
+                <el-option
+                  v-for="item in groupIds"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="接口状态">
+              <el-switch
+                v-model="apiEdit.status"
+                active-color="#13ce66"
+                inactive-color="#ff4949">
+              </el-switch>
+            </el-form-item>
+            <el-form-item label="接口描述">
+              <el-input type="textarea" v-model="apiEdit.description"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="dubbo相关信息修改" name="second">
+          <el-form ref="apiEdit" :model="apiEdit" label-width="80px">
+            <el-form-item label="ZK地址">
+              <el-input v-model="apiEdit.zookeeper"></el-input>
+            </el-form-item>
+            <el-form-item label="服务名称">
+              <el-input v-model="apiEdit.serviceName" ></el-input>
+            </el-form-item>
+            <el-form-item label="接口名称">
+              <el-input v-model="apiEdit.interfaceName" ></el-input>
+            </el-form-item>
+            <el-form-item label="方法名称">
+              <el-input v-model="apiEdit.serviceMethod" ></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="请求参数信息修改" name="third">
+          <el-table :data="requestParamsForm.tableData" size="mini"  highlight-current-row border  max-height="400"   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" >
+            <el-table-column type="index" :index="indexMethod" >
+            </el-table-column>
 
-        <el-form-item label="版本" >
-          <el-select v-model="editForm.version" placeholder="请选择">
-            <el-option
-              v-for="item in versions"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <br/>
-        <el-form-item label="分组描述">
-          <el-input type="textarea" v-model="editForm.description" ></el-input>
-        </el-form-item>
-      </el-form>
+            <el-table-column  label="参数名称" width="200">
+              <template slot-scope="scope">
+                <el-input v-model="scope.row.name" auto-complete="off" ></el-input>
+              </template>
+            </el-table-column>
+            <el-table-column label="参数类型" width="200">
+              <template slot-scope="scope">
+                <el-select v-model="scope.row.typeName" placeholder="请选择">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+
+              </template>
+            </el-table-column>
+            <el-table-column label="请求示例" width="320">
+              <template slot-scope="scope">
+                <el-input type="textarea" v-model="scope.row.example"></el-input>
+              </template>
+            </el-table-column>
+            <el-table-column label="参数描述" width="320">
+              <template slot-scope="scope">
+                <el-input type="textarea" v-model="scope.row.description"></el-input>
+              </template>
+            </el-table-column>
+
+          </el-table>
+        </el-tab-pane>
+      </el-tabs>
       <div slot="footer" class="dialog-footer">
         <el-button @click="editCancle">{{$t('SysUser.cancle')}}</el-button>
         <el-button type="primary" @click="editSubmit" :loading="editLoading">{{$t('SysUser.submit')}}</el-button>
@@ -196,6 +278,40 @@
 
     data() {
       return {
+        options: [{
+          value: 'java.lang.Integer',
+          label: 'java.lang.Integer'
+        }, {
+          value: 'java.lang.String',
+          label: 'java.lang.String'
+        }, {
+          value: 'java.util.Map',
+          label: 'java.util.Map'
+        }, {
+          value: 'java.lang,Long',
+          label: 'java.lang,Long'
+        }, {
+          value: 'java.lang.Float',
+          label: 'java.lang.Float'
+        }],
+        requestParamsForm: {
+          tableData:[],
+          size:'',
+        },
+        apiEdit:{
+            name: '',
+            id: '',
+            version: '',
+            description: '',
+            isRequest: '',
+            groupId: '',
+            zookeeper:"",
+            serviceName:"",
+            interfaceName:'',
+            serviceMethod:'',
+
+        },
+        activeName: 'first',
         //
         groupIds: '',
         groupId: '',
@@ -234,7 +350,7 @@
         //分页
         count: 0,
         currentPage: 1,
-        pageSize: 10,
+        pageSize: 5,
         //新增界面是否显示
         addFormVisible: false,
         //添加按钮Loading加载
@@ -273,6 +389,15 @@
       };
     },
     methods: {
+      handleChange(value) {
+        console.log(value);
+      },
+      onSubmit() {
+        console.log('submit!');
+      },
+      handleClick(tab, event) {
+        console.log(tab, event);
+      },
       //查看接口
       //查看分组和接口
       toApi(row){
@@ -326,8 +451,8 @@
         let param = Object.assign(
           {},
           {
-            skip: (val-1)*10,
-            size: 10,
+            skip: (val-1)*5,
+            size: 5,
             name: this.filters.name,
             id: this.filters.id,
             serviceName: this.filters.serviceName,
@@ -349,63 +474,6 @@
         });
       },
       //
-      //显示新增界面
-      handleAdd: function() {
-        this.addFormVisible = true;
-      },
-      //新增
-      addSubmit: function() {
-        this.$refs.addForm.validate(valid => {
-          if (valid) {
-            if (this.addForm.name == "") {
-              this.$message({
-                message: "请填写分组名",
-                type: "error"
-              });
-              return;
-            }
-            if (this.addForm.description == "") {
-              this.$message({
-                message: "请填写分组描述",
-                type: "error"
-              });
-              return;
-            }
-            if (this.addForm.version == "") {
-              this.$message({
-                message: "请选择版本",
-                type: "error"
-              });
-              return;
-            }
-            this.$confirm("确认提交吗？", "提示", {}).then(() => {
-              this.addLoading = true;
-              let param = Object.assign({}, {
-                name:this.addForm.name,
-                version:this.addForm.version,
-                status: this.addForm.status,
-                description: this.addForm.description,
-                createBy:this.$common.getSessionStorage("username")
-              });
-              console.log('param',param);
-              this.$ajax({
-                method: "post",
-                url: "/group/addSubmit",
-                data: param
-              }).then(res => {
-                this.addLoading = false;
-                this.$message({
-                  message: "提交成功",
-                  type: "success"
-                });
-                this.$refs["addForm"].resetFields();
-                this.addFormVisible = false;
-                this.getResult(1);
-              });
-            });
-          }
-        });
-      },
 
       //批量删除
       handleDeleteList: function() {
@@ -434,7 +502,7 @@
             console.log(param);
             this.$ajax({
               method: "post",
-              url: "/group/delSysGroupByIds",
+              url: "/interface/interfaceList/delApiByIds",
               contentType: 'application/json; charset=UTF-8',// contn
               data: param
             }).then(res => {
@@ -489,33 +557,45 @@
       //显示编辑界面
       handleEdit: function(index, row) {
         this.editFormVisible = true;
-        this.editForm = Object.assign({}, row);
-        console.log(this.editForm)
+        this.apiEdit = Object.assign({}, row);
+        this.requestParamsForm.tableData =  row.gatewayServiceRequestDOS;
+        console.log(this.apiEdit)
       },
       //编辑
       editSubmit: function() {
-        this.$refs.editForm.validate(valid => {
-          if (valid) {
+
             this.$confirm("确认提交吗？", "提示", {}).then(() => {
               this.editLoading = true;
-              this.editForm.updateBy=this.$common.getSessionStorage("username")
-              let param = Object.assign({}, this.editForm);
+              // this.editForm.updateBy=this.$common.getSessionStorage("username")
+               let param = Object.assign({}, this.apiEdit);
+               let param1 = Object.assign({}, this.requestParamsForm.tableData);
+              // let param ={
+              //   apiEdit:this.apiEdit,
+              //   requestParams:this.requestParamsForm.tableData
+              // }
               this.$ajax({
                 method: "post",
-                url: "/group/updateGroup",
+                url: "/interface/interfaceList/updateApiById",
                 data: param
               }).then(res => {
-                this.editLoading = false;
-                this.$message({
-                  message: "提交成功",
-                  type: "success"
+                this.$ajax({
+                  method: "post",
+                  url: "/interface/interfaceList/updateRequestById",
+                  data: param1
+                }).then(res => {
+                  this.editLoading = false;
+                   this.$message({
+                     message: "提交成功",
+                     type: "success"
+                   });
+                   this.$refs["apiEdit"].resetFields();
+                   this.$refs["requestParamsForm"].resetFields();
+                   this.editFormVisible = false;
+                   this.getResult(1);
                 });
-                this.$refs["editForm"].resetFields();
-                this.editFormVisible = false;
-                this.getResult(1);
+
               });
-            });
-          }
+
         });
       },
       //批量选中

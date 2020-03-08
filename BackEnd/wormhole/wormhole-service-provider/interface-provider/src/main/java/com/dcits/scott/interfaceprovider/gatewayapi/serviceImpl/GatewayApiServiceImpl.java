@@ -73,6 +73,11 @@ public class GatewayApiServiceImpl extends AbstractCommonServiceImpl<GatewayApiD
     }
 
     @Override
+    public void deleteByIds(Map<String,Object> map) {
+        this.gatewayApiMapper.deleteByIds(map);
+    }
+
+    @Override
     public void insert(GatewayApiDO gatewayApiDO) throws Exception {
         this.gatewayApiMapper.insert(gatewayApiDO);
     }

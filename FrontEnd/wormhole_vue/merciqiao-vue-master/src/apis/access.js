@@ -63,7 +63,7 @@ export function getAllProviders(params) {
 
 export function getTemplate(params) {
     return request({
-        url:'/dubbo-postman/result/interface/method/param',
+        url:'/interface/createrInterface/result/methodParams',
         method:'get',
         params
     })

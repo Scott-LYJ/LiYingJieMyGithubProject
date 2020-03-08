@@ -4,6 +4,7 @@
       <el-step title="接口信息" description="用来设置名称，描述等信息"></el-step>
       <el-step title="注册中心设置" description="设置zookeeper网址，可测试"></el-step>
       <el-step title="dubbo服务设置" description="dubbo服务的接口和方法"></el-step>
+      <el-step title="请求参数设置" description="用于构建请求模板"></el-step>
     </el-steps>
     <!--动态组件-->
     <keep-alive>
@@ -11,13 +12,14 @@
       <interface-detail ref="interfaceDetail" v-if="active==0" @isSave="is_save" @interfaceDetailSave="interfaceDetailSave"></interface-detail>
       <zookeeper-detail v-if="active==1" @zookeeperDetailSave="zookeeperDetailSave"></zookeeper-detail>
       <dubbo-detail v-if="active==2" @dubboDetailSave="dubboDetailSave"></dubbo-detail>
+      <request-params v-if="active==3" @requestParamsSave="requestParamsSave"></request-params>
       <!--<interface-detail v-if="active==1"></interface-detail>-->
       <!--<interface-detail v-if="active==2"></interface-detail>-->
     </keep-alive>
     <div class="x-btn" style="float: right">
-      <el-button type="info" v-if="active==1||active==2" @click="prev" >上一步</el-button>
-      <el-button type="primary" v-if="active==0||active==1" @click="next" :disabled="!isSave">下一步</el-button>
-      <el-button type="danger" v-if="active==2" @click="submit">完成</el-button>
+      <el-button type="info" v-if="active==1||active==2||active==3" @click="prev" >上一步</el-button>
+      <el-button type="primary" v-if="active==0||active==1||active==2" @click="next" :disabled="!isSave">下一步</el-button>
+      <el-button type="danger" v-if="active==3" @click="submit">完成</el-button>
     </div>
     <el-dialog
       title="提示"
@@ -42,12 +44,14 @@
   import interfaceDetail from './SubVue/InterfaceDetail.vue'
   import zookeeperDetail from './SubVue/ZookeeperDetail.vue'
   import dubboDetail from './SubVue/DubboDetail.vue'
+  import requestParams from './SubVue/RequestParams.vue'
     export default {
         name: "CreateInterface",
         components:{
           interfaceDetail,
           zookeeperDetail,
-          dubboDetail
+          dubboDetail,
+          requestParams
         },
         data() {
           return {
@@ -59,6 +63,7 @@
             isInterfaceDetail:'',
             isZookeeperDetail:'',
             isDubboDetail:'',
+            isRequestParams:'',
             submitInformation:{
               id:'',
               name: '',
@@ -75,6 +80,10 @@
               interfaceName:'',
               serviceMethod: '',
               serviceVersion: '',
+              requestParams:{
+                     tableData:[],
+                      size:'',
+              }
 
             }
           };
@@ -112,10 +121,17 @@
             this.isDubboDetail = data
             this.submitInformation.timeOut = data.timeOut
             this.submitInformation.serviceName = data.serviceName
-            this.submitInformation.interfaceName = data.interfaceName;
+            this.submitInformation.interfaceName = data.providerName;
             this.submitInformation.serviceMethod = data.serviceMethod
             this.submitInformation.serviceVersion = data.serviceVersion
-            console.log(this.submitInformation)
+            console.log(this.submitInformation);
+          },
+          //保存请求参数模板信息
+          requestParamsSave(data){
+              this.isRequestParams = data
+              this.submitInformation.requestParams.size=data.size
+              this.submitInformation.tableData = data.tableData
+
           },
           //判断接口信息是否点击保存
           is_save(data){
@@ -123,14 +139,14 @@
                 console.log(this.isSave)
           },
           next() {
-            if (this.active++ > 2) this.active = 0;
+            if (this.active++ > 3) this.active = 0;
           },
           prev(){
             --this.active;
             if (this.active<0) this.active=0
           },
           submit(){
-              if (this.isInterfaceDetail==''||this.isDubboDetail==''||this.isZookeeperDetail==''){
+              if (this.isInterfaceDetail==''||this.isDubboDetail==''||this.isZookeeperDetail==''||this.isRequestParams==''){
                 this.$message.error('您有一步没有保存，请保存再提交');
               }else{
                 console.log(this.submitInformation)
@@ -164,11 +180,14 @@
 
               var _this = this
               console.log(_this.submitInformation)
+              let index = _this.submitInformation.interfaceName.lastIndexOf("/");
+              let provider = _this.submitInformation.interfaceName.substr(index+1)
+              console.log("provider",provider)
               this.$router.push({
                 path: '/TestInterface',
                 query:{zk: _this.submitInformation.zookeeper[0],
                   serviceName:_this.submitInformation.serviceName,
-                  provider:_this.submitInformation.interfaceName,
+                  provider:provider,
                   methodName:_this.submitInformation.serviceMethod,
                   id:_this.submitInformation.id
                 }

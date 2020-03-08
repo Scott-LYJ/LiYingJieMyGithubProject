@@ -40,7 +40,9 @@ public interface GatewayApiService extends CommonService<GatewayApiDO> {
   Integer insertByMap(Map<String,Object> map);
 
   GatewayApiDO insertByDO(GatewayApiDO gatewayApiDO);
-  
+
+    void deleteByIds(Map<String,Object> map);
+
 //  /**
 //   * 同步数据
 //   * @param bean

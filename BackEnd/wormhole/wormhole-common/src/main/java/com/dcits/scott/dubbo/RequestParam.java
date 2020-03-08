@@ -40,10 +40,40 @@ public class RequestParam implements Serializable{
 
     private Class<?> targetParaType;
 
+    private String paraType;
+
     private Object targetParaDefaultValue;
+
+    private String example;
+
+    private String description;
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public String getParaType() {
+        return paraType;
+    }
+
+    public void setParaType(String paraType) {
+        this.paraType = paraType;
     }
 
     public String getParaName() {

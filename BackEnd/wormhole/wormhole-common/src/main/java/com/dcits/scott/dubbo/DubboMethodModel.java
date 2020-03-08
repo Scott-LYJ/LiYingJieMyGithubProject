@@ -25,6 +25,8 @@
 package com.dcits.scott.dubbo;
 
 
+import com.dcits.scott.common.CommonDO;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,8 @@ import java.util.List;
  * @author everythingbest
  * 一个方法唯一标识一个访问路径,path通常是一个全路径信息
  */
-public class DubboMethodModel {
+public class DubboMethodModel extends CommonDO {
+    private static final long serialVersionUID = -3241563338269708158L;
 
     /**
      * 包含参数的全名称
@@ -42,6 +45,7 @@ public class DubboMethodModel {
     String name;
     
     Method method;
+
     
     List<DubboParamModel> params = new ArrayList<>();
 

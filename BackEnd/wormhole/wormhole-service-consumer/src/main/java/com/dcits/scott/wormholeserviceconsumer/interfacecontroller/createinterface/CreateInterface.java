@@ -1,11 +1,17 @@
 package com.dcits.scott.wormholeserviceconsumer.interfacecontroller.createinterface;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.dcits.scott.admin.pojo.AuthUser;
 import com.dcits.scott.dubbo.DubboInterfaceModel;
 import com.dcits.scott.dubbo.DubboModel;
+import com.dcits.scott.dubbo.LocalStore;
+import com.dcits.scott.dubbo.RequestTemplate;
 import com.dcits.scott.gateway.pojo.GatewayApiDO;
+import com.dcits.scott.gateway.pojo.GatewayServiceRequestDO;
 import com.dcits.scott.other.redis.RedisService;
 import com.dcits.scott.project.gatewayapi.GatewayApiService;
+import com.dcits.scott.project.gatewayservicerequest.GatewayServiceRequestService;
 import com.dcits.scott.support.entity.InterfaceMetaInfo;
 import com.dcits.scott.support.result.Result;
 import com.dcits.scott.support.result.WebApiRspDto;
@@ -13,8 +19,10 @@ import com.dcits.scott.util.CommonUtil;
 import com.dcits.scott.util.RedisKeys;
 import com.dcits.scott.util.SerializeUtils;
 import com.dcits.scott.wormholeserviceconsumer.config.zk.ZkServiceFactory;
+import com.google.common.collect.Maps;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.SecurityUtils;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.beans.BeanInfo;
@@ -22,10 +30,7 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/createrInterface")
@@ -35,6 +40,9 @@ public class CreateInterface {
 
     @Reference
     RedisService redisService;
+
+    @Reference
+    GatewayServiceRequestService gatewayServiceRequestService;
 
     @PostMapping("/insertInterface")
     public Result<GatewayApiDO> insertInterface(@RequestBody Map<String,Object> map){
@@ -70,6 +78,25 @@ public class CreateInterface {
             }
             GatewayApiDO gatewayApiDO1 = gatewayApiService.insertByDO(gatewayApiDO);
             System.out.println(gatewayApiDO1.getId());
+            Long id = gatewayApiDO1.getId();
+            Map<String,Object> map1 = new HashMap<>();
+
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<GatewayServiceRequestDO> gatewayServiceRequestDOList = new ArrayList<>();
+            List<Object> tableData = (List) map.get("tableData");
+             for (int i=0;i<tableData.size();i++){
+                 Object object= tableData.get(i);
+                 String json = objectMapper.writeValueAsString(object);
+                 GatewayServiceRequestDO gatewayServiceRequestDO = objectMapper.readValue(json, GatewayServiceRequestDO.class);
+                 gatewayServiceRequestDO.setApiId(id);
+                 gatewayServiceRequestDO.setParamsIndex(i+1);
+                 gatewayServiceRequestDO.setVersion(2);
+                 gatewayServiceRequestDO.setIsRequired(gatewayApiDO1.getStatus());
+                 gatewayServiceRequestDO.setType(1);
+                 gatewayServiceRequestDOList.add(gatewayServiceRequestDO);
+            }
+            gatewayServiceRequestService.batchInsert(gatewayServiceRequestDOList);
             return  new Result<>("200","插入成功",gatewayApiDO1);
 
         }catch(Exception e){
@@ -97,7 +124,7 @@ public class CreateInterface {
     @ResponseBody
     public WebApiRspDto getServiceName(@RequestParam(value = "zk") String zk){
 
-        Set<Object> serviceNameSet = redisService.members("["+zk+"]");
+        Set<Object> serviceNameSet = redisService.members(zk);
 
         return WebApiRspDto.success(serviceNameSet);
     }
@@ -131,7 +158,7 @@ public class CreateInterface {
                                       @RequestParam("interfaceKey") String interfaceKey){
 
 
-        String modelKey = CommonUtil.getDubboModelKey("["+zk+"]", serviceName);
+        String modelKey = CommonUtil.getDubboModelKey(zk, serviceName);
 
         Object object = redisService.mapGet(RedisKeys.DUBBO_MODEL_KEY,modelKey);
         Object o=null;
@@ -176,7 +203,7 @@ public class CreateInterface {
 
     public Map<String,String> getAllClassName(String zk, String serviceName)  {
 
-        String modelKey = CommonUtil.getDubboModelKey("["+zk+"]",serviceName);
+        String modelKey = CommonUtil.getDubboModelKey(zk,serviceName);
 
         Object object = redisService.mapGet(RedisKeys.DUBBO_MODEL_KEY,modelKey);
         Object o=null;
@@ -199,6 +226,58 @@ public class CreateInterface {
         }
 
         return interfaceMap;
+    }
+    //
+    /**
+     * 根据服务名称,接口key,方法路径,获取参数模板
+     * @param serviceName
+     * @param interfaceKey
+     * @param methodPath
+     * @return
+     */
+    @RequestMapping(value = "/result/methodParams",method = {RequestMethod.GET})
+    @ResponseBody
+    public WebApiRspDto getResultServiceMethod(@RequestParam("zk") String zk,
+                                               @RequestParam("serviceName") String serviceName,
+                                               @RequestParam("interfaceKey") String interfaceKey,
+                                               @RequestParam("methodPath") String methodPath){
+
+        String modelKey = CommonUtil.getDubboModelKey(zk, serviceName);
+        String path = "/"+serviceName+"/"+interfaceKey+"/"+methodPath;
+//        RequestTemplate requestTemplate = LocalStore.get(path);
+//        Map<String, RequestTemplate> cachedTemplates = LocalStore.CACHED_TEMPLATES;
+
+        String str = (String)redisService.mapGet(RedisKeys.CACHED_TEMPLATES, "cache_templates");
+        RequestTemplate requestTemplate = null;
+        try {
+            Object object = SerializeUtils.serializeToObject(str);
+            Map<String, RequestTemplate> map = (Map<String, RequestTemplate>) object;
+             requestTemplate = map.get(String.valueOf(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        //构建methodExample
+        List<com.dcits.scott.dubbo.RequestParam> matcherParams = requestTemplate.getMatcherParams();
+        StringBuffer example = new StringBuffer();
+        if (matcherParams.size()==1){
+            requestTemplate.setMethodExample(matcherParams.get(0).getExample()+"\n"+"//"+matcherParams.get(0).getDescription());
+        }else {
+            example.append("{");
+            for (int i=0;i<matcherParams.size();i++){
+                if (i==matcherParams.size()-1){
+                    example.append(matcherParams.get(i).getExample());
+                }else {
+                    example.append(matcherParams.get(i).getExample()).append(",");
+                }
+            }
+            example.append("}");
+            requestTemplate.setMethodExample(example.toString());
+        }
+
+
+        return WebApiRspDto.success(requestTemplate);
     }
 
 }

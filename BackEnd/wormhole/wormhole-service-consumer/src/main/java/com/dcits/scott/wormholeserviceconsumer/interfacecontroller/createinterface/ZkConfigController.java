@@ -68,6 +68,9 @@ public class ZkConfigController {
 
        redisService.setAdd(RedisKeys.ZK_REDIS_KEY,zk);
 
+
+
+
        return WebApiRspDto.success("保存成功");
 
    }
@@ -110,7 +113,7 @@ public class ZkConfigController {
 
        return WebApiRspDto.success("LOCAL");
    }
-    @RequestMapping(value = "zk/del", method = RequestMethod.POST)
+    @RequestMapping(value = "/createDubboModel", method = RequestMethod.POST)
     @ResponseBody
     public String createDubboModel(@RequestBody Map<String,Object> map) throws IOException {
         String zk = String.valueOf(map.get("zookeeper"));

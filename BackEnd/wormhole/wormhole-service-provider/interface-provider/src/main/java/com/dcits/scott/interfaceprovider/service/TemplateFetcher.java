@@ -118,6 +118,20 @@ public class TemplateFetcher {
 
         parseExternalParams(externalParams,template);
 
+        List<RequestParam> paramList = template.getMatcherParams();
+
+        for(RequestParam param : paramList){
+            Object paramValue=null;
+            String paramType = param.getParaType();
+            if ("java.util.Map".equals(paramType)){
+                 paramValue = bodyMap;
+            }else {
+                 paramValue = bodyMap.get(param.getParaName());
+            }
+            template.getParamTypes().add(paramType);
+            template.getParamValues().add(paramValue);
+        }
+
 //        //方法的一级参数名称
 //        List<RequestParam> paramList = template.getMatcherParams();
 //
@@ -161,8 +175,8 @@ public class TemplateFetcher {
 //
 //            template.getParamValues().add(paramValue);
 //        }
-        template.getParamTypes().add("java.lang.Integer");
-        template.getParamValues().add(20);
+//        template.getParamTypes().add("java.lang.Integer");
+//        template.getParamValues().add(20);
         return template;
     }
 
