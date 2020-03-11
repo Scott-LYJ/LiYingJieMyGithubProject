@@ -512,9 +512,9 @@
     -->
     update gateway_api
     <set>
-      <if test="groupId != null">
+      <!--<if test="groupId != null">-->
         GROUP_ID = #{groupId,jdbcType=BIGINT},
-      </if>
+      <!--</if>-->
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
       </if>

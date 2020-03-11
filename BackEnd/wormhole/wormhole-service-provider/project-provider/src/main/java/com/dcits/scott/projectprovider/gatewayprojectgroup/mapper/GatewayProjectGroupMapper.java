@@ -24,4 +24,10 @@ public interface GatewayProjectGroupMapper extends CommonMapper<GatewayProjectGr
     void insertByProGou(Map<String,Object> map);
 
     void deleteByProGou(Map<String,Object> map);
+
+    void deleteByProApi(Map<String,Object> map);
+
+    void insertByProApi(Map<String,Object> map);
+
+    Integer selectCount2(Map<String,Object> map);
 }

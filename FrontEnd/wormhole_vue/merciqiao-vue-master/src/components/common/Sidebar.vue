@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar">
         <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
-            text-color="#bfcbd9" active-text-color="#20a0ff" unique-opened router>
+            text-color="#bfcbd9" active-text-color="#20a0ff" :unique-opened=true router>
            <template v-for="(item,i) in menuList">
                 <template v-if="item.subs&&item.subs.length">
                     <el-submenu :index="item.index" :key="i">
@@ -25,7 +25,8 @@
     export default {
         data() {
             return {
-                collapse: false,
+                boolean:true,
+                collapse: true,
                 items: [
                     {
                         icon: 'el-icon-setting',

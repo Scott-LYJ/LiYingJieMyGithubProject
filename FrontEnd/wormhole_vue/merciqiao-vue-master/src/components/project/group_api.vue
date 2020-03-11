@@ -7,7 +7,7 @@
     <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
       <el-select v-model="select" slot="prepend" placeholder="请选择">
         <el-option label="编号" value="id"></el-option>
-        <el-option label="分组名称" value="name"></el-option>
+        <el-option label="API名称" value="name"></el-option>
       </el-select>
       <el-button slot="append" @click="getResult" icon="el-icon-search"></el-button>
     </el-input>
@@ -24,12 +24,12 @@
         prop="id">
       </el-table-column>
       <el-table-column
-        label="分组名称"
+        label="API名称"
         prop="name">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
             <p>名称: {{ scope.row.name }}</p>
-            <p>分组描述: {{ scope.row.description }}</p>
+            <p>API描述: {{ scope.row.description }}</p>
             <p>创建时间: {{ scope.row.cdt }}</p>
             <p>最近更新时间: {{ scope.row.udt }}</p>
             <div slot="reference" class="name-wrapper">
@@ -47,7 +47,7 @@
         prop="updateBy">
       </el-table-column>
       <el-table-column
-        label="分组版本"
+        label="版本"
         sortable
         prop="version">
       </el-table-column>
@@ -57,9 +57,9 @@
         width="200">
         <template slot-scope="scope">
           <el-switch
-            @change="groupAuthorized($event,scope.row)"
+            @change="apiAuthorized($event,scope.row)"
             style="display: block"
-            v-model="scope.row.authorized"
+            v-model="scope.row.groupauthorized"
             active-color="#13ce66"
             inactive-color="#ff4949"
             active-text="授予"
@@ -75,20 +75,20 @@
 
 <script>
   export default {
-    name: "GroupDetail",
+    name: "group_api",
     props:['message'],
     watch:{
-        message:function(newVal,oldVal){
-          console.log("newVal",newVal)
-          this.projectId = newVal
-          console.log("projectid",this.projectId)
-           this.getResult();
-        }
+      message:function(newVal,oldVal){
+        console.log("newVal",newVal)
+        this.groupId = newVal
+        console.log("groupId",this.groupId)
+        this.getResult();
+      }
     },
     data() {
       return {
         update:false,
-        projectId:'',
+        groupId:'',
         input3: '',
         select: '',
         tableData: [
@@ -98,18 +98,19 @@
     },
     methods: {
       //授权
-      groupAuthorized(data,row){
+      apiAuthorized(data,row){
+        console.log("3333333333333")
         console.log(data)
         console.log(row)
         let param={
-          projectId:this.projectId,
-          groupId:row.id
+          groupId:this.groupId,
+          id:row.id
         }
         console.log(param)
         if (data){
           this.$ajax({
             method: "post",
-            url: "/projectGroup/insertAuthorized",
+            url: "/group/insertGroupAuthorized",
             data: param
           }).then(res => {
             this.addLoading = false;
@@ -121,10 +122,13 @@
             // this.$emit('update', this.update)
           });
         }else{
+          let param1={
+            id:row.id
+          }
           this.$ajax({
             method: "post",
-            url: "/projectGroup/deleteAuthorized",
-            data: param
+            url: "/group/deleteGroupAuthorized",
+            data: param1
           }).then(res => {
             this.addLoading = false;
             this.$message({
@@ -148,7 +152,6 @@
         console.log(index, row);
       },
       getResult: function() {
-        console.log("1111111111111")
         var _this = this;
         this.listLoading = true;
         let param = Object.assign(
@@ -156,16 +159,17 @@
           {
             name: this.select=="name"?this.input3:"",
             id: this.select=="id"?this.input3:"",
-             projectId :this.projectId
+            group_id :this.groupId
           }
         );
         console.log(param)
         //delSysUserByUserId,querySysUserList
         this.$ajax({
           method: "post",
-          url: "/projectGroup/queryProjectAndGroup",
+          url: "/group/queryApi",
           data: param
         }).then(function(resultData) {
+          console.log(resultData)
           _this.tableData = resultData.data.data;
           _this.listLoading = false;
         });

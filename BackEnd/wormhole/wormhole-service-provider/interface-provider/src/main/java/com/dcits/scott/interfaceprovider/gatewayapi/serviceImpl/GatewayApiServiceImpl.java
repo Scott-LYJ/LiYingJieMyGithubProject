@@ -94,7 +94,7 @@ public class GatewayApiServiceImpl extends AbstractCommonServiceImpl<GatewayApiD
 
     @Override
     public void update(GatewayApiDO gatewayApiDO) throws Exception {
-
+        this.gatewayApiMapper.updateByDto(gatewayApiDO);
     }
 }
 

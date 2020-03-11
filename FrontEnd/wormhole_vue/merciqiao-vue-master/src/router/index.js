@@ -39,10 +39,10 @@ const router = new VueRouter({
       path: '/403',
       component: resolve => require(['../components/common/403.vue'], resolve)
     },
-    {
-      path:'/TestInterface',
-      component: resolve => require(['../components/interfacemanager/TestInterface/TestInterface.vue'], resolve)
-    },
+    // {
+    //   path:'/TestInterface',
+    //   component: resolve => require(['../components/interfacemanager/TestInterface/TestInterface.vue'], resolve)
+    // },
     {
       path: '*',
       redirect: '/404'

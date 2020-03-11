@@ -40,4 +40,6 @@ public interface GatewayApiMapper extends CommonMapper<GatewayApiDO> {
     void insertByDO(GatewayApiDO gatewayApiDO);
 
     void deleteByIds(Map<String,Object> map);
+
+    void updateByDto(GatewayApiDO gatewayApiDO);
 }

@@ -144,7 +144,7 @@
 			<el-form :inline="true" :model="selectForm" label-width="80px"  ref="selectForm">
         <el-form-item :label="$t('SysUser.icon')" prop="name">
           <!-- 用户头像 -->
-          <div class="user-avator"><img :src="selectForm.avatar" v-model="selectForm.avatar"></div>
+          <div class="user-avator"><img :src="selectForm.avatar" v-model="selectForm.avatar" ></div>
         </el-form-item>
         <br/>
         <el-form-item :label="$t('SysUser.name')" prop="name">
@@ -773,7 +773,7 @@
             this.$ajax({
               method: "post",
               url: "/user/updateUser",
-              data: paramgetResult
+              data: param
             }).then(res => {
               this.editLoading = false;
               this.$message({

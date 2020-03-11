@@ -81,4 +81,19 @@ public class GatewayProjectGroupServiceImpl extends AbstractCommonServiceImpl<Ga
     public void deleteByProGou(Map<String, Object> map) {
         this.gatewayProjectGroupMapper.deleteByProGou(map);
     }
+
+    @Override
+    public void deleteByProApi(Map<String, Object> map) {
+        this.gatewayProjectGroupMapper.deleteByProApi(map);
+    }
+
+    @Override
+    public void insertByProApi(Map<String, Object> map) {
+        this.gatewayProjectGroupMapper.insertByProApi(map);
+    }
+
+    @Override
+    public Integer selectCount2(Map<String, Object> map) {
+        return this.gatewayProjectGroupMapper.selectCount2(map);
+    }
 }

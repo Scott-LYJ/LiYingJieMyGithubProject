@@ -186,6 +186,24 @@ public class GatewayApiDO extends CommonDO {
    * 分组名称
    */
   private String groupName;
+  private Boolean Authorized;
+  private Boolean Groupauthorized;
+
+  public Boolean getGroupauthorized() {
+    return Groupauthorized;
+  }
+
+  public void setGroupauthorized(Boolean groupauthorized) {
+    Groupauthorized = groupauthorized;
+  }
+
+  public Boolean getAuthorized() {
+    return Authorized;
+  }
+
+  public void setAuthorized(Boolean authorized) {
+    Authorized = authorized;
+  }
 
   /**
    * @mbg.generated

@@ -254,7 +254,6 @@ export default {
         this.$refs.upload.clearFiles();
         this.formEdit.imageurl="";
         this.formEdit.picture=""
-
       },
       //上传图片的方法
       //文件上传成功的钩子函数

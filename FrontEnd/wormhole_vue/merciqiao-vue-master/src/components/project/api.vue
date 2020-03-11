@@ -37,8 +37,12 @@
 
         </div>
         <el-tabs type="border-card">
-            <el-tab-pane label="接口">接口<br/></el-tab-pane>
-            <el-tab-pane label="图表">图表</el-tab-pane>
+            <el-tab-pane label="接口">
+              <group-api :message="groupId"></group-api>
+            </el-tab-pane>
+            <el-tab-pane label="图表">
+              <api-chart :message3="groupId"></api-chart>
+            </el-tab-pane>
             <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
         </el-tabs>
     </div>
@@ -56,17 +60,22 @@
 </style>
 
 <script>
-import vSearchinput from '../searchinput/searchinput.vue';
+  import vSearchinput from '../searchinput/searchinput.vue';
+  import groupApi from './group_api.vue';
+  import apiChart from '../chart/ApiChart.vue'
 export default {
   name: 'tabpage',
   components: {
-    vSearchinput
+    vSearchinput,
+    groupApi,
+    apiChart,
   },
   data() {
     return {
       labelPosition: "right", //lable对齐方式
       labelWidth: "80px", //lable宽度
       userIcon: null,
+      groupId:'',
       group: {
         id: null,
         name: null,
@@ -82,6 +91,7 @@ export default {
     mounted(){
       var group = this.$route.query.group;
       this.group.id=group.id
+      this.groupId = group.id
       this.group.name=group.name
       this.group.des = group.description
       this.group.creater = group.createBy

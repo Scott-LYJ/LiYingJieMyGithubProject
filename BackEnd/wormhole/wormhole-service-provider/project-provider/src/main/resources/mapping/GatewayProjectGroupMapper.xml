@@ -25,6 +25,14 @@
         delete from gateway_project_group
         where PROJECT_ID = #{projectId,jdbcType=INTEGER} and GROUP_ID = #{groupId,jdbcType=INTEGER}
     </delete>
+  <insert id="insertByProApi" parameterType="Map">
+        insert into gateway_project_group (PROJECT_ID,Api_ID)
+        values ( #{projectId,jdbcType=INTEGER}, #{apiId,jdbcType=INTEGER})
+    </insert>
+    <delete id="deleteByProApi" parameterType="Map">
+          delete from gateway_project_group
+          where PROJECT_ID = #{projectId,jdbcType=INTEGER} and Api_ID = #{apiId,jdbcType=INTEGER}
+      </delete>
   <update id="updateByPrimaryKey" parameterType="com.dcits.scott.gateway.pojo.GatewayProjectGroupDO" >
     update gateway_project_group
     set PROJECT_ID = #{projectId,jdbcType=INTEGER},
@@ -49,6 +57,11 @@
   <select id="selectCount" resultType="Integer" parameterType="Map">
     select count(*)
     from gateway_project_group
-    where PROJECT_ID=#{projectId}
+    where PROJECT_ID=#{projectId} and API_ID is NULL
+  </select>
+    <select id="selectCount2" resultType="Integer" parameterType="Map">
+    select count(*)
+    from gateway_project_group
+    where PROJECT_ID=#{projectId} and GROUP_ID is NULL
   </select>
 </mapper>

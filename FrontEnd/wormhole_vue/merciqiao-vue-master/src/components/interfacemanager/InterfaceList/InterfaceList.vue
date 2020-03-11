@@ -158,7 +158,7 @@
 
             <el-table-column  fixed="right" label="操作"min-width="200">
               <template slot-scope="scope">
-                <el-button size="mini" plain type="primary" @click="toApi( scope.row)">测试</el-button>
+                <el-button size="mini" plain type="primary" @click="toTest( scope.row)">测试</el-button>
                 <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                 <el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
               </template>
@@ -385,7 +385,15 @@
           description:"",
           updateBy:this.$common.getSessionStorage("username"),
         },
-
+        toTestForm:{
+          zookeeper:'',
+          id:'',
+          groupId:'',
+          serviceVersion:'',
+          serviceName:'',
+          interfaceName:'',
+          serviceMethod:'',
+        },
       };
     },
     methods: {
@@ -400,10 +408,63 @@
       },
       //查看接口
       //查看分组和接口
-      toApi(row){
+      toTest(row){
+        console.log(row)
+        //
+        this.toTestForm.zookeeper=row.zookeeper
+        this.toTestForm.id=row.id
+        this.toTestForm.groupId=row.groupId
+        this.toTestForm.serviceVersion=row.serviceVersion
+        this.toTestForm.serviceName=row.serviceName
+        this.toTestForm.interfaceName=row.interfaceName
+        this.toTestForm.serviceMethod=row.serviceMethod
+        //
         var _this = this
+        let param={
+          zookeeper:row.zookeeper,
+          groupId:row.groupId,
+          createBy:row.createBy,
+          serviceVersion:row.serviceVersion,
+        }
+        this.$ajax({
+          method: "post",
+          url: "/interface/zkConfig/createDubboModel",
+          data: param
+        }).then((resultData) =>{
+          let param={
+            zk:row.zookeeper,
+            groupId:row.groupId,
+            createBy:row.createBy,
+            serviceVersion:row.serviceVersion,
+            serviceName:row.serviceName,
+            interfaceName:row.interfaceName,
+            serviceMethod:row.serviceMethod,
+            id:row.id,
+          }
+          this.$ajax({
+            method: "post",
+            url: "/interface/beforeTestInterface/createDubboModel",
+            data: param
+          }).then((resultData) =>{
 
-        _this.$router.push({path: 'api', query: {group: row}})
+            var _this = this
+            console.log("大萨达撒多",_this.toTestForm)
+            let index = this.toTestForm.interfaceName.lastIndexOf("/");
+            let provider = this.toTestForm.interfaceName.substr(index+1)
+            console.log("provider",provider)
+            this.$router.push({
+              path: '/TestInterface',
+              query:{zk: this.toTestForm.zookeeper,
+                serviceName:this.toTestForm.serviceName,
+                provider:provider,
+                methodName:this.toTestForm.serviceMethod,
+                id:this.toTestForm.id
+              }
+
+            });
+          });
+        });
+       // _this.$router.push({path: 'api', query: {group: row}})
       },
 
       filterTag(value, row) {
@@ -537,7 +598,7 @@
             console.log(param);
             this.$ajax({
               method: "post",
-              url: "/group/delSysGroupByIds",
+              url: "/interface/interfaceList/delApiByIds",
               contentType: 'application/json; charset=UTF-8',// contn
               data: param
             }).then(res => {

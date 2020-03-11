@@ -44,21 +44,18 @@
             <!--<el-breadcrumb-item>活动列表</el-breadcrumb-item>-->
             <!--<el-breadcrumb-item>活动详情</el-breadcrumb-item>-->
         <!--</el-breadcrumb>-->
-        <el-tabs type="border-card">
-            <el-tab-pane label="分组">
+        <el-tabs type="border-card" @tab-click="handleClick" v-model="activeName">
+            <el-tab-pane label="分组" name="first" :key="'first'">
                 分组授权
-              <vgroup-detail :message="projectId" ></vgroup-detail>
+              <vgroup-detail :message="projectId"></vgroup-detail>
             </el-tab-pane>
-            <el-tab-pane label="接口">接口<br/></el-tab-pane>
-            <el-tab-pane label="图表" >
-              <div>
-                <div style="float: left">
+            <el-tab-pane label="接口" name="second" :key="'second'">
+              接口授权
+              <api-detail :message2="projectId"></api-detail>
+            </el-tab-pane>
+            <el-tab-pane label="图表" name="third" :key="'third'">
               <group-chart :message="projectId" ></group-chart>
-                </div>
-                <div>
-                  dada
-                </div>
-              </div>
+              <interface-chart :message3="projectId"></interface-chart>
             </el-tab-pane>
             <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
         </el-tabs>
@@ -79,6 +76,7 @@
 <script>
 import vSearchinput from '../searchinput/searchinput.vue';
 import vgroupDetail from './GroupDetail.vue'
+import apiDetail from './ApiDetail.vue'
 import groupChart from '../chart/GroupChart.vue'
 import interfaceChart from '../chart/InterfaceChart.vue'
 
@@ -89,9 +87,16 @@ export default {
     vgroupDetail,
     groupChart,
     interfaceChart,
+    apiDetail,
   },
   data() {
     return {
+      //默认第一个选项卡
+      activeName: "",
+      isChildUpdate1:true,
+      isChildUpdate2:false,
+      isChildUpdate3:false,
+      tabPosition: 'left',
       projectId:'',
       labelPosition: "right", //lable对齐方式
       labelWidth: "80px", //lable宽度
@@ -107,15 +112,22 @@ export default {
     }
   },
     methods: {
-      // reload () {
-      //   this.update = false
-      //   this.$nextTick(() => (this.update = true))
-      // },
-      // updateView(update){
-      //   this.update=false;
-      //   this.$nextTick(() => (this.update = true))
-      //   alert(this.update)
-      // },
+      handleClick(tab) {
+        if(tab.name == "first") {
+          this.isChildUpdate1 = true;
+          this.isChildUpdate2 = false;
+          this.isChildUpdate3 = false;
+        } else if(tab.name == "second") {
+          this.isChildUpdate1 = false;
+          this.isChildUpdate2 = true;
+          this.isChildUpdate3 = false;
+        }else if(tab.name == "third") {
+          this.isChildUpdate1 = false;
+          this.isChildUpdate2 = false;
+          this.isChildUpdate3 = true;
+        }
+      },
+
         fun(){
           alert("dasdasd");
         }

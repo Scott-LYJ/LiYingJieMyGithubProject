@@ -17,15 +17,19 @@ require('echarts/lib/chart/pie')
 require('echarts/lib/component/tooltip')
 require('echarts/lib/component/title')
 
-
+import apiChart from '../chart/ApiChart.vue'
 export default {
+
   name:"InterfaceChart",
   props: ['message3'],
+  components:{
+    apiChart,
+  },
   watch: {
     message3: function (newVal, oldVal) {
       console.log("wwwwwwwwwww", newVal)
-      this.projectId = newVal
-      console.log("projectid", this.projectId)
+      this.groupId = newVal
+      console.log("groupId", this.groupId)
       this.initData();
     }
   },
@@ -33,7 +37,7 @@ export default {
   },
   data() {
     return {
-      projectId: "",
+      groupId: "",
       total:"",
       Yesvalue:"",
       Novalue:"",
@@ -48,11 +52,11 @@ export default {
       // 基于准备好的dom，初始化echarts实例
       var myChart = echarts.init(document.getElementById('main2'));
       let param = {
-        projectId: this.projectId
+        groupId: this.groupId
       }
       this.$ajax({
         method: "post",
-        url: "/projectApi/queryApiCount",
+        url: "/group/queryGroupApiCount",
         contentType: 'application/json; charset=UTF-8',// contn
         data: param
       }).then(res => {

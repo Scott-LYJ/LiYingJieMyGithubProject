@@ -3,7 +3,7 @@
     <div class="pie">
         <div id="pie1">
             <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-            <div id="main1" style="float:left;width:500px;height: 300px"></div>
+            <div id="main1" style="float:left;width:400px;height: 300px"></div>
         </div>
     </div>
 
@@ -23,7 +23,7 @@ export default {
   props: ['message'],
   watch: {
     message: function (newVal, oldVal) {
-      console.log("newVal22222", newVal)
+      console.log("11123123123", newVal)
       this.projectId = newVal
       console.log("projectid", this.projectId)
       this.getResult();
@@ -40,8 +40,10 @@ export default {
       Novalue:"",
     }
   },
-  mounted() {
-  },
+  // mounted() {
+  //   this.getResult();
+  //   this.initData();
+  // },
   methods: {
     getResult() {
       console.log("11111111111")

@@ -29,8 +29,13 @@ public class BeforeTestInterface {
     GatewayServiceRequestService gatewayServiceRequestService;
     @PostMapping("/createDubboModel")
     public String createDubboModel(@RequestBody Map<String,Object> map) throws IOException {
-        List<String> list = (List)map.get("zookeeper");
-        String zk = String.valueOf(list.get(0));
+        String zk="";
+        if(map.get("zookeeper")!=null) {
+            List<String> list = (List) map.get("zookeeper");
+            zk = String.valueOf(list.get(0));
+        }else {
+            zk = String.valueOf(map.get("zk"));
+        }
         Long apiId = Long.parseLong(String.valueOf(map.get("id")));
         //
        List<GatewayServiceRequestDO> gatewayServiceRequestDOList = gatewayServiceRequestService.selectByApiId(apiId);

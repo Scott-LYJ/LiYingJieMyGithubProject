@@ -1,6 +1,9 @@
 package com.dcits.scott.wormholeserviceconsumer.projectcontroller.apigroupcontroller;
 
+import com.alibaba.fastjson.JSON;
+import com.dcits.scott.gateway.pojo.GatewayApiDO;
 import com.dcits.scott.gateway.pojo.GatewayApiGroupDO;
+import com.dcits.scott.project.gatewayapi.GatewayApiService;
 import com.dcits.scott.project.gatewayapigroup.GatewayApiGroupService;
 import com.dcits.scott.project.gatewayproject.GatewayProjectService;
 import com.dcits.scott.support.result.Result;
@@ -20,6 +23,8 @@ public class ApiGroupController {
 
    @Reference
     GatewayApiGroupService gatewayApiGroupService;
+   @Reference
+    GatewayApiService gatewayApiService;
 
     @PostMapping("/querySysGroupList")
     public Result<List<GatewayApiGroupDO>> querySysGroupList(@RequestBody Map<String,Object> map) throws Exception {
@@ -52,6 +57,43 @@ public class ApiGroupController {
         gatewayApiGroupService.updateGroupByMap(map);
         return new Result<>("200","更新成功");
     }
+    @PostMapping("/queryApi")
+    public Result<List<GatewayApiDO>> queryApi(@RequestBody Map<String,Object> map){
+        Long groupId = Long.parseLong(String.valueOf(map.get("group_id")));
+        List<GatewayApiDO> gatewayApiDOS = gatewayApiService.selectSearchPage(map);
+        for (GatewayApiDO gatewayApiDO:gatewayApiDOS){
+            if (groupId==gatewayApiDO.getGroupId()){
+                gatewayApiDO.setGroupauthorized(true);
+            }else gatewayApiDO.setGroupauthorized(false);
+        }
+        return new Result<>("200","查询成功",gatewayApiDOS);
+    }
+    @PostMapping("/insertGroupAuthorized")
+    public Result<String> insertAuthorized(@RequestBody String json){
+        GatewayApiDO gatewayApiDO = JSON.parseObject(json, GatewayApiDO.class);
+        try {
+            gatewayApiService.update(gatewayApiDO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Result<>("200","修改成功");
+    }
+    @PostMapping("/deleteGroupAuthorized")
+    public Result<String> deleteAuthorized(@RequestBody String json){
+        GatewayApiDO gatewayApiDO = JSON.parseObject(json, GatewayApiDO.class);
 
+        try {
+            gatewayApiService.update(gatewayApiDO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Result<>("200","成功");
+    }
+    @PostMapping("/queryGroupApiCount")
+    public Result<Integer> queryGroupCount(@RequestBody Map<String,Object> map) throws Exception {
+        Integer total = gatewayApiGroupService.selectCount(map);
+        Integer count = gatewayApiService.selectCount(map);
+        return new Result<Integer>("200","查询成功","",total,count);
+    }
 
 }

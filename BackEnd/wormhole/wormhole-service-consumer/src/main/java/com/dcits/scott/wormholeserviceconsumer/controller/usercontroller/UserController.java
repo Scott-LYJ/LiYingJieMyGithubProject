@@ -5,9 +5,11 @@ import com.dcits.scott.support.result.Result;
 import com.dcits.scott.support.result.ResultInfo;
 import com.dcits.scott.auth.authuser.AuthUserService;
 import com.dcits.scott.wormholeserviceconsumer.ExtendFunction;
+import com.dcits.scott.wormholeserviceconsumer.config.fastdfs.FastDFSClientUtil;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +25,10 @@ public class UserController {
 
     @Reference
     AuthUserService authUserService;
+
+    @Autowired
+    private FastDFSClientUtil dfsClient;
+
     //查询所有用户
     @PostMapping("/querySysUserList")
     public Map<String,Object> querySysUserList(@RequestBody Map<String,Object> map){
@@ -95,13 +101,27 @@ public class UserController {
         String fileUrl="http://localhost:8080";
         //文件获取路径
         fileUrl = fileUrl + request.getContextPath() + "/img/" + fileName;
+        String s="";
+        //将文件放入fastdfs的storage
+        try {
+             s= dfsClient.uploadFile(picture);
+            System.out.println(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            String fileUrl1 = dfsClient.uploadFile(picture);
+            request.setAttribute("msg", "成功上传文件，  '" + fileUrl1 + "'");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //将文件保存到服务器指定位置
         try {
             picture.transferTo(targetFile);
             System.out.println("上传成功");
             //将文件在服务器的存储路径返回
-            return new Result("200","上传成功","/picture/user/" + fileName);
+            return new Result("200","上传成功",s);
         } catch (IOException e) {
             System.out.println("上传失败");
             e.printStackTrace();
@@ -203,5 +223,6 @@ public class UserController {
         else return new Result<>("500","校验失败","");
 
     }
+
 
 }
