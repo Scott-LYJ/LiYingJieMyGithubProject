@@ -14,6 +14,7 @@ import Vuex from 'vuex'
 import store from './store'
 // import CKEditor from '@ckeditor/ckeditor5-vue';
 window.moment=require('moment')
+import live2d4vue from 'live2d4vue'
 
 
 import 'element-ui/lib/theme-chalk/index.css';
@@ -29,13 +30,13 @@ Vue.prototype.$ajax=axios
 Vue.config.productionTip = false
 
 // Vue.use(ElementUI);
+Vue.use(live2d4vue)
 Vue.use(util);
 Vue.use(Vuex);
 // Vue.use(CKEditor);
 
 import permission from './directive'
 process.env.MOCK && require('@/apimock')
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

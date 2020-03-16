@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dcits.scott.admin.pojo.AuthUser;
 import com.dcits.scott.gateway.pojo.GatewayApiDO;
 import com.dcits.scott.gateway.pojo.GatewayServiceRequestDO;
+import com.dcits.scott.other.SolrSearchService;
 import com.dcits.scott.project.gatewayapi.GatewayApiService;
 import com.dcits.scott.project.gatewayservicerequest.GatewayServiceRequestService;
 import com.dcits.scott.support.result.Result;
@@ -25,6 +26,8 @@ public class InterfaceListController {
     GatewayApiService gatewayApiService;
     @Reference
     GatewayServiceRequestService gatewayServiceRequestService;
+    @Reference
+    SolrSearchService solrSearchService;
 
     @PostMapping("/querySysInterfaceList")
     public Result<List<GatewayApiDO>> querySysInterfaceList(@RequestBody Map<String,Object> map){
@@ -34,8 +37,10 @@ public class InterfaceListController {
     }
     @PostMapping("/delApiByIds")
     public Result<String> delApiByIds(@RequestBody Map<String,Object> map){
+        List<String> ids = (List<String>) map.get("ids");
 
         gatewayApiService.deleteByIds(map);
+        solrSearchService.deleteById(ids);
         return new Result<>("","","");
     }
     @PostMapping("/updateApiById")
@@ -49,6 +54,8 @@ public class InterfaceListController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            gatewayApiDO.setPid(gatewayApiDO.getId()+"");
+            solrSearchService.addBean(gatewayApiDO);
         return new Result<>("","","");
     }
     @PostMapping("/updateRequestById")

@@ -26,7 +26,7 @@
         data() {
             return {
                 boolean:true,
-                collapse: true,
+                collapse: false,
                 items: [
                     {
                         icon: 'el-icon-setting',

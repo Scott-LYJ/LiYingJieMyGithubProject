@@ -9,6 +9,9 @@ spring:
               min-idle: 0
               max-active: 8
               max-wait: -1ms
+  data:
+    solr:
+      host: http://localhost:8080/solr/demo_core
 
 
 # 分布式文件系统FDFS配置

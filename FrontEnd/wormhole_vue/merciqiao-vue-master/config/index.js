@@ -83,6 +83,14 @@ module.exports = {
           '^/projectGroup': '/projectGroup',
         }
       },
+      '/solr': {
+        // target: 'http://101ycy.com:10001',
+        target: 'http://192.168.247.1:8085',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/solr': '/solr',
+        }
+      },
       '/group': {
         // target: 'http://101ycy.com:10001',
         target: 'http://192.168.247.1:8085',

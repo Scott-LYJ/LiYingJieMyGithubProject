@@ -9,6 +9,7 @@ import com.dcits.scott.dubbo.LocalStore;
 import com.dcits.scott.dubbo.RequestTemplate;
 import com.dcits.scott.gateway.pojo.GatewayApiDO;
 import com.dcits.scott.gateway.pojo.GatewayServiceRequestDO;
+import com.dcits.scott.other.SolrSearchService;
 import com.dcits.scott.other.redis.RedisService;
 import com.dcits.scott.project.gatewayapi.GatewayApiService;
 import com.dcits.scott.project.gatewayservicerequest.GatewayServiceRequestService;
@@ -43,6 +44,9 @@ public class CreateInterface {
 
     @Reference
     GatewayServiceRequestService gatewayServiceRequestService;
+
+    @Reference
+    SolrSearchService solrSearchService;
 
     @PostMapping("/insertInterface")
     public Result<GatewayApiDO> insertInterface(@RequestBody Map<String,Object> map){
@@ -97,6 +101,8 @@ public class CreateInterface {
                  gatewayServiceRequestDOList.add(gatewayServiceRequestDO);
             }
             gatewayServiceRequestService.batchInsert(gatewayServiceRequestDOList);
+             gatewayApiDO1.setPid(gatewayApiDO1.getId()+"");
+            solrSearchService.addBean(gatewayApiDO1);
             return  new Result<>("200","插入成功",gatewayApiDO1);
 
         }catch(Exception e){

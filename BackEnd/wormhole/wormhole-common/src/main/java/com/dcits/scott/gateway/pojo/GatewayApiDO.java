@@ -7,6 +7,8 @@ import java.util.Set;
 
 import com.dcits.scott.common.CommonDO;
 import com.dcits.scott.tool.DateUtil;
+import lombok.experimental.FieldNameConstants;
+import org.apache.solr.client.solrj.beans.Field;
 
 /**
  *
@@ -42,18 +44,24 @@ public class GatewayApiDO extends CommonDO {
   /**
    * @mbg.generated
    */
+
   private Long id;
+  @Field("id")
+  private String pid;
   /**
    * @mbg.generated
    */
+  @Field("group_id")
   private Long groupId;
   /**
    * @mbg.generated
    */
+  @Field("api_name")
   private String name;
   /**
    * @mbg.generated
    */
+  @Field("api_description")
   private String description;
 
   /**
@@ -64,6 +72,7 @@ public class GatewayApiDO extends CommonDO {
   /**
    * @mbg.generated
    */
+  @Field("api_status")
   private Integer status;
   /**
    * @mbg.generated
@@ -72,26 +81,32 @@ public class GatewayApiDO extends CommonDO {
   /**
    * @mbg.generated
    */
+  @Field("api_is_auth")
   private Integer isAuth;
   /**
    * @mbg.generated
    */
+  @Field("api_is_login")
   private Integer isLogin;
   /**
    * @mbg.generated
    */
+  @Field("api_auth_version")
   private Integer authVersion;
   /**
    * @mbg.generated
    */
+  @Field("serviceName")
   private String serviceName;
   /**
    * @mbg.generated
    */
+  @Field("serviceMethod")
   private String serviceMethod;
   /**
    * @mbg.generated
    */
+  @Field("api_serice_version")
   private String serviceVersion;
   /**
    * @mbg.generated
@@ -100,6 +115,7 @@ public class GatewayApiDO extends CommonDO {
   /**
    * @mbg.generated
    */
+  @Field("createBy")
   private String createBy;
   /**
    * @mbg.generated
@@ -108,6 +124,7 @@ public class GatewayApiDO extends CommonDO {
   /**
    * @mbg.generated
    */
+  @Field("cdt")
   private Date cdt;
   /**
    * @mbg.generated
@@ -117,7 +134,7 @@ public class GatewayApiDO extends CommonDO {
    * @mbg.generated
    */
   private Integer version;
-
+ @Field("interfaceName")
   private String interfaceName;
 
   private Set<GatewayServiceRequestDO> gatewayServiceRequestDOS;
@@ -146,7 +163,7 @@ public class GatewayApiDO extends CommonDO {
    * 回调响应头信息
    */
   private String responseHeader;
-
+@Field("zookeeper")
   private String zookeeper;
 
   public void setVersion(Integer version) {
@@ -185,12 +202,22 @@ public class GatewayApiDO extends CommonDO {
   /**
    * 分组名称
    */
+  @Field("group_name")
   private String groupName;
+
   private Boolean Authorized;
   private Boolean Groupauthorized;
 
   public Boolean getGroupauthorized() {
     return Groupauthorized;
+  }
+
+  public String getPid() {
+    return pid;
+  }
+
+  public void setPid(String pid) {
+    this.pid = pid;
   }
 
   public void setGroupauthorized(Boolean groupauthorized) {

@@ -69,6 +69,7 @@ export function getTemplate(params) {
     })
 }
 
+
 export function getRemoteHistoryTemplate(params) {
     return request({
         url:'/dubbo-postman/result/template/names',

@@ -45,7 +45,7 @@
         <el-button type="danger" icon="el-icon-delete" @click="handleDeleteList" size="mini" round>{{$t("SysUser.delete")}}</el-button>
         <template>
           <!--表格数据及操作-->
-          <el-table :data="tableData" size="mini"  highlight-current-row border   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" v-loading="listLoading" @selection-change="selectChange">
+          <el-table   :data="tableData" size="mini"  highlight-current-row border   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" v-loading="listLoading" @selection-change="selectChange">
             <!--//展开行-->
             <el-table-column type="expand"  >
               <template slot-scope="props">
@@ -139,7 +139,7 @@
             </el-table-column>
             <el-table-column prop="id" label="API编号" >
             </el-table-column>
-            <el-table-column prop="description" label="API描述" >
+            <el-table-column prop="description" label="API描述" :show-overflow-tooltip="true">
             </el-table-column>
             <el-table-column prop="status" label="状态"
                              :filters="[{ text: '启用', value: '启用' }, { text: '禁用', value: '禁用' }]"

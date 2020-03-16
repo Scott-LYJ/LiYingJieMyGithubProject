@@ -1,125 +1,370 @@
 <template>
   <div>
-    公告：
-    <br />大吉大利~
-    <br />
-    <br />使用文档：
-    <br />------------------
-    <br />百度网盘：<a href="https://pan.baidu.com/s/1pjXdHqlJOkrXXZ_RwlEoOg" target="_blank">https://pan.baidu.com/s/1pjXdHqlJOkrXXZ_RwlEoOg</a>，提取码：pvrw
-    <br />
-    <br />版本说明:
-    <br />------------------
-    <br />功能版:101ycy.com:6001,此版本菜单和权限在"系统管理"页可配置
-             (或https://101ycy.com:6011)
-    <br />精简版:101ycy.com:6002,此版本菜单和权限在前端代码里配置
-    <br />Mock版:101ycy.com:6005,此版本无权限,菜单在前端代码写死
-  
-    <br />
-    <br />git仓库地址
-    <br />------------------
-    <br />功能版git:https://github.com/merciqiao/merciqiao-vue.git
-    <br />精简版git:https://github.com/merciqiao/vuejiaoxue.git
-    <br />服务端git:https://github.com/merciqiao/merciqiao-manage-system.git(基于java的spring cloud提供接口)
-    <br />
-     <br />
-    答疑解惑
-    <br />------------------
-    <br /><span style="color:red;">有问题可在页底加群问我</span>
-    <br />★ 赞助★ 请点击右上角admin处
-    
-
-    
-    <br />
-    <br />
-作者打卡:2019-10-31
-    <br />
-
-    <br />
-    <el-button type="warning" @click="rollBackTables">如果菜单异常,点此恢复数据</el-button>
-    <el-button type="warning" @click="openZanZhu">赞助</el-button>
-    <br />
-    <br />
-PS:烦请修改了数据的用户,记得恢复下数据
-    <!-- 扫码 start -->
-    <!-- <div class="hongbao_zanzhu">
-      扫码支持一下~
-      <img class='hongbao' src="static/img/hongbao.png">
-    </div>-->
-    <!-- 扫码 end -->
-
-    <br />
-    <br />
-      非常感谢
-    <br />
-    ------------------
-    <br />
-    <div v-show='false' class="zanzhulist">
-      <table class="zanzhutb">
-        <tr v-for="(item,index) in zanzhu" :key="index">
-          <td>{{item.name}}：</td>
-          <td>赞助{{item.money}}元</td>
-          <td>{{getDate(item.createtime)}}</td>
-        </tr>
-        <!-- <tr><td>第九杯月亮：</td><td>赞助10元</td><td>2019-10-31</td></tr>
-        <tr><td>爱丽丝的疯帽子：</td><td>赞助20元</td><td>2019-10-16</td></tr>
-        <tr><td>壹克拉眼泪：</td><td>赞助20元</td><td>2019-10-06</td></tr>
-        <tr><td>Liu月：</td><td>赞助1元</td><td>2019-9-27</td></tr>
-        <tr><td>无忧：</td><td>赞助30元</td><td>2019-9-25</td></tr>
-        <tr><td>懒是原罪：</td><td>赞助15元</td><td>2019-9-6</td></tr>
-        <tr><td>河北：</td><td>赞助0.8元</td><td>2019-9-6</td></tr>
-        <tr><td>武汉-后端-星空：</td><td>赞助1元</td><td>2019-9-6</td></tr>
-        <tr><td>珠海-全栈-全干：</td><td>赞助5元</td><td>2019-9-6</td></tr>
-        <tr><td>深圳-杜雪：</td><td>赞助5元</td><td>2019-9-6</td></tr>
-        <tr><td>深圳-前端-亲亲：</td><td>赞助2.22元</td><td>2019-9-6</td></tr>
-        <tr><td>北京-我乖你给我买街：</td><td>赞助0.55元</td><td>2019-9-6</td></tr>
-        <tr><td>卖提莫的小男孩：</td><td>赞助5元</td><td>2019-9-6</td></tr>
-        <tr><td>命：</td><td>赞助10元</td><td>2019-9-2</td></tr>
-        <tr><td>顺势而为：</td><td>赞助100元</td><td>2019-9-1</td></tr>
-        <tr><td>顺势而为：</td><td>赞助2元</td><td>2019-8-25</td></tr>
-        <tr><td>*商：</td><td>赞助1元</td><td>2019-8-19</td></tr>
-        <tr><td>苏州-前端-离愁：</td><td>赞助50元</td><td>2019-8-13</td></tr> -->
-      </table>
+    <div>
+  <index-header  @toFatherData="sendSonData"></index-header>
     </div>
-  </div>
+    <br/>
+  <el-row>
+    <!--就改这里一行-->
+    <el-col :span="4"  v-for="(project,index) in this.list" :key="index" :offset="1" style="margin-bottom:30px;" >
+      <el-card :body-style="{ padding: '0px', height:'300px'}" shadow="hover" style="width: 230px;height: 300px;">
+          <div slot="header" class="clearfix">
+            <span v-html="project.name"></span>
+           <div style="float: right;" >
+             <div style="margin-top: -1px" v-html="project.authVersion">
+
+             </div>
+           </div>
+          </div>
+        <div>
+          <div style="padding: 6px;height: 310px;margin: auto">
+            <div>
+              <el-form ref="api" :model="project" label-width="80px"size="mini" label-position="left">
+                <el-form-item label="创建人:" >
+                  <el-tag
+                    type=""
+                    effect="dark"
+                    v-html="project.createBy"
+                  >
+
+                  </el-tag>
+                </el-form-item >
+                <el-form-item label="分组:" style="margin-top:-10px">
+                  <el-tag
+                    type="info"
+                    effect="dark"
+                    v-html="project.groupName"
+                  >
+                  </el-tag>
+                </el-form-item>
+
+              </el-form>
+              <el-form ref="api" :model="project" label-width="80px"size="mini" label-position="top">
+                <el-form-item label="描述:" style="margin-top:-10px">
+                  <div style="margin-top:-10px;height:30px" class="txt">
+                    <el-tooltip class="item" effect="dark" :content="project.description" placement="top-start">
+                      <font size="1px" v-html="project.description">
+                      </font>
+                    </el-tooltip>
+
+                  </div>
+                </el-form-item>
+                <el-form-item  style="margin-top:-10px">
+                  <el-tag v-if="project.status==1">启用</el-tag>
+                  <el-tag type="danger" v-if="project.status==0">禁用</el-tag>
+                  &nbsp;
+                  <i class="el-icon-view"></i><span>22222</span>
+                  &nbsp;
+                  <i class="el-icon-time"></i><span >{{project.cdt}}</span>
+                </el-form-item>
+                <el-form-item  style="margin-top:-10px">
+                  <el-button type="info" round style="float: left;width: 100px" @click="toDetail(project.pid)">详情</el-button>
+                  <el-button type="success" round style="float: right;width: 100px" @click="toTest(project)">测试</el-button>
+                </el-form-item>
+              </el-form>
+            </div>
+          </div>
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
+    <live2d />
+
+    <!-- 详情界面-->
+    <el-dialog title="接口详情" :visible.sync="detailFormVisible" :close-on-click-modal="false">
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="接口基本信息" name="first">
+          <el-form ref="apiDetail" :model="apiDetail" label-width="80px" >
+            <el-form-item label="API名称">
+              <el-input v-model="apiDetail.name" :disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="API编号">
+              <el-input v-model="apiDetail.id" :disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="版本">
+              <el-input-number v-model="apiDetail.version" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
+            </el-form-item>
+            <el-form-item label="分组名称">
+              <el-input v-model="apiDetail.groupName" :disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="接口描述">
+              <el-input type="textarea" v-model="apiDetail.description" :disabled="true"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="dubbo相关信息修改" name="second">
+          <el-form ref="apiDetail" :model="apiDetail" label-width="80px">
+            <el-form-item label="ZK地址">
+              <el-input v-model="apiDetail.zookeeper" :disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="服务名称">
+              <el-input v-model="apiDetail.serviceName" :disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="接口名称">
+              <el-input v-model="apiDetail.interfaceName":disabled="true" ></el-input>
+            </el-form-item>
+            <el-form-item label="方法名称">
+              <el-input v-model="apiDetail.serviceMethod" :disabled="true"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="请求参数信息修改" name="third">
+          <el-table :data="requestParamsForm" size="mini"  highlight-current-row border  max-height="400"   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" >
+            <el-table-column type="index" :index="indexMethod" >
+            </el-table-column>
+
+            <el-table-column  label="参数名称" width="200">
+              <template slot-scope="scope">
+                <el-input v-model="scope.row.name" auto-complete="off" :disabled="true"></el-input>
+              </template>
+            </el-table-column>
+            <el-table-column label="参数类型" width="200">
+              <template slot-scope="scope">
+                <el-select v-model="scope.row.typeName" placeholder="请选择":disabled="true">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+
+              </template>
+            </el-table-column>
+            <el-table-column label="请求示例" width="320">
+              <template slot-scope="scope">
+                <el-input type="textarea" v-model="scope.row.example":disabled="true"></el-input>
+              </template>
+            </el-table-column>
+            <el-table-column label="参数描述" width="320">
+              <template slot-scope="scope">
+                <el-input type="textarea" v-model="scope.row.description":disabled="true"></el-input>
+              </template>
+            </el-table-column>
+
+          </el-table>
+        </el-tab-pane>
+      </el-tabs>
+      <div slot="footer" class="dialog-footer">
+        <el-button>{{$t('SysUser.cancle')}}</el-button>
+      </div>
+    </el-dialog>
+    <!--详情界面结束-->
+    </div>
 </template>
+
 <style>
-.hongbao_zanzhu {
-  display: block;
-  position: fixed;
-  text-align: center;
-  bottom: 336px;
-  width: 230px;
-  right: 0;
-  font-size: 23px;
-  color: #505458;
-}
-.hongbao {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  height: 330px;
-  width: 230px;
-}
-.zanzhulist{
-  border:1px dashed gray;
-  display: inline-block;
-}
-.zanzhutb  tr td:first-child{
-  text-align: right;
-}
-.zanzhutb  tr td:nth-child(2){
-  width:80px;
-}
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
+
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+  .button {
+    padding: 0;
+    float: right;
+  }
+
+  .image {
+    width: 200px;
+    display: block;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+
+  .clearfix:after {
+    clear: both
+  }
+
+  .txt {
+
+    line-height:15px;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+
+  .clearfix:after {
+    clear: both
+  }
 </style>
+
+
 <script>
 import apis from "../apis/apis";
+import apiCard from "./card/apiCard.vue";
+import indexHeader from "./indexHeader.vue";
+
+import live2d from 'vue-live2d'
+import 'vue-live2d/dist/vue-live2d.css'
+
 export default {
+
+
+  components:{
+    apiCard,
+    indexHeader,
+    live2d,
+  },
   data() {
     return {
-      zanzhu:[]
+      options:[],
+      activeName: 'first',
+      detailFormVisible:false,
+      apiDetail:{},
+      list:[],
+      bool:true,
+      api:{
+        authVersion:'',
+        cdt:'',
+        createBy:'',
+        description:'',
+        groupName:'',
+        name:'',
+        pid:'',
+        serviceVersion:'',
+        status:'',
+        requestParamsForm: {
+          tableData:[],
+          size:'',
+        },
+      },
+      toTestForm:{
+        zookeeper:'',
+        id:'',
+        groupId:'',
+        serviceVersion:'',
+        serviceName:'',
+        interfaceName:'',
+        serviceMethod:'',
+      },
+      zanzhu:[],
+      currentDate: new Date()
     }
   },
+
   methods: {
+
+    //table序号
+    indexMethod(index) {
+      return index + 1;
+    },
+
+    handleChange(value) {
+      console.log(value);
+    },
+    toDetail(data){
+      let param = {
+        id:data
+      }
+      console.log(data)
+      this.$ajax({
+        method: "post",
+        url: "/interface/interfaceList/querySysInterfaceList",
+        data: param
+      }).then((resultData) =>{
+         console.log(resultData)
+        // for (var i=0;i<resultData.data.length;i++){
+        //   this.apiDetail = resultData.data.data.get(0);
+        // }
+        this.apiDetail = resultData.data.data[0];
+         console.log(this.apiDetail.gatewayServiceRequestDOS)
+        this.requestParamsForm =  resultData.data.data[0].gatewayServiceRequestDOS;
+         this.detailFormVisible=true
+        console.log(this.requestParamsForm)
+
+      });
+    },
+    handleClick(tab, event) {
+      console.log(tab, event);
+    },
+    toTest(data){
+      console.log(data)
+      //
+      this.toTestForm.zookeeper=data.zookeeper
+      this.toTestForm.id=data.pid
+      // this.toTestForm.groupId=row.groupId
+      this.toTestForm.serviceVersion=data.serviceVersion
+      this.toTestForm.serviceName=data.serviceName
+      this.toTestForm.interfaceName=data.interfaceName
+      this.toTestForm.serviceMethod=data.serviceMethod
+      //
+      var _this = this
+      let param={
+        zookeeper:data.zookeeper,
+        // groupId:data.groupId,
+        createBy:data.createBy,
+        serviceVersion:data.serviceVersion,
+      }
+      console.log(param)
+      this.$ajax({
+        method: "post",
+        url: "/interface/zkConfig/createDubboModel",
+        data: param
+      }).then((resultData) =>{
+        let param={
+          zk:data.zookeeper,
+          // groupId:row.groupId,
+          createBy:data.createBy,
+          serviceVersion:data.serviceVersion,
+          serviceName:data.serviceName,
+          interfaceName:data.interfaceName,
+          serviceMethod:data.serviceMethod,
+          id:data.pid,
+        }
+        this.$ajax({
+          method: "post",
+          url: "/interface/beforeTestInterface/createDubboModel",
+          data: param
+        }).then((resultData) =>{
+
+          var _this = this
+          console.log("大萨达撒多",_this.toTestForm)
+          let index = this.toTestForm.interfaceName.lastIndexOf("/");
+          let provider = this.toTestForm.interfaceName.substr(index+1)
+          console.log("provider",provider)
+          this.$router.push({
+            path: '/TestInterface',
+            query:{zk: this.toTestForm.zookeeper,
+              serviceName:this.toTestForm.serviceName,
+              provider:provider,
+              methodName:this.toTestForm.serviceMethod,
+              id:this.toTestForm.id
+            }
+
+          });
+        });
+      });
+      // _this.$router.push({path: 'api', query: {group: row}})
+    },
+    sendSonData(data){
+      if (data!=null){
+        this.list=[];
+      }
+      // this.list = data
+      for (var i=0;i<data.length;i++) {
+        this.api=data[i];
+        this.list.push(this.api)
+      }
+
+
+    },
+
     rollBackTables() {
       var text = "数据还原";
       apis.shiroApi
@@ -167,18 +412,19 @@ export default {
           }
         }
       }).catch(
-        
+
       );
     },
     getDate(param){
       return this.$common.toDate(param);
-    } 
+    }
   },
   mounted() {
     this.getZanZhu();
   },
+
   computed:{
-    
+
   }
 };
 </script>
