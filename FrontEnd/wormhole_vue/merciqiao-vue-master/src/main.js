@@ -26,6 +26,7 @@ import i18n from './common/i18n'
 import VueClipboard from 'vue-clipboard2'
 Vue.use(VueClipboard)
 
+
 Vue.prototype.$ajax=axios
 Vue.config.productionTip = false
 
@@ -37,6 +38,8 @@ Vue.use(Vuex);
 
 import permission from './directive'
 process.env.MOCK && require('@/apimock')
+import htmlToPdf from '@//utils/htmlToPdf'
+Vue.use(htmlToPdf)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

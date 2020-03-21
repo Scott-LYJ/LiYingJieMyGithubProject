@@ -6,21 +6,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="document-provider" />
         <module name="interface-provider" />
         <module name="project-provider" />
         <module name="role-provider" />
         <module name="solr-provider" />
         <module name="solrsearch-provider" />
         <module name="user-provider" />
+        <module name="wormhole-service-api" />
         <module name="wormhole-service-consumer" />
         <module name="wormholecommon" />
-        <module name="wormholeserviceapi" />
         <module name="wormholeserviceprovider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="solrsearch-provider" target="1.8" />
       <module name="solrsearchprovicer" target="1.8" />
+      <module name="wormholeserviceapi" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

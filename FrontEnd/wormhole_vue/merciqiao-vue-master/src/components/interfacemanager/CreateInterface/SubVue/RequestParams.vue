@@ -5,7 +5,7 @@
       <el-form ref="requestParamsForm" :model="requestParamsForm" label-width="80px">
 
         <el-button type="success" @click="AddListRow()" round>添加参数信息</el-button>
-        <el-table :data="requestParamsForm.tableData" size="mini"  highlight-current-row border  max-height="400"   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" >
+        <el-table :data="requestParamsForm.tableData" size="mini"  highlight-current-row border  max-height="400"   ref="multipleTable" tooltip-effect="dark" >
           <el-table-column type="index" :index="indexMethod" >
           </el-table-column>
 
@@ -97,6 +97,69 @@
         },
         methods: {
           //
+          //table序号
+          indexMethod(index) {
+            return index + 1;
+          },
+          //
+          AddListRow() {
+            this.requestParamsForm.tableData.push({
+              "name":"",
+              "typeName":"",
+              "example":"",
+              "description":"",
+            });
+          },
+
+          //
+          handleDelete(index) {
+            this.requestParamsForm.tableData.splice(index, 1);
+          },
+
+          //
+          onSave() {
+            var _this = this
+            // const h = this.$createElement;
+
+            console.log(this.requestParamsForm)
+            this.requestParamsForm.size = this.requestParamsForm.tableData.length;
+            // console.log("111111111")
+            // let status = this.requestParamsForm.status ? '1':'0';
+            // console.log("status",status)
+            // this.requestParamsForm.status = status
+            this.$emit("requestParamsSave",this.requestParamsForm)
+            // this.$emit('isSave',true)
+            this.$notify({
+              title: '提示',
+              message:  '接口信息保存成功',
+              type: 'success'
+            });
+            console.log('save!');
+          },
+          getVal(){
+            return this.requestParamsForm;
+          },
+          //初始化分组信息
+          getGroup:function(){
+            var _this = this;
+            let param = Object.assign(
+              {},
+            );
+
+            this.$ajax({
+              method: "post",
+              url: "/group/querySysGroupList",
+              data: param
+            }).then(resultData=> {
+
+              console.log(resultData)
+              let dataList =  resultData.data.data
+              this.groupIds=dataList
+              console.log(this.groupIds)
+            });
+
+
+          },  //
           //table序号
           indexMethod(index) {
             return index + 1;

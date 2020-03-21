@@ -19,6 +19,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.dcits.scott</groupId>
+            <artifactId>wormhole-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
         <!--api依赖-->
         <dependency>
             <groupId>com.dcits.scott</groupId>

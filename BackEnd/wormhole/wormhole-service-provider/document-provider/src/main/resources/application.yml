@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      host: 192.168.81.128
+      port: 27017
+      database: wormhole

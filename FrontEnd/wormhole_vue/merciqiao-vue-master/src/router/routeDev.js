@@ -24,6 +24,30 @@ var routeDevList = [
     meta: {
       title: '接口'
     }
+
+  },
+  {
+    path: '/apidocumentdetail',
+    component: resolve => require(['../components/apidocument/apiDocumentDetail'], resolve),
+    meta: {
+      title: '接口文档信息'
+    }
+
+  },
+  {
+    path: '/apidocumentdetail2',
+    component: resolve => require(['../components/test/apiDocumentDetail'], resolve),
+    meta: {
+      title: '接口文档信息2'
+    }
+
+  },
+  {
+    path: '/pinglun',
+    component: resolve => require(['../components/test/ArticleComment.vue'], resolve),
+    meta: {
+      title: 'pinglun'
+    }
   },
   {
     path: '/TestInterface',
@@ -44,6 +68,18 @@ var menuDevList = [
                 index: 'routedev',
                 title: '个人信息修改'
             },
+          {
+            index: 'apidocumentdetail',
+            title: '接口文档信息'
+          },
+          {
+            index: 'apidocumentdetail2',
+            title: '接口文档信息'
+          },
+          {
+            index: 'pinglun',
+            title: '评论'
+          },
         ]
     }
 ]

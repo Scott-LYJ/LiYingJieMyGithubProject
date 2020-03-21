@@ -72,7 +72,7 @@
 
     <!-- 详情界面-->
     <el-dialog title="接口详情" :visible.sync="detailFormVisible" :close-on-click-modal="false">
-      <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tabs v-model="activeName" @tab-click="handleClick($event,apiDetail.id)">
         <el-tab-pane label="接口基本信息" name="first">
           <el-form ref="apiDetail" :model="apiDetail" label-width="80px" >
             <el-form-item label="API名称">
@@ -92,7 +92,7 @@
             </el-form-item>
           </el-form>
         </el-tab-pane>
-        <el-tab-pane label="dubbo相关信息修改" name="second">
+        <el-tab-pane label="dubbo相关信息" name="second">
           <el-form ref="apiDetail" :model="apiDetail" label-width="80px">
             <el-form-item label="ZK地址">
               <el-input v-model="apiDetail.zookeeper" :disabled="true"></el-input>
@@ -108,7 +108,7 @@
             </el-form-item>
           </el-form>
         </el-tab-pane>
-        <el-tab-pane label="请求参数信息修改" name="third">
+        <el-tab-pane label="请求参数信息" name="third">
           <el-table :data="requestParamsForm" size="mini"  highlight-current-row border  max-height="400"   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" >
             <el-table-column type="index" :index="indexMethod" >
             </el-table-column>
@@ -143,6 +143,10 @@
             </el-table-column>
 
           </el-table>
+
+        </el-tab-pane>
+        <el-tab-pane label="接口文档" name="fourth">
+
         </el-tab-pane>
       </el-tabs>
       <div slot="footer" class="dialog-footer">
@@ -239,10 +243,10 @@ export default {
         pid:'',
         serviceVersion:'',
         status:'',
-        requestParamsForm: {
-          tableData:[],
-          size:'',
-        },
+      },
+      requestParamsForm: {
+        tableData:[],
+        size:'',
       },
       toTestForm:{
         zookeeper:'',
@@ -290,8 +294,20 @@ export default {
 
       });
     },
+    toShowApiDocument(sid){
+      console.log(sid)
+      this.$router.push({
+        path: '/apiDocumentDetail2',
+        query:{
+          sid:sid,
+        }
+
+      });
+    },
     handleClick(tab, event) {
-      console.log(tab, event);
+      if(tab.index==3){
+        this.toShowApiDocument(event)
+      }
     },
     toTest(data){
       console.log(data)

@@ -61,7 +61,7 @@
               <el-table-column  fixed="right" :label="$t('SysUser.operation')" width="150">
                <template slot-scope="scope">
                     			   	<el-button type="primary" plain size="small" @click="handleRole(scope.$index,scope.row)">{{$t("SysUser.role")}}</el-button>
-                      	<el-button size="small" @click="handleEdit(scope.$index,scope.row)">{{$t("SysUser.add")}}</el-button>
+                      	<el-button size="small" @click="handleEdit(scope.$index,scope.row)">{{$t("SysUser.edit")}}</el-button>
 			        	</template>
             </el-table-column>
         </el-table>

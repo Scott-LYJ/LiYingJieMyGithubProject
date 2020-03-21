@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/wormhole-service-provider/project-provider/pom.xml" />
         <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/pom.xml" />
         <option value="$PROJECT_DIR$/wormhole-service-provider/solr-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/pom.xml" />
       </list>
     </option>
   </component>

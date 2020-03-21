@@ -50,7 +50,7 @@
             <el-table-column type="expand"  >
               <template slot-scope="props">
 
-                <el-tabs type="border-card" style="width:1000px;height: 300px">
+                <el-tabs type="border-card" style="width:1000px;height: 300px"  @tab-click="handleClick1($event,props.row.id)">
                   <el-tab-pane label="接口基本信息">
                     <el-form label-position="left"  class="demo-table-expand" :inline="true">
                       <el-form-item label="API名称">
@@ -120,6 +120,8 @@
                       <el-table-column prop="description" label="参数描述">
                       </el-table-column>
                     </el-table>
+                  </el-tab-pane>
+                  <el-tab-pane label="接口文档信息">
                   </el-tab-pane>
                 </el-tabs>
 
@@ -261,6 +263,8 @@
 
           </el-table>
         </el-tab-pane>
+        <el-tab-pane label="接口文档编辑" name="fourth">
+        </el-tab-pane>
       </el-tabs>
       <div slot="footer" class="dialog-footer">
         <el-button @click="editCancle">{{$t('SysUser.cancle')}}</el-button>
@@ -397,6 +401,38 @@
       };
     },
     methods: {
+      toShowApiDocument(sid){
+        console.log(sid)
+        this.$router.push({
+          path: '/apiDocumentDetail2',
+          query:{
+            sid:sid,
+          }
+
+        });
+      },
+      toEditApiDocument(){
+        console.log( this.apiEdit)
+        let apiDetails={
+          id:this.apiEdit.id,
+          name:this.apiEdit.name,
+          createBy:this.apiEdit.createBy,
+          zookeeper:this.apiEdit.zookeeper,
+          cdt:this.apiEdit.cdt,
+          serviceName:this.apiEdit.serviceName+"/"+this.apiEdit.interfaceName+"/"+this.apiEdit.methodName,
+          url:"",
+          desctiption:this.apiEdit.description,
+
+        }
+        this.$router.push({
+          path: '/apiDocumentDetail',
+          query:{
+            apiDetails:apiDetails,
+          }
+
+        });
+
+      },
       handleChange(value) {
         console.log(value);
       },
@@ -404,7 +440,19 @@
         console.log('submit!');
       },
       handleClick(tab, event) {
-        console.log(tab, event);
+        if (tab.index==3){
+          this.editFormVisible=false
+          this.toEditApiDocument();
+        }
+        console.log(tab.index);
+      },
+      handleClick1(tab, event,sid) {
+        if (tab.index==3){
+          this.toShowApiDocument(event);
+        }
+        console.log(sid);
+        console.log(tab);
+        console.log(event);
       },
       //查看接口
       //查看分组和接口
