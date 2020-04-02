@@ -15,11 +15,12 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ExtendFunction {
+
   public   static Map<String,Object> map(AuthorizationService authorizationService,
                                          PermissionService permissionService,
                                          ResourceService resourceService,
                                          RoleService roleService){
-
+       Set<AuthResource> permissionButton =new HashSet<>();
         Map<String, Object> map1 = new HashMap<>(8);
         Set<Integer> set = new HashSet<>();
 
@@ -66,7 +67,7 @@ public class ExtendFunction {
             map1.put("resourceList", resourceList);
             map1.clear();
            //JSONObject jsonObject =  queryMenuList(resourceList);
-           resourceList= queryMenuList(resourceList);
+           resourceList= queryMenuList(resourceList,permissionButton);
           // map1.put("Menu",jsonObject);
 
            info = new Info(user,authRoleList,resourceList);
@@ -75,6 +76,7 @@ public class ExtendFunction {
             resultMap.put("data",info);
            resultInfo = new ResultInfo("SUCCESS","登录成功",null,resultMap,null,"");
            map1.put("result",resultInfo);
+           map1.put("permission",permissionButton);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,7 +85,7 @@ public class ExtendFunction {
         return map1;
     }
 
-    public static List<AuthResource> queryMenuList(List<AuthResource> rootResource){
+    public static List<AuthResource> queryMenuList(List<AuthResource> rootResource,Set<AuthResource> permissionButton){
 
         // 查看结果
         for (AuthResource authResource : rootResource) {
@@ -100,7 +102,7 @@ public class ExtendFunction {
         }
         // 为一级菜单设置子菜单，getChild是递归调用的
         for (AuthResource authResource : menuList) {
-            authResource.setChildren(getChild(authResource.getId(), rootResource));
+            authResource.setChildren(getChild(authResource.getId(), rootResource,permissionButton));
         }
 //        Map<String,Object> jsonMap = new HashMap<>();
 //        jsonMap.put("menu", menuList);
@@ -118,12 +120,16 @@ public class ExtendFunction {
       要查找的列表
       @return
              */
-    private static List<AuthResource> getChild(Integer id, List<AuthResource> rootMenu) {
+    private static List<AuthResource> getChild(Integer id, List<AuthResource> rootMenu,Set<AuthResource> permissionButton) {
         // 子菜单
         List<AuthResource> childList = new ArrayList<>();
         for (AuthResource menu : rootMenu) {
             if ("a".equals(menu.getCategory())){
                 menu.setIsShow(0);
+                if (permissionButton!=null){
+                    permissionButton.add(menu);
+                }
+
             }else menu.setIsShow(1);
             // 遍历所有节点，将父菜单id与传过来的id比较
                 if (menu.getPid().equals(id)) {
@@ -135,7 +141,7 @@ public class ExtendFunction {
 
                 if (!"a".equals(menu.getCategory())){
                 // 递归
-                menu.setChildren(getChild(menu.getId(), rootMenu));
+                menu.setChildren(getChild(menu.getId(), rootMenu,permissionButton));
             }
         } // 递归退出条件
         if (childList.size() == 0) {

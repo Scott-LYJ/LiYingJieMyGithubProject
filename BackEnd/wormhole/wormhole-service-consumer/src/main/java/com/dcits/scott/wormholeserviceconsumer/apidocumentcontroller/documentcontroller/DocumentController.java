@@ -10,6 +10,7 @@ import com.dcits.scott.apidocument.SubDocument.RequestParam;
 import com.dcits.scott.apidocument.SubDocument.ResponseCode;
 import com.dcits.scott.apidocument.SubDocument.ResponseParam;
 import com.dcits.scott.other.ApiDocumentService;
+import com.dcits.scott.project.gatewayapi.GatewayApiService;
 import com.dcits.scott.support.result.Result;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,8 @@ import java.util.Map;
 public class DocumentController {
     @Reference
     ApiDocumentService apiDocumentService;
-
+    @Reference
+    GatewayApiService gatewayApiService;
 
     @GetMapping("/findAll")
     public Result<List<ApiDocument>> findAll(){
@@ -68,9 +70,13 @@ public class DocumentController {
     public Result save1(@RequestBody ApiDocument apiDocument, @PathVariable String sid){
         System.out.println(apiDocument);
         apiDocumentService.save(apiDocument,sid);
+        //修改编写文档的时间
+        Long apiId = Long.parseLong(sid);
+        gatewayApiService.updateDocumentTime(apiId);
         System.out.println(apiDocument);
         return  new Result("","保存成功");
-    }    @PostMapping("/save2/{sid}")
+    }
+
 
     @RequestMapping(value = "/{commentId}",method = RequestMethod.POST)
     public Result update(@PathVariable String commentId,@RequestBody ApiDocument apiDocument){

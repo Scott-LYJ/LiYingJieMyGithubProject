@@ -1,15 +1,15 @@
 <template>
     <div class="sidebar">
-        <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
-            text-color="#bfcbd9" active-text-color="#20a0ff" :unique-opened=true router>
+        <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse"
+            text-color="#fff" active-text-color="#ffd04b" :unique-opened=true router>
            <template v-for="(item,i) in menuList">
                 <template v-if="item.subs&&item.subs.length">
-                    <el-submenu :index="item.index" :key="i">
+                    <el-submenu :index="item.index" :key="i" >
                       <!--<el-submenu >-->
                       <template slot="title">
                             <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                         </template>
-                        <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
+                        <el-menu-item class="el-menu-item" v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
                             {{ subItem.title }}
                         </el-menu-item>
                     </el-submenu>
@@ -172,10 +172,18 @@
     .sidebar::-webkit-scrollbar{
         width: 0;
     }
-    .sidebar-el-menu:not(.el-menu--collapse){
-        width: 250px;
+    .sidebar-el-menu{
+      background:url("../../../static/img/th3.jpg");
+      background-repeat : no-repeat;
+    opacity: 1.0;
+
+      width: 250px;
     }
     .sidebar > ul {
         height:100%;
     }
+    .el-menu-item{
+      background-color: #3370ff !important;
+    }
+
 </style>

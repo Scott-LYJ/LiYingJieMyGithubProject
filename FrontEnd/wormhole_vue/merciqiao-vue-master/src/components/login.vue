@@ -6,21 +6,20 @@
                     <h2 class="title">WormHoleApi</h2>
                 </el-form-item>
                 <el-form-item>
-                    <el-input v-model="formLogin.loginName" placeholder="账号"></el-input>
+                    <el-input v-model="formLogin.loginName" placeholder="账号"><template slot="prepend"><i class="el-icon-user"></i></template></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-input v-model="formLogin.password" placeholder="密码"></el-input>
+                    <el-input v-model="formLogin.password" placeholder="密码"><template slot="prepend"><i class="el-icon-lock"></i></template></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="login">登陆</el-button>
+                    <el-button type="primary" @click="verify">test</el-button>
+                    <el-button type="primary" @click="login" >登陆</el-button>
                     <span v-show="this.errorInfo.isShowError" class='error'>
                         {{this.errorInfo.text}}
                     </span>
-                  <el-button type="primary" @click="test">test</el-button>
-                  <button id="TencentCaptcha"
-                          data-appid="你的APPID"
-                          data-cbfn="callback"
-                  >验证</button>
+
+                  <el-button @click="verify"
+                  >验证</el-button>
                 </el-form-item>
 
             </el-form>
@@ -80,7 +79,6 @@ $input_width:300px;
     color:#505458;
 }
 </style>
-<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
 <script>
   import {formatDate} from '../common/date.js'
 import apis from '../apis/apis';
@@ -89,6 +87,8 @@ export default {
 
     data() {
         return {
+          fits: ['fill', 'contain', 'cover', 'none', 'scale-down'],
+          isVerify:false,
             formLogin: {   //表单对象
                 loginName: 'admin',
                 password: '123456'
@@ -107,6 +107,18 @@ export default {
         }
     },
     mounted() {
+        let message=this.$route.query.message;
+        if (message!=null){
+          this.$alert(message, '警告', {
+            confirmButtonText: '确定',
+            callback: action => {
+              this.$message({
+                type: 'info',
+                message: `action: ${ action }`
+              });
+            }
+          });
+        }
         document.onkeydown = (event) => {
             var router=this.$route.path;
             var e = event || window.event || arguments.callee.caller.arguments[0];
@@ -122,6 +134,18 @@ export default {
             apis.shiroApi.loginLog(loginLog);
     },
     methods: {
+      verify(){
+        var _this = this
+        var captcha1 = new TencentCaptcha('2005990633', function(res) {
+          console.log(res)
+          // res（用户主动关闭验证码）= {ret: 2, ticket: null}
+          // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
+          if(res.ret === 0){
+           this.test()
+          }
+        });
+        captcha1.show(); // 显示验证码
+      },
       test2(){
         apis.adminApi.querySysUserList({})
           .then(data=>{
@@ -132,19 +156,32 @@ export default {
 
       ,
       test() {
+        // if (this.isVerify==false){
+        //   this.$message({
+        //     showClose: true,
+        //     message: '请先进行验证',
+        //     type: 'error'
+        //   });
+        //
+        // } else{
         apis.shiroApi.test(this.formLogin)
           .then(data=>{
+            //监听事件
+
           //  console.log('success:', data.data.data);
             if (data && data.data) {
            //   console.log("1111111111111")
               var json = data.data.result.data.data;
               console.log('json',json);
               if (data.data.result.status == 'SUCCESS') {
+
+                // this.$common.setSessionStorage("message",this.websock)
                 // this.$common.setSessionStorage('token', json.data.userInfo.token);
-                this.$common.setSessionStorage('token', json.userInfo.password);
+                this.$common.setSessionStorage('token', data.data.token);
                 console.log('token',this.$common.getSessionStorage('token'))
                 this.$common.setSessionStorage('username',json.userInfo.name);
                 this.$common.setSessionStorage('id',json.userInfo.id);
+
                 this.$common.setSessionStorage('cdt',formatDate(new Date(json.userInfo.cdt), 'yyyy-MM-dd hh:mm'));
                 this.$common.setSessionStorage('udt',formatDate(new Date(json.userInfo.udt), 'yyyy-MM-dd hh:mm'));
                 this.$common.setSessionStorage('phone',json.userInfo.phone);
@@ -155,9 +192,13 @@ export default {
                 console.log('userInfo',this.$common.getSessionStorage('userInfo'))
                 this.$common.setSessionStorage('lev',json.sysRoleVoList);
                 console.log('lev',this.$common.getSessionStorage('lev'))
+                //存储按钮权限
+                this.$store.dispatch("add_Permissions", data.data.permission);
                 //存入菜单,渲染菜单
                 this.$store.dispatch("add_Menus",json.sysMenuVoList);
+
                 console.log('add_Menus',json.sysMenuVoList)
+                // console.log('add_Permission',this.$store.getters.btnPermissions())
                 //存入头像
                 this.$common.setSessionStorage('icon',json.userInfo.avatar);
                 console.log('icon',json.userInfo.avatar)
@@ -170,7 +211,11 @@ export default {
 
                 //存储按钮权限
                // this.$store.dispatch("add_Permissions", json.data.rolePermissionVoList);
-                this.$router.replace({ path: "/index" });
+                setTimeout(()=>{   //设置延迟执行
+                  this.$router.replace({ path: "/index" });
+                  },1000);
+
+
 
                 var loginLog={
                   ip:returnCitySN["cip"],
@@ -178,6 +223,7 @@ export default {
                 };
 
                 apis.shiroApi.loginLog(loginLog);
+
                 return;
               }
               // else if (json.message) {

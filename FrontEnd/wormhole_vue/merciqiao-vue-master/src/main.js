@@ -16,10 +16,21 @@ import store from './store'
 window.moment=require('moment')
 import live2d4vue from 'live2d4vue'
 
+import './utils/directive.js'//路径改为自己的，这里不加from ,不use
 
 import 'element-ui/lib/theme-chalk/index.css';
+// 全局图标
+import './icons'
 // import '../static/css/theme-green/index.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+// import Icon from 'vue-svg-icon/Icon.vue';
+// Vue.component('icon', Icon);
 
+Vue.use(ElementUI)
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 //引入多语言支持
 import i18n from './common/i18n'
 

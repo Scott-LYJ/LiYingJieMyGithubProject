@@ -43,10 +43,25 @@ var routeDevList = [
 
   },
   {
+    path: '/echats',
+    component: resolve => require(['../components/test/echats'], resolve),
+    meta: {
+      title: 'echarts'
+    }
+
+  },
+  {
     path: '/pinglun',
     component: resolve => require(['../components/test/ArticleComment.vue'], resolve),
     meta: {
       title: 'pinglun'
+    }
+  },
+  {
+    path: '/testWebSocket',
+    component: resolve => require(['../components/test/testWebSocket.vue'], resolve),
+    meta: {
+      title: 'test'
     }
   },
   {
@@ -79,6 +94,14 @@ var menuDevList = [
           {
             index: 'pinglun',
             title: '评论'
+          },
+          {
+            index: 'testWebSocket',
+            title: 'test'
+          },
+          {
+            index: 'echats',
+            title: 'echarts'
           },
         ]
     }

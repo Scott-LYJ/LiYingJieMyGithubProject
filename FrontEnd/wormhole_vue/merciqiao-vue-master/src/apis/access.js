@@ -23,59 +23,36 @@
  */
 
 import request from '@/utils/request'
+import Axios from "axios";
 
 export function getRegisterService(params) {
-    return request({
-        url:'/interface/createrInterface/result/serviceNames',
-        method:'get',
-        params
-    })
+
+  return Axios.get('/interface/createrInterface/result/serviceNames',{ params});
+
 }
 
 export function getAllMethods(params) {
-    return request({
-        url:'/interface/createrInterface/result/interface',
-        method:'get',
-        params
-    })
+  return Axios.get('/interface/createrInterface/result/interface',{ params});
 }
 export function getZkList() {
-  return request({
-    url:'/interface/createrInterface/result/all-zk',
-    method:'get'
-  })
+  return Axios.get('/interface/createrInterface/result/all-zk');
 }
 export function getArgs(params) {
-    return request({
-        url:'/dubbo-postman/args',
-        method:'get',
-        params
-    })
+  return Axios.get('/dubbo-postman/args',{params});
 }
 
 export function getAllProviders(params) {
-    return request({
-        url:'/interface/createrInterface/result/interfaceNames',
-        method:'get',
-        params
-    })
+  return Axios.get('/interface/createrInterface/result/interfaceNames',{params});
 }
 
 export function getTemplate(params) {
-    return request({
-        url:'/interface/createrInterface/result/methodParams',
-        method:'get',
-        params
-    })
+  return Axios.get('/interface/createrInterface/result/methodParams',{params});
 }
 
 
 export function getRemoteHistoryTemplate(params) {
-    return request({
-        url:'/dubbo-postman/result/template/names',
-        method:'get',
-        params
-    })
+  return Axios.get('/dubbo-postman/result/template/names',{params});
+
 }
 
 export function getRemoteAssignedTemplate(params) {
@@ -87,11 +64,8 @@ export function getRemoteAssignedTemplate(params) {
 }
 
 export function doRequest(params) {
-    return request({
-        url:'/interface/dubboProxy/dubbo',
-        method:'get',
-        params
-    })
+  return Axios.get('/interface/dubboProxy/dubbo',{params});
+
 }
 
 export function saveHisTemplate(params) {

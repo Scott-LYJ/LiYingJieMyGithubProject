@@ -8,10 +8,12 @@ import com.dcits.scott.dubbo.DubboModel;
 import com.dcits.scott.dubbo.LocalStore;
 import com.dcits.scott.dubbo.RequestTemplate;
 import com.dcits.scott.gateway.pojo.GatewayApiDO;
+import com.dcits.scott.gateway.pojo.GatewayApiGroupDO;
 import com.dcits.scott.gateway.pojo.GatewayServiceRequestDO;
 import com.dcits.scott.other.SolrSearchService;
 import com.dcits.scott.other.redis.RedisService;
 import com.dcits.scott.project.gatewayapi.GatewayApiService;
+import com.dcits.scott.project.gatewayapigroup.GatewayApiGroupService;
 import com.dcits.scott.project.gatewayservicerequest.GatewayServiceRequestService;
 import com.dcits.scott.support.entity.InterfaceMetaInfo;
 import com.dcits.scott.support.result.Result;
@@ -44,6 +46,9 @@ public class CreateInterface {
 
     @Reference
     GatewayServiceRequestService gatewayServiceRequestService;
+
+    @Reference
+    GatewayApiGroupService gatewayApiGroupService;
 
     @Reference
     SolrSearchService solrSearchService;
@@ -82,7 +87,11 @@ public class CreateInterface {
             }
             GatewayApiDO gatewayApiDO1 = gatewayApiService.insertByDO(gatewayApiDO);
             System.out.println(gatewayApiDO1.getId());
+            GatewayApiGroupDO gatewayApiGroupDO = gatewayApiGroupService.selectId(gatewayApiDO1.getGroupId());
+            gatewayApiDO.setGroupName(gatewayApiGroupDO.getName());
+            gatewayApiDO.setId(gatewayApiDO1.getId());
             Long id = gatewayApiDO1.getId();
+
             Map<String,Object> map1 = new HashMap<>();
 
 
@@ -101,8 +110,9 @@ public class CreateInterface {
                  gatewayServiceRequestDOList.add(gatewayServiceRequestDO);
             }
             gatewayServiceRequestService.batchInsert(gatewayServiceRequestDOList);
-             gatewayApiDO1.setPid(gatewayApiDO1.getId()+"");
-            solrSearchService.addBean(gatewayApiDO1);
+             gatewayApiDO.setCdt(new Date());
+             gatewayApiDO.setPid(gatewayApiDO1.getId()+"");
+            solrSearchService.addBean(gatewayApiDO);
             return  new Result<>("200","插入成功",gatewayApiDO1);
 
         }catch(Exception e){

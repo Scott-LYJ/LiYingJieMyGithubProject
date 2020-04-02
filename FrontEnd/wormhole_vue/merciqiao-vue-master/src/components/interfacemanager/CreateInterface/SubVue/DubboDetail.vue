@@ -217,6 +217,7 @@
       mounted(){
           console.log("11111111111111")
           getZkList().then((res)=>{
+            console.log(res)
           this.pageTotal.zkList = res.data.data;
         })
       }

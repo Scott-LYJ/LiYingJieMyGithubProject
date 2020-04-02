@@ -1,5 +1,6 @@
 package com.dcits.scott.projectprovider.gatewayapigroup.serviceImpl;
 
+import com.dcits.scott.gateway.pojo.GatewayApiDO;
 import com.dcits.scott.gateway.pojo.GatewayApiGroupDO;
 import com.dcits.scott.project.common.AbstractCommonServiceImpl;
 import com.dcits.scott.project.common.CommonMapper;
@@ -25,6 +26,7 @@ public class GatewayApiGroupServiceImpl extends AbstractCommonServiceImpl<Gatewa
     public void insert(GatewayApiGroupDO gatewayApiGroupDO) throws Exception {
 
     }
+
 
     @Override
     public void batchInsert(List<GatewayApiGroupDO> list) throws Exception {
@@ -59,5 +61,10 @@ public class GatewayApiGroupServiceImpl extends AbstractCommonServiceImpl<Gatewa
     @Override
     public void updateGroupByMap(Map<String, Object> map) {
         this.gatewayApiGroupMapper.updateGroupByMap(map);
+    }
+
+    @Override
+    public GatewayApiGroupDO selectId(Long id) {
+        return this.gatewayApiGroupMapper.selectId(id);
     }
 }

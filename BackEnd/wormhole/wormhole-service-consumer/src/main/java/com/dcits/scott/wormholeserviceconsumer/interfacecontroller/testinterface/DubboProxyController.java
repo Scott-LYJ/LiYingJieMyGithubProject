@@ -1,6 +1,7 @@
 package com.dcits.scott.wormholeserviceconsumer.interfacecontroller.testinterface;
 
 import com.dcits.scott.other.dubbo.DubboProxyService;
+import com.dcits.scott.project.gatewayapi.GatewayApiService;
 import com.dcits.scott.support.result.WebApiRspDto;
 import com.dcits.scott.util.Request;
 import org.apache.dubbo.config.annotation.Reference;
@@ -14,6 +15,9 @@ public class DubboProxyController {
 
     @Reference
     DubboProxyService dubboProxyService;
+
+    @Reference
+    GatewayApiService gatewayApiService;
     private static final Logger logger = LoggerFactory.getLogger(DubboProxyController.class);
 
     @RequestMapping(value = "/dubbo", method = RequestMethod.GET)

@@ -19,11 +19,11 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.dcits.scott</groupId>
-            <artifactId>wormhole-common</artifactId>
-            <scope>compile</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.dcits.scott</groupId>-->
+            <!--<artifactId>wormhole-common</artifactId>-->
+            <!--<scope>compile</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

@@ -1,7 +1,10 @@
 package com.dcits.scott.project.gatewayapi;
 
 import com.dcits.scott.gateway.pojo.GatewayApiDO;
+import com.dcits.scott.gateway.pojo.GatewayMessageDO;
 import com.dcits.scott.project.common.CommonService;
+import com.dcits.scott.support.entity.DocumentTimeCount;
+import com.dcits.scott.support.entity.InterfaceTimeCount;
 
 
 import java.util.List;
@@ -42,6 +45,30 @@ public interface GatewayApiService extends CommonService<GatewayApiDO> {
   GatewayApiDO insertByDO(GatewayApiDO gatewayApiDO);
 
     void deleteByIds(Map<String,Object> map);
+
+  void updateTestTime(Long apiId);
+
+  void updateDocumentTime(Long apiId);
+
+
+  List<DocumentTimeCount> showDocumentTimeCount();
+
+  List<InterfaceTimeCount> showInterfaceTimeCount();
+
+  Integer selectAllInterface();
+
+  Integer selectAllTest();
+
+  Integer selectAllDocument();
+
+  void insertMessage(GatewayMessageDO gatewayMessageDO);
+
+  void updateMessage(GatewayMessageDO gatewayMessageDO);
+
+  void deleteMessage(GatewayMessageDO gatewayMessageDO);
+
+  List<GatewayMessageDO> selectMessage();
+
 
 //  /**
 //   * 同步数据

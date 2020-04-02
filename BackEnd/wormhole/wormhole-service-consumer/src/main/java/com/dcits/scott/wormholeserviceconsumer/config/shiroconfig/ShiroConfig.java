@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -37,12 +39,19 @@ public class ShiroConfig {
         perms:拥有对某个资源的权限才能访问
         role:拥有某个角色权限才能访问
                  */
-        Map<String, String> filterMap = new LinkedHashMap<>();
+        //自定义拦截器限制并发人数,参考博客
+        LinkedHashMap<String, Filter> filtersMap = new LinkedHashMap<>();
+        //限制同一帐号同时在线的个数
+        filtersMap.put("kickout", kickoutSessionControlFilter());
+        shiroFilter.setFilters(filtersMap);
+
+        LinkedHashMap<String, String> filterMap = new LinkedHashMap<>();
+
         filterMap.put("/hello", "anon");
-        filterMap.put("/login", "anon");
+        filterMap.put("/login", "kickout,anon");
         filterMap.put("/picture/user/**", "anon");
         filterMap.put("/static/**", "anon");
-        filterMap.put("/*", "authc");
+        filterMap.put("/**", "kickout,authc");
         // 配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了, 位置放在 anon、authc下面
         filterMap.put("/logout", "logout");
 
@@ -167,16 +176,16 @@ public class ShiroConfig {
      *
      * @return
      */
-//    @Bean
-//    public KickoutSessionControlFilter kickoutSessionControlFilter() {
-//        KickoutSessionControlFilter kickoutSessionControlFilter = new KickoutSessionControlFilter();
-//        kickoutSessionControlFilter.setCacheManager(cacheManager());
-//        kickoutSessionControlFilter.setSessionManager(sessionManager());
-//        kickoutSessionControlFilter.setKickoutAfter(false);
-//        kickoutSessionControlFilter.setMaxSession(1);
-//        kickoutSessionControlFilter.setKickoutUrl("/auth/kickout");
-//        return kickoutSessionControlFilter;
-//    }
+    @Bean
+    public KickoutSessionControlFilter kickoutSessionControlFilter() {
+        KickoutSessionControlFilter kickoutSessionControlFilter = new KickoutSessionControlFilter();
+        kickoutSessionControlFilter.setCacheManager(cacheManager());
+        kickoutSessionControlFilter.setSessionManager(sessionManager());
+        kickoutSessionControlFilter.setKickoutAfter(false);
+        kickoutSessionControlFilter.setMaxSession(1);
+        kickoutSessionControlFilter.setKickoutUrl("/auth/kickout");
+        return kickoutSessionControlFilter;
+    }
     /***
      * 授权所用配置
      *

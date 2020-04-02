@@ -1,13 +1,22 @@
 package com.dcits.scott.wormholeserviceconsumer.config.shiroconfig;
 
+import com.dcits.scott.admin.pojo.AuthUser;
 import org.apache.dubbo.common.utils.StringUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.apache.shiro.web.util.WebUtils;
+import org.crazycake.shiro.RedisSessionDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Objects;
 
 /**
  *
@@ -21,8 +30,9 @@ import java.io.Serializable;
  * 自定义MySessionManager类继承DefaultWebSessionManager类，重写getSessionId方法
  */
 public class MySessionManager extends DefaultWebSessionManager {
-
-    private static final String AUTHORIZATION = "Authorization";
+    @Autowired
+    RedisSessionDAO redisSessionDAO;
+    private static final String AUTHORIZATION = "token";
 
     private static final String REFERENCED_SESSION_ID_SOURCE = "Stateless request";
 
@@ -31,11 +41,14 @@ public class MySessionManager extends DefaultWebSessionManager {
         String id = WebUtils.toHttp(request).getHeader(AUTHORIZATION);
         //如果请求头中有 Authorization 则其值为sessionId
         if (!StringUtils.isEmpty(id)) {
-            request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_SOURCE, REFERENCED_SESSION_ID_SOURCE);
-            request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID, id);
-            request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_IS_VALID, Boolean.TRUE);
-            return id;
-        } else {
+
+                    request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_SOURCE, REFERENCED_SESSION_ID_SOURCE);
+                    request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID, id);
+                    request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_IS_VALID, Boolean.TRUE);
+                    return id;
+
+        }
+        else {
             //否则按默认规则从cookie取sessionId
             return super.getSessionId(request, response);
         }

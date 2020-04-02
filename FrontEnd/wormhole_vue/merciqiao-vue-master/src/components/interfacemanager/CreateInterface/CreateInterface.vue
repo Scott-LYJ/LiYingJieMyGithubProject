@@ -159,7 +159,26 @@
                   console.log(res)
                   this.submitInformation.id = res.data.data.id;
                   this.dialogVisible=true;
+                  //
+                  let levList = this.$common.getSessionStorage('lev',true);
+                  let roleId = levList[0].id;
+                  let param = {
+                    userId : this.$common.getSessionStorage("id"),
+                    roleId:roleId,
+                    message:'创建了一个接口('+this.submitInformation.name+')',
+                    isRead:0
+                  }
+                  this.$ajax({
+                    method: "post",
+                    url: "/message/send?userId="+this.$common.getSessionStorage("id"),
+                    data: param
+                  }).then(function(resultData) {
+
+                  });
+                  //
                 });
+
+
 
                 // this.$router.push({
                 //   path: '/TestInterface', query:{zk: this.submitInformation.zookeeper,serviceName:"user_provider"}

@@ -576,32 +576,32 @@
       //
       AddListRow() {
         this.requestParamsForm.tableData.push({
-          "param":"",
-          "name":"",
-          "typeName":"",
-          "required":"",
-          "maxLength":"",
-          "example":"",
-          "description":"",
+          "param": "",
+          "name": "",
+          "typeName": "",
+          "required": "",
+          "maxLength": "",
+          "example": "",
+          "description": "",
         });
       },
       AddListRow2() {
         this.responseParamsForm.tableData.push({
-          "param":"",
-          "name":"",
-          "typeName":"",
-          "required":"",
-          "maxLength":"",
-          "example":"",
-          "description":"",
+          "param": "",
+          "name": "",
+          "typeName": "",
+          "required": "",
+          "maxLength": "",
+          "example": "",
+          "description": "",
         });
       },
       AddListRow3() {
         this.responseCodesForm.tableData.push({
-          "code":"",
-          "description":"",
-          "reason":"",
-          "solution":"",
+          "code": "",
+          "description": "",
+          "reason": "",
+          "solution": "",
         });
       },
 
@@ -618,7 +618,7 @@
       //
       onSave() {
         var _this = this
-        this.apiDocument.sid=this.apiDetails.id
+        this.apiDocument.sid = this.apiDetails.id
         // this.apiDocument.sid=this.apiDetails.id;
         // this.apiDocument.upContent = this.upContent;
         // this.apiDocument.downContent=this.downContent;
@@ -631,28 +631,47 @@
         //
         // console.log( this.apiDocument)
         let param = {
-        sid:this.apiDetails.id,
-        upContent : this.upContent,
-        downContent:this.downContent,
-        apiDetails:this.apiDetails,
-        otherFunction:this.otherFunction,
-        requestParamList:this.requestParamsForm.tableData,
-        responseParamList : this.responseParamsForm.tableData,
-        responseCodeList:this.responseCodesForm.tableData,
-        comments:this.comments,
+          sid: this.apiDetails.id,
+          upContent: this.upContent,
+          downContent: this.downContent,
+          apiDetails: this.apiDetails,
+          otherFunction: this.otherFunction,
+          requestParamList: this.requestParamsForm.tableData,
+          responseParamList: this.responseParamsForm.tableData,
+          responseCodeList: this.responseCodesForm.tableData,
+          comments: this.comments,
         }
         // let param={
         //   apiDocument:this.apiDocument
         // }
 
-        var apiDocument=JSON.stringify(this.apiDocument);
+        var apiDocument = JSON.stringify(this.apiDocument);
         //ajax请求
         this.$ajax({
           method: "post",
-          url: "/test/apiDocument/save/"+this.apiDocument.sid,
+          url: "/test/apiDocument/save/" + this.apiDocument.sid,
           data: param,
-        }).then(function(resultData) {
+        }).then((resultData)=> {
           console.log(resultData)
+          //
+          let levList = this.$common.getSessionStorage('lev', true);
+          let roleId = levList[0].id;
+          let param = {
+            userId: this.$common.getSessionStorage("id"),
+            roleId: roleId,
+            message: '创建了一个文档(' + this.apiDetails.name + ')',
+            isRead: 0
+          }
+          console.log(param)
+          this.$ajax({
+            method: "post",
+            url: "/message/send?userId=" + this.$common.getSessionStorage("id"),
+            data: param
+          }).then(function (resultData) {
+
+          });
+
+
         });
         // this.$ajax({
         //   method: "get",
@@ -663,14 +682,39 @@
         //
         this.$notify({
           title: '提示',
-          message:  '接口信息保存成功',
+          message: '接口信息保存成功',
           type: 'success'
         });
-        console.log('save!');
+        // console.log('save!');
+        // //创建接口
+        // this.$ajax({
+        //   method: "post",
+        //   url: "/interface/createrInterface/insertInterface",
+        //   data: this.submitInformation
+        // }).then((res) => {
+        //   console.log(res)
+        //   this.submitInformation.id = res.data.data.id;
+        //   this.dialogVisible = true;
+        //   //
+        //   let levList = this.$common.getSessionStorage('lev', true);
+        //   let roleId = levList[0].id;
+        //   let param = {
+        //     userId: this.$common.getSessionStorage("id"),
+        //     roleId: roleId,
+        //     message: '创建了一个文档(' + this.apiDetails.name + ')',
+        //     isRead: 0
+        //   }
+        //   this.$ajax({
+        //     method: "post",
+        //     url: "/message/send?userId=" + this.$common.getSessionStorage("id"),
+        //     data: param
+        //   }).then(function (resultData) {
+        //
+        //   });
+        // })
+
+
       },
-
-
-
     },
     mounted(){
       this.apiDetails=this.$route.query.apiDetails;

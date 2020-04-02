@@ -44,112 +44,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DocumentController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/apidocumentcontroller/documentcontroller/DocumentController.java">
+      <file leaf-file-name="MySessionManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/MySessionManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
+            <state relative-caret-position="456">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KickoutSessionControlFilter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/KickoutSessionControlFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="71" selection-start-line="71" selection-end-line="71" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiDocumentServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/documentprovider/ApiDocumentServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiDocumentService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/other/ApiDocumentService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiDocument.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/ApiDocument.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="14" column="33" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApiDocumentRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/documentprovider/ApiDocumentRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MongoRepository.class" pinned="false" current-in-tab="false">
-        <entry file="jar://H:/F盘/web项目/maven仓库/org/springframework/data/spring-data-mongodb/2.2.5.RELEASE/spring-data-mongodb-2.2.5.RELEASE.jar!/org/springframework/data/mongodb/repository/MongoRepository.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Comment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/Comment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="78" column="32" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1598#1599#0" expanded="true" />
-                <element signature="e#1643#1644#0" expanded="true" />
-                <element signature="e#1679#1680#0" expanded="true" />
-                <element signature="e#1877#1878#0" expanded="true" />
-                <element signature="e#1905#1906#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Reply.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/Reply.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-              <folding>
-                <element signature="e#905#906#0" expanded="true" />
-                <element signature="e#934#935#0" expanded="true" />
-                <element signature="e#978#979#0" expanded="true" />
-                <element signature="e#1014#1015#0" expanded="true" />
-                <element signature="e#1045#1046#0" expanded="true" />
-                <element signature="e#1072#1073#0" expanded="true" />
-                <element signature="e#1112#1113#0" expanded="true" />
-                <element signature="e#1144#1145#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -168,36 +78,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>selectByA</find>
-      <find>setIs</find>
-      <find>RequestParam</find>
-      <find>queryProjectList</find>
-      <find>GROUP_NAME</find>
-      <find>CasecadeResultMap</find>
-      <find>isRequired</find>
-      <find>delete</find>
-      <find>dto</find>
-      <find>methodParam</find>
-      <find>&lt;sq</find>
-      <find>insertByProApi</find>
-      <find>selectList</find>
-      <find>selectCount2</find>
-      <find>selectCount</find>
-      <find>update</find>
-      <find>&lt;update</find>
-      <find>ZOOKEE</find>
-      <find>authUserService</find>
-      <find>&lt;select</find>
-      <find>groupNa</find>
-      <find>serviceVersion</find>
-      <find>authVersionStr</find>
-      <find>CascadeResultMap</find>
-      <find>apiwhere</find>
-      <find>groupid</find>
-      <find>groupname</find>
-      <find>mysql</find>
-      <find>common</find>
       <find>save</find>
+      <find>long</find>
+      <find>CDT</find>
+      <find>cdt</find>
+      <find>&lt;update</find>
+      <find>select</find>
+      <find>integert</find>
+      <find>selectAll</find>
+      <find>api</find>
+      <find>insert</find>
+      <find>insertMess</find>
+      <find>update</find>
+      <find>insertMe</find>
+      <find>selectByPrimaryKey</find>
+      <find>insertByDO</find>
+      <find>gatewayMessage</find>
+      <find>sendDate</find>
+      <find>getCd</find>
+      <find>permission</find>
+      <find>MySessionManager</find>
+      <find>RedisCacheManager</find>
+      <find>un_auth</find>
+      <find>kickoutSessionControlFilter</find>
+      <find>RedisManager</find>
+      <find>cacheManager</find>
+      <find>sessiondao</find>
+      <find>k</find>
+      <find>mysession</find>
+      <find>mysessionmanager</find>
+      <find>getRequestDispatcher</find>
     </findStrings>
     <replaceStrings>
       <replace>AuthPermission</replace>
@@ -212,57 +122,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/gatewayapi/serviceImpl/GatewayApiServiceImpl.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/gatewayapi/mapper/GatewayApiMapper.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/resources/mapping/GatewayApiMapper.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/fastdfs/FastDFSClientUtil.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/WormholeServiceConsumerApplication.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/ShiroConfig.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/controller/usercontroller/UserController.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/projectcontroller/projectcontroller/ProjectController.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/test/java/com/dcits/scott/wormholeserviceconsumer/WormholeServiceConsumerApplicationTests.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/solrSearch-provider/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/solrSearch-provider/src/main/java/com/dcits/scott/solrsearchprovicer/SolrSearchController.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/solrSearch-provider/src/main/java/com/dcits/scott/solrsearchprovicer/SolrSearchServiceImpl.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/solrSearch-provider/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/solr-provider/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/util/PageUtils.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/createinterface/CreateInterface.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/other/SolrSearchService.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/interfacelist/InterfaceListController.java" />
-        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/gateway/pojo/GatewayApiDO.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/solr-provider/src/main/java/com/dcits/scott/solrprovider/SolrSearchServiceImpl.java" />
-        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/SubDocument/ApiDetails.java" />
-        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/SubDocument/RequestParam.java" />
-        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/SubDocument/ResponseCode.java" />
-        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/SubDocument/ResponseParam.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/documentprovider/config/IdWorkConfig.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/documentprovider/config/IdWorker.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/documentprovider/config/IdWorkProperties.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/pojo/SubDocument/RequestParam.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/SolrSearchController.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/project-provider/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/role-provider/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/user-provider/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/projectcontroller/apigroupcontroller/ApiGroupController.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-api/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/solr-provider/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-common/pom.xml" />
-        <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/SubDocument/OtherFunction.java" />
         <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/Reply.java" />
-        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/ApiDocument.java" />
         <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/documentprovider/ApiDocumentRepository.java" />
         <option value="$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/other/ApiDocumentService.java" />
         <option value="$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/documentprovider/ApiDocumentServiceImpl.java" />
-        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/apidocumentcontroller/documentcontroller/DocumentController.java" />
         <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/Comment.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/testinterface/DubboProxyController.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/testinterface/BeforeTestInterface.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/apidocumentcontroller/documentcontroller/DocumentController.java" />
+        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/gateway/pojo/GatewayApiDO.java" />
+        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/support/entity/DocumentTimeCount.java" />
+        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/support/entity/TestAndDocumentCount.java" />
+        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/support/entity/Echarts.java" />
+        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/support/entity/TestTimeCount.java" />
+        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/support/entity/InterfaceTimeCount.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/ApiDocument.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/project-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/role-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/solr-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/user-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/interfacestatus/InterfaceStatusController.java" />
+        <option value="$PROJECT_DIR$/wormhole-common/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/config/WebSocketConfig.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/websocket/WebSocketServer.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/rabbitmq/RabbitmqListener.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/config/WebSocket.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/project/gatewayapi/GatewayApiService.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/gatewayapi/serviceImpl/GatewayApiServiceImpl.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/gatewayapi/mapper/GatewayApiMapper.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/project/gatewayapigroup/GatewayApiGroupService.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/project-provider/src/main/java/com/dcits/scott/projectprovider/gatewayapigroup/serviceImpl/GatewayApiGroupServiceImpl.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/project-provider/src/main/java/com/dcits/scott/projectprovider/gatewayapigroup/mapper/GatewayApiGroupMapper.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/project-provider/src/main/resources/mapping/GatewayApiGroupMapper.xml" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/createinterface/CreateInterface.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/EncoderClassVo.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/websocket/WebSocket.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/MessageController.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/resources/mapping/GatewayApiMapper.xml" />
+        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/gateway/pojo/GatewayMessageDO.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/controller/resourcecontroller/ResourceController.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/ExtendFunction.java" />
+        <option value="$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/util/CacheUser.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/MySessionManager.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/ShiroConfig.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/CorsFilter.java" />
+        <option value="$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/KickoutSessionControlFilter.java" />
       </list>
     </option>
   </component>
@@ -295,7 +205,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-130" />
     <option name="y" value="6" />
     <option name="width" value="683" />
@@ -307,8 +217,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -382,7 +292,7 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="dcits" type="462c0819:PsiDirectoryNode" />
               <item name="scott" type="462c0819:PsiDirectoryNode" />
-              <item name="apidocument" type="462c0819:PsiDirectoryNode" />
+              <item name="gateway" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
@@ -394,8 +304,20 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="dcits" type="462c0819:PsiDirectoryNode" />
               <item name="scott" type="462c0819:PsiDirectoryNode" />
-              <item name="apidocument" type="462c0819:PsiDirectoryNode" />
-              <item name="SubDocument" type="462c0819:PsiDirectoryNode" />
+              <item name="gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
@@ -452,38 +374,6 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="dcits" type="462c0819:PsiDirectoryNode" />
               <item name="scott" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
-              <item name="wormhole-service-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="dcits" type="462c0819:PsiDirectoryNode" />
-              <item name="scott" type="462c0819:PsiDirectoryNode" />
-              <item name="auth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
-              <item name="wormhole-service-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="dcits" type="462c0819:PsiDirectoryNode" />
-              <item name="scott" type="462c0819:PsiDirectoryNode" />
-              <item name="auth" type="462c0819:PsiDirectoryNode" />
-              <item name="authauthorization" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
-              <item name="wormhole-service-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
@@ -564,7 +454,7 @@
               <item name="dcits" type="462c0819:PsiDirectoryNode" />
               <item name="scott" type="462c0819:PsiDirectoryNode" />
               <item name="wormholeserviceconsumer" type="462c0819:PsiDirectoryNode" />
-              <item name="apidocumentcontroller" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
@@ -577,13 +467,176 @@
               <item name="dcits" type="462c0819:PsiDirectoryNode" />
               <item name="scott" type="462c0819:PsiDirectoryNode" />
               <item name="wormholeserviceconsumer" type="462c0819:PsiDirectoryNode" />
-              <item name="apidocumentcontroller" type="462c0819:PsiDirectoryNode" />
-              <item name="documentcontroller" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="RedisConfig" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
               <item name="wormhole" type="462c0819:PsiDirectoryNode" />
               <item name="wormhole-service-consumer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="wormholeserviceconsumer" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="shiroconfig" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-consumer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="wormholeserviceconsumer" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="zk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-consumer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="wormholeserviceconsumer" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-consumer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="wormholeserviceconsumer" type="462c0819:PsiDirectoryNode" />
+              <item name="interfacecontroller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-consumer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="wormholeserviceconsumer" type="462c0819:PsiDirectoryNode" />
+              <item name="interfacecontroller" type="462c0819:PsiDirectoryNode" />
+              <item name="testinterface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="documentprovider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
@@ -592,25 +645,20 @@
               <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
               <item name="wormhole" type="462c0819:PsiDirectoryNode" />
               <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
               <item name="wormhole" type="462c0819:PsiDirectoryNode" />
               <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
-              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
-              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
-              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
               <item name="wormhole" type="462c0819:PsiDirectoryNode" />
               <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
-              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -618,23 +666,316 @@
               <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
               <item name="wormhole" type="462c0819:PsiDirectoryNode" />
               <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
-              <item name="document-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaceprovider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaceprovider" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaceprovider" type="462c0819:PsiDirectoryNode" />
+              <item name="gatewayapi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaceprovider" type="462c0819:PsiDirectoryNode" />
+              <item name="gatewayapi" type="462c0819:PsiDirectoryNode" />
+              <item name="serviceImpl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaceprovider" type="462c0819:PsiDirectoryNode" />
+              <item name="gatewayservicerequest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaceprovider" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="interface-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mapping" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="projectprovider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="projectprovider" type="462c0819:PsiDirectoryNode" />
+              <item name="gatewayapigroup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="projectprovider" type="462c0819:PsiDirectoryNode" />
+              <item name="gatewayapigroup" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="dcits" type="462c0819:PsiDirectoryNode" />
+              <item name="scott" type="462c0819:PsiDirectoryNode" />
+              <item name="projectprovider" type="462c0819:PsiDirectoryNode" />
+              <item name="gatewayapigroup" type="462c0819:PsiDirectoryNode" />
+              <item name="serviceImpl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="project-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mapping" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="role-provider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="solr-provider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wormhole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wormhole" type="462c0819:PsiDirectoryNode" />
+              <item name="wormhole-service-provider" type="462c0819:PsiDirectoryNode" />
+              <item name="user-provider" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RequestMappingsPanelWidth0" value="15" />
+    <property name="RequestMappingsPanelWidth1" value="15" />
     <property name="SearchEverywhereHistoryKey" value="zookeeper&#9;ACTION&#9;ZK.Toolbar&#10;SimpleByteSource&#9;FILE&#9;jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/util/SimpleByteSource.class&#10;sessionMan&#9;FILE&#9;jar://C:/Program Files/Java/jdk-12.0.2/lib/src.zip!/jdk.crypto.cryptoki/sun/security/pkcs11/SessionManager.java&#10;getsession&#9;PSI&#9;JAVA://org.apache.catalina.connector.RequestFacade.GetSessionPrivilegedAction&#10;sessionManager&#9;PSI&#9;JAVA://sun.security.pkcs11.SessionManager&#10;sessionDao&#9;FILE&#9;jar://H:/F盘/web项目/maven仓库/org/crazycake/shiro-redis/2.4.2.1-RELEASE/shiro-redis-2.4.2.1-RELEASE.jar!/org/crazycake/shiro/RedisSessionDAO.class&#10;Shiro&#9;null&#9;null&#10;shirofilterFactoryBean&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -647,16 +988,14 @@
     <property name="settings.editor.selected.configurable" value="spring.boot" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-provider\interface-provider\src\main\resources\mapping" />
+      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-consumer\src\main\resources\META-INF" />
+      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-provider\role-provider\src\main\resources\mapping" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.dcits.scott.projectprovider" />
       <recent name="com.dcits.scott" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-provider\document-provider\src\main\java\com\dcits\scott\pojo" />
-      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-provider\solr-provider\src\main\java\com\dcits\scott\solrprovider" />
-      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-common\src\main\java\com\dcits\scott\util" />
-      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-provider\interface-provider\src\main\resources\mapping" />
-      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-common\src\main\java\com\dcits\scott\dubbo" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.dcits.scott.interfaceprovider.gatewayservicerequest.serviceImpl" />
@@ -665,10 +1004,12 @@
       <recent name="com.dcits.scott.interfaceprovider.gatewayapi.mapper" />
       <recent name="com.dcits.scott.dubbo" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-common\src\main\java\com\dcits\scott\util" />
+      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-provider\document-provider\src\main\java\com\dcits\scott\pojo" />
+      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-provider\solr-provider\src\main\java\com\dcits\scott\solrprovider" />
       <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-provider\interface-provider\src\main\resources\mapping" />
-      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-consumer\src\main\resources\META-INF" />
-      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-service-provider\role-provider\src\main\resources\mapping" />
+      <recent name="E:\ScottProject\LiYingJieMyGithubProject\BackEnd\wormhole\wormhole-common\src\main\java\com\dcits\scott\dubbo" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -924,7 +1265,18 @@
       <workItem from="1584325126343" duration="8725000" />
       <workItem from="1584584659938" duration="25988000" />
       <workItem from="1584664742178" duration="24590000" />
-      <workItem from="1584765065324" duration="3038000" />
+      <workItem from="1584765065324" duration="3638000" />
+      <workItem from="1584857847276" duration="7749000" />
+      <workItem from="1584927526474" duration="4624000" />
+      <workItem from="1584934086897" duration="16095000" />
+      <workItem from="1585013507043" duration="15271000" />
+      <workItem from="1585098448904" duration="10242000" />
+      <workItem from="1585187472181" duration="19933000" />
+      <workItem from="1585273073566" duration="24679000" />
+      <workItem from="1585357375530" duration="1219000" />
+      <workItem from="1585447501825" duration="656000" />
+      <workItem from="1585537416436" duration="591000" />
+      <workItem from="1585634073985" duration="35000" />
     </task>
     <servers />
   </component>
@@ -961,15 +1313,15 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="644452000" />
+    <option name="totallyTimeSpent" value="746146000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.32952693" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.15582451" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.15582451" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -977,27 +1329,27 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.24962178" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
       <window_info id="UI Designer" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="14" visible="true" weight="0.31484503" />
+      <window_info anchor="bottom" id="Debug" order="14" weight="0.680261" />
       <window_info anchor="bottom" id="TODO" order="5" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.2675367" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="9" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.6068516" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5008157" />
       <window_info anchor="bottom" id="Spring" order="11" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.4730832" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4976744" visible="true" weight="0.38956127" />
       <window_info anchor="bottom" id="Problems" order="13" weight="0.32952693" />
-      <window_info anchor="right" id="Bean Validation" order="7" weight="0.32980332" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4961637" visible="true" weight="0.28366113" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32980332" />
       <window_info id="Web" order="2" sideWeight="0.5023256" side_tool="true" weight="0.34871408" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info id="Favorites" order="2" side_tool="true" weight="0.32980332" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Favorites" order="2" sideWeight="0.50383633" side_tool="true" weight="0.28139183" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info id="ZooKeeper" order="3" show_stripe_button="false" weight="0.1603631" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.15497553" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24962178" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32952693" />
@@ -1108,11 +1460,47 @@
           <properties />
           <option name="timeStamp" value="437" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wormhole-service-provider/solr-provider/src/main/java/com/dcits/scott/solrprovider/SolrSearchServiceImpl.java</url>
+          <line>129</line>
+          <properties />
+          <option name="timeStamp" value="458" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/project/common/AbstractCommonServiceImpl.java</url>
+          <line>32</line>
+          <properties />
+          <option name="timeStamp" value="461" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wormhole-service-provider/project-provider/src/main/java/com/dcits/scott/projectprovider/gatewayapigroup/serviceImpl/GatewayApiGroupServiceImpl.java</url>
+          <line>67</line>
+          <properties />
+          <option name="timeStamp" value="462" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/UserRealm.java</url>
+          <line>47</line>
+          <properties />
+          <option name="timeStamp" value="471" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/KickoutSessionControlFilter.java</url>
+          <line>178</line>
+          <properties />
+          <option name="timeStamp" value="496" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/KickoutSessionControlFilter.java</url>
+          <line>112</line>
+          <properties />
+          <option name="timeStamp" value="499" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="449" />
+      <option name="time" value="540" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="SpringBootApplicationConfigurationType">
@@ -1120,6 +1508,7 @@
         <watch expression="gatewayApiDO1" />
         <watch expression="((LinkedHashMap.Entry)((LinkedHashMap)map).entrySet().toArray()[14]).getValue()" custom="java.util.LinkedHashMap.Entry,java.util.LinkedHashMap" />
         <watch expression="((LinkedHashMap.Entry)((LinkedHashMap)query.criteria).entrySet().toArray()[0]).getValue()" custom="java.util.LinkedHashMap.Entry,java.util.LinkedHashMap" />
+        <watch expression="response" />
       </configuration>
     </watches-manager>
   </component>
@@ -1150,362 +1539,364 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/pojo/SubDocument/OtherFunction.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/SolrSearchController.java">
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/mgt/DefaultSecurityManager.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="264">
+          <caret line="189" selection-start-line="189" selection-end-line="189" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/pojo/SubDocument/RequestParam.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/pojo/Reply.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/gateway/pojo/GatewayProjectDO.java">
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/session/mgt/DefaultSessionManager.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
+        <state relative-caret-position="59">
+          <caret line="129" column="23" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-web/1.4.0/shiro-web-1.4.0.jar!/org/apache/shiro/web/session/mgt/DefaultWebSessionManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="218" selection-start-line="218" selection-end-line="218" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/GlobalDefaultExceptionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/RedisConfig/RedisConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/ShiroConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-web/1.4.0/shiro-web-1.4.0.jar!/org/apache/shiro/web/filter/PathMatchingFilter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-web/1.4.0/shiro-web-1.4.0.jar!/org/apache/shiro/web/servlet/ProxiedFilterChain.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/subject/support/SubjectCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-web/1.4.0/shiro-web-1.4.0.jar!/org/apache/shiro/web/servlet/AbstractShiroFilter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="181" selection-start-line="181" selection-end-line="181" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-web/1.4.0/shiro-web-1.4.0.jar!/org/apache/shiro/web/servlet/OncePerRequestFilter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/springframework/spring-web/5.2.3.RELEASE/spring-web-5.2.3.RELEASE.jar!/org/springframework/web/filter/CharacterEncodingFilter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/springframework/spring-web/5.2.3.RELEASE/spring-web-5.2.3.RELEASE.jar!/org/springframework/web/filter/OncePerRequestFilter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/catalina/core/StandardWrapperValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="296" selection-start-line="296" selection-end-line="296" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/catalina/core/StandardContextValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/catalina/authenticator/AuthenticatorBase.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="351" selection-start-line="351" selection-end-line="351" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/catalina/core/StandardHostValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="38" column="103" selection-start-line="38" selection-start-column="103" selection-end-line="38" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/catalina/valves/ErrorReportValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/catalina/core/StandardEngineValve.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/catalina/connector/CoyoteAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="436" selection-start-line="436" selection-end-line="436" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/coyote/http11/Http11Processor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="289" selection-start-line="289" selection-end-line="289" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/coyote/AbstractProcessorLight.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/coyote/AbstractProtocol.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="762" selection-start-line="762" selection-end-line="762" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/tomcat/embed/tomcat-embed-core/9.0.30/tomcat-embed-core-9.0.30.jar!/org/apache/tomcat/util/net/NioEndpoint.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="392" selection-start-line="392" selection-end-line="392" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-web/1.4.0/shiro-web-1.4.0.jar!/org/apache/shiro/web/filter/AccessControlFilter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/createinterface/ZkConfigController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/InterfaceProviderApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/project/gatewayprojectgroup/GatewayProjectGroupService.java">
+    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/gatewayapi/serviceImpl/DubboProxyServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
+        <state relative-caret-position="228">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/other/SolrSearchService.java">
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/createinterface/CreateInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="51" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="51" />
+        <state relative-caret-position="-2745">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/TestInterface.java">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/service/TemplateFetcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/service/GenericDubboConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/subject/support/DelegatingSubject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="182" column="16" selection-start-line="182" selection-start-column="16" selection-end-line="182" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/realm/AuthenticatingRealm.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="195" selection-start-line="195" selection-end-line="195" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/UserRealm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-144">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+          <folding>
+            <element signature="e#2072#2088#0" expanded="true" />
+            <element signature="e#2142#2151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/CorsFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/controller/usercontroller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="159" selection-start-line="159" selection-end-line="159" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/ExtendFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="88">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/testinterface/DubboDetailController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/testinterface/DubboProxyController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-57">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state>
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/projectcontroller/projectgroupcontroller/ProjectGroupController.java">
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/testinterface/TestInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="57">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/createinterface/zk/ZkService.java">
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/interfacecontroller/testinterface/BeforeTestInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+        <state relative-caret-position="35">
+          <caret line="98" column="59" selection-start-line="98" selection-start-column="59" selection-end-line="98" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/MessageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/interface-provider/src/main/java/com/dcits/scott/interfaceprovider/gatewayapi/serviceImpl/GatewayApiServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/session/mgt/eis/AbstractSessionDAO.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-web/1.4.0/shiro-web-1.4.0.jar!/org/apache/shiro/web/servlet/ShiroHttpServletRequest.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/apache/shiro/shiro-web/1.4.0/shiro-web-1.4.0.jar!/org/apache/shiro/web/servlet/AdviceFilter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://H:/F盘/web项目/maven仓库/org/springframework/spring-core/5.2.3.RELEASE/spring-core-5.2.3.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="96" column="9" lean-forward="true" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        <state relative-caret-position="236">
+          <caret line="106" column="64" selection-start-line="106" selection-start-column="64" selection-end-line="106" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/MySessionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/shiroconfig/KickoutSessionControlFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/config/zk/ZkService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/controller/permissioncontroller/PermissionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/controller/resourcecontroller/ResourceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/project-provider/src/main/java/com/dcits/scott/projectprovider/gatewayproject/serviceImpl/GatewayProjectServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/interface-provider/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/project-provider/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/role-provider/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/projectcontroller/apigroupcontroller/ApiGroupController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-api/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/auth/authauthorization/AuthorizationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="13" column="69" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="7" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/project/gatewayapi/GatewayApiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="22" column="65" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/user-provider/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/user-provider/src/main/java/com/dcits/scott/userprovider/serviceimpl/AuthUserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="28" column="60" lean-forward="true" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/solr-provider/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-common/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://H:/F盘/web项目/maven仓库/org/springframework/spring-web/5.2.3.RELEASE/spring-web-5.2.3.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1691">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/SubDocument/ApiDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/SubDocument/RequestParam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/SubDocument/OtherFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://H:/F盘/web项目/maven仓库/org/springframework/data/spring-data-mongodb/2.2.5.RELEASE/spring-data-mongodb-2.2.5.RELEASE.jar!/org/springframework/data/mongodb/repository/MongoRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/documentprovider/ApiDocumentRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-api/src/main/java/com/dcits/scott/other/ApiDocumentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://H:/F盘/web项目/maven仓库/org/springframework/data/spring-data-mongodb/2.2.5.RELEASE/spring-data-mongodb-2.2.5.RELEASE.jar!/org/springframework/data/mongodb/core/query/CriteriaDefinition.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://H:/F盘/web项目/maven仓库/org/springframework/data/spring-data-mongodb/2.2.5.RELEASE/spring-data-mongodb-2.2.5.RELEASE.jar!/org/springframework/data/mongodb/core/query/Criteria.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="323" column="18" selection-start-line="323" selection-start-column="18" selection-end-line="323" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://H:/F盘/web项目/maven仓库/org/springframework/data/spring-data-mongodb/2.2.5.RELEASE/spring-data-mongodb-2.2.5.RELEASE.jar!/org/springframework/data/mongodb/core/query/Query.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="57" column="71" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-provider/document-provider/src/main/java/com/dcits/scott/documentprovider/ApiDocumentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/ApiDocument.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/Reply.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-          <folding>
-            <element signature="e#905#906#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#978#979#0" expanded="true" />
-            <element signature="e#1014#1015#0" expanded="true" />
-            <element signature="e#1045#1046#0" expanded="true" />
-            <element signature="e#1072#1073#0" expanded="true" />
-            <element signature="e#1112#1113#0" expanded="true" />
-            <element signature="e#1144#1145#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-common/src/main/java/com/dcits/scott/apidocument/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="78" column="32" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1598#1599#0" expanded="true" />
-            <element signature="e#1643#1644#0" expanded="true" />
-            <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#1877#1878#0" expanded="true" />
-            <element signature="e#1905#1906#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wormhole-service-consumer/src/main/java/com/dcits/scott/wormholeserviceconsumer/apidocumentcontroller/documentcontroller/DocumentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="180">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -45,11 +45,11 @@
             <!--<el-breadcrumb-item>活动详情</el-breadcrumb-item>-->
         <!--</el-breadcrumb>-->
         <el-tabs type="border-card" @tab-click="handleClick" v-model="activeName">
-            <el-tab-pane label="分组" name="first" :key="'first'">
+            <el-tab-pane label="分组" name="first" :key="'first'" v-has="'/project/groupAndApi/group'">
                 分组授权
               <vgroup-detail :message="projectId"></vgroup-detail>
             </el-tab-pane>
-            <el-tab-pane label="接口" name="second" :key="'second'">
+            <el-tab-pane label="接口" name="second" :key="'second'" v-has="'/project/groupAndApi/api'">
               接口授权
               <api-detail :message2="projectId"></api-detail>
             </el-tab-pane>

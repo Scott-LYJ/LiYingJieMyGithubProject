@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+// var webpack = require("webpack");
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -19,7 +20,7 @@ module.exports = {
   'vue': 'Vue',
   'vue-router': 'VueRouter',
   'axios': 'axios',
-  'element-ui': 'ElementUI',
+  // 'element-ui': 'ElementUI',
   'vuex':'Vuex',
   'vue-i18n':'VueI18n'
 },
@@ -40,6 +41,15 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        include: [resolve('src/icons')],
+        options: {
+          symbolId: 'icon-[name]'
+        }
+      },
+
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
@@ -52,6 +62,7 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
+        exclude: [resolve('src/icons')],
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
@@ -76,7 +87,12 @@ module.exports = {
       {
         test: /\.scss$/,
         loaders: ["style", "css", "sass"]
-      }
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: [resolve('src'), resolve('test'), resolve('node_modules/vue-echarts-v3/src')]
+      },
     ]
   },
   node: {
@@ -90,5 +106,6 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
+
 }

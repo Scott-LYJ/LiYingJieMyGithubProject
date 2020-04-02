@@ -31,8 +31,8 @@
         </el-col>
          </div> <!-- 搜索区end -->
           <!--新增按钮-->
-            <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleAdd" size="mini" round>{{$t("SysUser.add")}}</el-button>
-            <el-button type="danger" icon="el-icon-delete" @click="handleDeleteList" size="mini" round>{{$t("SysUser.delete")}}</el-button>
+            <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleAdd" size="mini" round v-has="'/group/add'">{{$t("SysUser.add")}}</el-button>
+            <el-button type="danger" icon="el-icon-delete" @click="handleDeleteList" size="mini" round v-has="'/group/deleteList'">{{$t("SysUser.delete")}}</el-button>
             <template>
         <!--表格数据及操作-->
         <el-table :data="tableData" size="mini"  highlight-current-row border   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" v-loading="listLoading" @selection-change="selectChange">
@@ -97,9 +97,9 @@
             </el-table-column>
               <el-table-column  fixed="right" label="操作"min-width="200">
                  <template slot-scope="scope">
-                   <el-button size="mini" plain type="primary" @click="toApi( scope.row)">接口</el-button>
-                   <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                   <el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                   <el-button size="mini" plain type="primary" @click="toApi( scope.row)" v-has="'/group/api/show'">接口</el-button>
+                   <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-has="'/group/update'">编辑</el-button>
+                   <el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)" v-has="'/group/delete'">删除</el-button>
                  </template>
             </el-table-column>
 

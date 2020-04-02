@@ -3,6 +3,7 @@ package com.dcits.scott.wormholeserviceconsumer.interfacecontroller.testinterfac
 import com.dcits.scott.dubbo.*;
 import com.dcits.scott.gateway.pojo.GatewayServiceRequestDO;
 import com.dcits.scott.other.redis.RedisService;
+import com.dcits.scott.project.gatewayapi.GatewayApiService;
 import com.dcits.scott.project.gatewayservicerequest.GatewayServiceRequestService;
 import com.dcits.scott.support.entity.InterfaceMetaInfo;
 import com.dcits.scott.util.CommonUtil;
@@ -27,6 +28,8 @@ public class BeforeTestInterface {
     RedisService redisService;
     @Reference
     GatewayServiceRequestService gatewayServiceRequestService;
+    @Reference
+    GatewayApiService gatewayApiService;
     @PostMapping("/createDubboModel")
     public String createDubboModel(@RequestBody Map<String,Object> map) throws IOException {
         String zk="";
@@ -39,6 +42,8 @@ public class BeforeTestInterface {
         Long apiId = Long.parseLong(String.valueOf(map.get("id")));
         //
        List<GatewayServiceRequestDO> gatewayServiceRequestDOList = gatewayServiceRequestService.selectByApiId(apiId);
+       //修改测试时间
+        gatewayApiService.updateTestTime(apiId);
         //
         String g = String.valueOf(map.get("groupId"));
         String v = String.valueOf(map.get("serviceVersion"));

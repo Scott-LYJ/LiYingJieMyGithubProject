@@ -37,7 +37,7 @@
 
         </div>
         <el-tabs type="border-card">
-            <el-tab-pane label="接口">
+            <el-tab-pane label="接口" v-has="'/group/api'">
               <group-api :message="groupId"></group-api>
             </el-tab-pane>
             <el-tab-pane label="图表">

@@ -121,6 +121,26 @@ public class GatewayApiDO extends CommonDO {
    * @mbg.generated
    */
   private String updateBy;
+
+  private Date testTime;
+  private Date documentTime;
+
+  public String getTestTime() {
+    return DateUtil.getFormatDate(testTime);
+  }
+
+  public void setTestTime(Date testTime) {
+    this.testTime = testTime;
+  }
+
+  public String getDocumentTime() {
+    return DateUtil.getFormatDate(testTime);
+  }
+
+  public void setDocumentTime(Date documentTime) {
+    this.documentTime = documentTime;
+  }
+
   /**
    * @mbg.generated
    */

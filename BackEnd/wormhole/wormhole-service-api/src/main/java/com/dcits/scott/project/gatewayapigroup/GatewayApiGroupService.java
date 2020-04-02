@@ -25,4 +25,6 @@ public interface GatewayApiGroupService extends CommonService<GatewayApiGroupDO>
     void delSysGroupByIds(Map<String,Object> map);
 
     void updateGroupByMap(Map<String,Object> map);
+
+    GatewayApiGroupDO selectId(Long id);
 }

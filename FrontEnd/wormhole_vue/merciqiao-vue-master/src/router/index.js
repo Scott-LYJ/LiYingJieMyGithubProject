@@ -58,10 +58,11 @@ axios.interceptors.request.use(
   config => {
     console.log('>>>请求url:', config.url);
     var headers = config.headers;
+
     if (sessionStorage.getItem("token")) {
       headers.token = sessionStorage.getItem("token");
     }
-    // console.log(headers)
+   console.log(headers)
 
     return config;
   },
@@ -77,6 +78,17 @@ axios.defaults.timeout = 5000;//毫秒
 axios.interceptors.response.use(function (response) {
   // Do something with response data
   console.log('<<<请求成功');
+  console.log(response)
+  if (response.data == 'error')
+  {
+
+    router.push({path:'/login',query:{message:'你的账号已在其他地方登陆请重新登陆'}})
+
+  }
+  // if (response.data.code='1000000')
+  // {
+  //   sessionStorage.removeItem('token')
+  // }
   return response;
 }, error => {
   // Do something with response error
@@ -94,6 +106,7 @@ router.beforeEach((to, from, next) => {
   }
   else {
     var token = sessionStorage.getItem('token');
+    console.log(token)
     //如果没登录,都导向登录页
     if (!token) {
       if (to.path !== '/login') {

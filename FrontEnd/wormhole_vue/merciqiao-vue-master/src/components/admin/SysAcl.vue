@@ -47,7 +47,7 @@
                     </el-pagination>
                 </div>
                 <div style=" width:45%;float:right;">
-                    <el-button type="success" icon="el-icon-search" @click="saveRoleacl" size="mini">保存</el-button>
+                    <el-button type="success" icon="el-icon-search" @click="saveRoleacl" size="mini" v-has="'/auth/resource/save'">保存</el-button>
                     <el-tree :data="treeData" class="mgt20" show-checkbox default-expand-all node-key="id" ref="tree" highlight-current :check-strictly=true :props="defaultProps">
                     </el-tree>
                 </div>

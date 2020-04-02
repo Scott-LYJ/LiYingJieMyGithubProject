@@ -42,7 +42,7 @@
           </el-col>
         </div> <!-- 搜索区end -->
         <!--删除按钮-->
-        <el-button type="danger" icon="el-icon-delete" @click="handleDeleteList" size="mini" round>{{$t("SysUser.delete")}}</el-button>
+        <el-button type="danger" icon="el-icon-delete" @click="handleDeleteList" size="mini" round v-has="'/interface/deleteList'">{{$t("SysUser.delete")}}</el-button>
         <template>
           <!--表格数据及操作-->
           <el-table   :data="tableData" size="mini"  highlight-current-row border   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" v-loading="listLoading" @selection-change="selectChange">
@@ -160,9 +160,9 @@
 
             <el-table-column  fixed="right" label="操作"min-width="200">
               <template slot-scope="scope">
-                <el-button size="mini" plain type="primary" @click="toTest( scope.row)">测试</el-button>
-                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                <el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                <el-button size="mini" plain type="primary" @click="toTest( scope.row)" v-has="'/interface/show'">测试</el-button>
+                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-has="'/interface/update'">编辑</el-button>
+                <el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)" v-has="'/interface/delete'">删除</el-button>
               </template>
             </el-table-column>
 
@@ -263,7 +263,7 @@
 
           </el-table>
         </el-tab-pane>
-        <el-tab-pane label="接口文档编辑" name="fourth">
+        <el-tab-pane label="接口文档编辑" name="fourth" v-has="'/interface/documentEdit'">
         </el-tab-pane>
       </el-tabs>
       <div slot="footer" class="dialog-footer">

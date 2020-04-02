@@ -30,7 +30,7 @@
                     <!--新增按钮-->
                     <div class="clearfix">
                         <el-col :span="1" class="grid">
-                            <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleAdd" size="mini" round>{{$t('SysRole.add')}}</el-button>
+                            <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleAdd" size="mini" round v-has="'/auth/role/add'">{{$t('SysRole.add')}}</el-button>
                         </el-col>
                     </div>
 
@@ -49,12 +49,12 @@
                         </el-table-column>
                         <el-table-column prop="id" :label="$t('SysRole.id')" style="width: 20%">
                         </el-table-column>
-                        <el-table-column :label="$t('SysRole.edit')"style="width: 20%">
+                        <el-table-column :label="$t('SysRole.edit')"style="width: 20%" v-has="'/auth/role/update'">
                             <template slot-scope="scope">
-                                <el-button type="primary" icon="el-icon-edit" size="mini" @click="enditRole(scope.row)">{{$t('SysRole.edit')}}</el-button>
+                                <el-button type="primary" icon="el-icon-edit" size="mini" @click="enditRole(scope.row)" >{{$t('SysRole.edit')}}</el-button>
                             </template>
                         </el-table-column>
-                        <el-table-column :label="$t('SysRole.delete')" style="width: 20%">
+                        <el-table-column :label="$t('SysRole.delete')" style="width: 20%"  v-has="'/auth/role/delete'">
                             <template slot-scope="scope">
                                 <el-button type="danger" icon="el-icon-delete" @click="delRole(scope.row)" size="mini">{{$t('SysRole.delete')}}</el-button>
                             </template>
@@ -111,11 +111,11 @@
                 <div style=" width:40%;float:right;margin-top:74px; ">
                     <div class="clearfix">
                         <!--<el-col :span="3" class="grid">-->
-                            <el-button type="success" icon="el-icon-circle-plus-outline" @click="addRoleUser(1)" size="mini" round>{{$t('SysRole.add')}}</el-button>
+                            <el-button type="success" icon="el-icon-circle-plus-outline" @click="addRoleUser(1)" size="mini" round v-has="'/auth/role/userAdd'">{{$t('SysRole.add')}}</el-button>
                         <!--</el-col>-->
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!--<el-col :span="7" class="grid">-->
-                            <el-button type="danger" icon="el-icon-delete" @click="deleteUserRole" size="mini" round>{{$t('SysRole.delete')}}</el-button>
+                            <el-button type="danger" icon="el-icon-delete" @click="deleteUserRole" size="mini" round v-has="'/auth/role/userDelete'">{{$t('SysRole.delete')}}</el-button>
                         <!--</el-col>-->
                     </div>
 

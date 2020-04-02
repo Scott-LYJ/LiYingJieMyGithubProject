@@ -538,7 +538,24 @@
             console.log("结果",res);
             let ms = res.data;
             this.pageArray[this.pageIndex].response = JSON.stringify(ms);
+            //
+            let levList = this.$common.getSessionStorage('lev',true);
+            let roleId = levList[0].id;
+            let param = {
+              userId : this.$common.getSessionStorage("id"),
+              roleId:roleId,
+              message:'完成了接口:('+this.$route.query.id+")的测试",
+              isRead:0
+            }
+            this.$ajax({
+              method: "post",
+              url: "/message/send?userId="+this.$common.getSessionStorage("id"),
+              data: param
+            }).then(function(resultData) {
 
+            });
+
+            //
             this.formatContent1();
 
             this.pageArray[this.pageIndex].isSending = false;

@@ -22,12 +22,17 @@
     </properties>
 
     <dependencies>
-        <!--api项目的pom中添加实体类和jar包依赖-->
         <dependency>
             <groupId>com.dcits.scott</groupId>
             <artifactId>wormhole-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--api项目的pom中添加实体类和jar包依赖-->
+        <!--<dependency>-->
+            <!--<groupId>com.dcits.scott</groupId>-->
+            <!--<artifactId>wormhole-common</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
         <!--<dependency>-->
             <!--<groupId>org.mybatis.spring.boot</groupId>-->
             <!--<artifactId>mybatis-spring-boot-starter</artifactId>-->

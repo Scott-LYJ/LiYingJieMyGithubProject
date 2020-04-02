@@ -8,6 +8,7 @@
           </div> <!-- 页面标题end-->
           <div class="container"><!-- 页面内容区begin -->
              <div class="handle-box"> <!-- 搜索区begin -->
+               <el-button type="primary" v-has="'/auth/fd/proto/delete'">新增</el-button>
   <!--工具条-->
         <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
             <el-form :inline="true" :model="filters">
@@ -32,8 +33,8 @@
         </el-col>
          </div> <!-- 搜索区end -->
           <!--新增按钮-->
-            <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleAdd" size="mini" round>{{$t("SysUser.add")}}</el-button>
-            <el-button type="danger" icon="el-icon-delete" @click="handleDeleteList" size="mini" round>{{$t("SysUser.delete")}}</el-button>
+            <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleAdd" size="mini" round v-has="'/auth/user/add'">{{$t("SysUser.add")}}</el-button>
+            <el-button type="danger" icon="el-icon-delete" @click="handleDeleteList" size="mini" round v-has="'/auth/user/delete'">{{$t("SysUser.delete")}}</el-button>
             <template>
         <!--表格数据及操作-->
         <el-table :data="tableData" size="mini"  highlight-current-row border   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" v-loading="listLoading" @selection-change="selectChange">
@@ -60,8 +61,8 @@
             </el-table-column>
               <el-table-column  fixed="right" :label="$t('SysUser.operation')" width="150">
                <template slot-scope="scope">
-                    			   	<el-button type="primary" plain size="small" @click="handleRole(scope.$index,scope.row)">{{$t("SysUser.role")}}</el-button>
-                      	<el-button size="small" @click="handleEdit(scope.$index,scope.row)">{{$t("SysUser.edit")}}</el-button>
+                    			   	<el-button type="primary" plain size="small" @click="handleRole(scope.$index,scope.row)" v-has="'/auth/user/roleShow'">{{$t("SysUser.role")}}</el-button>
+                      	<el-button size="small" @click="handleEdit(scope.$index,scope.row)" v-has="'/auth/user/update'">{{$t("SysUser.edit")}}</el-button>
 			        	</template>
             </el-table-column>
         </el-table>
@@ -81,6 +82,7 @@
             v-model="addForm.imageurl"
             ref="upload"
             action="/user/upload"
+            :headers="importHeaders"
             name="picture"
             list-type="picture-card"
             :limit="1"
@@ -181,6 +183,7 @@
             ref="upload2"
             action="/user/upload"
             name="picture"
+            :headers="importHeaders"
             list-type="picture-card"
             :limit="1"
             :file-list="fileList"
@@ -266,6 +269,7 @@
      },
   data() {
     return {
+      importHeaders: {token: this.$common.getSessionStorage("token")},
       //文件上传的参数
       dialogImageUrl: '',
       dialogVisible: false,

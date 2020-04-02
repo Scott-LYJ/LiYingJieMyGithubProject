@@ -32,7 +32,7 @@ public class ResourceController {
     public Result<List<AuthResource>> getSysResourceList(@RequestBody Map<String,Object> map) throws Exception {
         List<AuthResource> resourceList = resourceService.selectList(map);
         map.clear();
-        List<AuthResource> authResources= ExtendFunction.queryMenuList(resourceList);
+        List<AuthResource> authResources= ExtendFunction.queryMenuList(resourceList,null);
         return new Result<>("200","查询成功",authResources);
     }
     @PostMapping("/getSysAclList")
@@ -51,7 +51,7 @@ public class ResourceController {
         map.put("resourceIds", resourceIds);
 
         resourceList = resourceService.selectList(map);
-        resourceList= ExtendFunction.queryMenuList(resourceList);
+        resourceList= ExtendFunction.queryMenuList(resourceList,null);
         return new Result<>("200","查询成功",resourceList);
 
     }

@@ -30,8 +30,8 @@
         <!-- 查询区----end -->
         <!-- 操作区----start -->
         <el-row class="mgb15">
-            <el-button size="small" round type="primary" @click="handleAdd">新增</el-button>
-            <el-button size="small" round type="danger" @click="deleteMany">批量删除</el-button>
+            <el-button size="small" round type="primary" @click="handleAdd" v-has="'/project/add'">新增</el-button>
+            <el-button size="small" round type="danger" @click="deleteMany" v-has="'/project/deleteList'">批量删除</el-button>
         </el-row>
         <!-- 操作区----end -->
         <!-- 表格---start -->
@@ -64,9 +64,9 @@
             </el-table-column>
             <el-table-column label="操作" fixed="right" min-width="250">
                 <template slot-scope="scope">
-                  <el-button size="mini" plain type="primary" @click="toGroupAndApi( scope.row)">接口/分组</el-button>
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                  <el-button size="mini" plain type="primary" @click="toGroupAndApi( scope.row)" v-has="'/project/groupAndApi/show'">接口/分组</el-button>
+                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-has="'/project/update'">编辑</el-button>
+                    <el-button size="mini" plain type="danger" @click="handleDelete(scope.$index, scope.row)" v-has="'/project/delete'">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
