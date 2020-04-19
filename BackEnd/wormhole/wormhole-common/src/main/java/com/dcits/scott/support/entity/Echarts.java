@@ -4,6 +4,9 @@ import com.dcits.scott.common.CommonDO;
 
 import java.util.List;
 
+/**
+ * 接口状态实体类
+ */
 public class Echarts extends CommonDO {
     Integer allInterfaceCount;
     Integer allTestCount;

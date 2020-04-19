@@ -27,7 +27,7 @@
         label="API名称"
         prop="name">
         <template slot-scope="scope">
-          <el-popover trigger="hover" placement="top">
+          <el-popover trigger="hover" placement="top" >
             <p>名称: {{ scope.row.name }}</p>
             <p>API描述: {{ scope.row.description }}</p>
             <p>创建时间: {{ scope.row.cdt }}</p>
@@ -47,9 +47,9 @@
         prop="updateBy">
       </el-table-column>
       <el-table-column
-        label="分组版本"
+        label="接口版本"
         sortable
-        prop="version">
+        prop="authVersion">
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -167,6 +167,7 @@
           data: param
         }).then(function(resultData) {
           _this.tableData = resultData.data.data;
+          console.log(_this.tableData )
           _this.listLoading = false;
         });
       },
@@ -183,5 +184,13 @@
   }
   .input-with-select .el-input-group__prepend {
     background-color: #fff;
+  }
+</style>
+<style>
+  .divcss555 {
+    border: 1px solid #F00;
+    width: 600px;
+    height: 100px;
+    word-break: break-all;
   }
 </style>

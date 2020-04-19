@@ -7,7 +7,7 @@ export default {
          var param={
             ip:ip,
             city:city,
-            code:code           
+            code:code
         };
         return Axios.post('/api/mayi-api/add', param);
     },
@@ -26,7 +26,7 @@ export default {
         };
         return Axios.post('/api/mayi-api/queryList', param);
     },
-    getZanZhu(){
+  getSolr(){
         return Axios.post('/api/mayi-api/queryZanZhu');
     }
 }

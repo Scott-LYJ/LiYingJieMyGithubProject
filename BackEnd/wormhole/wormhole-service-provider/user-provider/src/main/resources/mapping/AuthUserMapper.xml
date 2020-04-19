@@ -14,24 +14,70 @@
 
   <sql id="where">
     <where>
-      <if test="id != null">id = #{id}</if>
-      <if test="name != null">and name like concat('%', #{name}, '%')</if>
-      <if test="password != null">and password = #{password}</if>
-      <if test="phone != null">and phone = #{phone}</if>
+      <if test="id != null and id != ''">id = #{id}</if>
+      <if test="name != null and name != ''">and name like concat('%', #{name}, '%')</if>
+      <if test="password != null and password != ''">and password = #{password}</if>
+      <if test="phone != null and phone != ''">and phone = #{phone}</if>
 
-      <if test="cdt != null">
+      <if test="cdt != null and cdt != ''">
         <![CDATA[
                   and cdt between date_format(#{cdt}, '%Y-%m-%d 00:00:00') and date_format(#{cdt}, '%Y-%m-%d 23:59:59')
                 ]]>
       </if>
-      <if test="udt != null">
+      <if test="udt != null and udt != ''">
         <![CDATA[
                   and udt between date_format(#{udt}, '%Y-%m-%d 00:00:00') and date_format(#{udt}, '%Y-%m-%d 23:59:59')
                 ]]>
       </if>
     </where>
   </sql>
-  <select id="querySysUserList" parameterType="Map" resultMap="BaseResultMap">
+  <!-- 对应的插入字段的名字-->
+  <sql id="key">
+    <trim suffixOverrides=",">
+      <if test="name!=null and name!=''">
+        NAME,
+      </if>
+      <if test="password!=null and password!=''">
+        PASSWORD,
+      </if>
+        CDT,
+        UDT,
+      <if test="avatar!=null and avatar!=''">
+        AVATAR,
+      </if>
+      <if test="address!=null and address!=''">
+        ADDRESS,
+      </if>
+      <if test="phone!=null and phone!=''">
+        PHONE,
+      </if>
+    </trim>
+  </sql>
+  <!-- 对应的插入字段的值 -->
+  <sql id="values">
+    <trim suffixOverrides=",">
+      <if test="name!=null and name!=''">
+        #{name},
+      </if>
+      <if test="password!=null and password!=''">
+        #{password},
+      </if>
+        now(),
+        now(),
+      <if test="avatar!=null and avatar!=''">
+        #{avatar},
+      </if>
+      <if test="address!=null and address!=''">
+        #{address},
+      </if>
+      <if test="phone!=null and phone!=''">
+        #{phone},
+      </if>
+    </trim>
+  </sql>
+
+
+<select id="selectPage" parameterType="Map" resultMap="BaseResultMap">
   SELECT * FROM auth_user
 
   <include refid="where"/>
@@ -42,58 +88,53 @@
     LIMIT #{skip}, #{size}
   </if>
 </select>
-  <select id="selectCount"  resultType="Integer">
+
+<select id="selectCount"  resultType="java.lang.Integer" parameterType="Map">
     SELECT count(*) FROM auth_user
-    ORDER BY id DESC
-  </select>
+</select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from auth_user
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dcits.scott.admin.pojo.AuthUser" >
-    insert into auth_user (ID, NAME, PASSWORD, 
-      CDT, UDT, AVATAR, 
-      ADDRESS, PHONE)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{cdt,jdbcType=TIMESTAMP}, #{udt,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
+  <insert id="insert" useGeneratedKeys="true" parameterType="com.dcits.scott.admin.pojo.AuthUser" keyProperty="id">
+    insert into auth_user
+     (<include refid="key"/>)
+    values (<include refid="values"/>)
   </insert>
-  <insert id="addUser" useGeneratedKeys="true" parameterType="com.dcits.scott.admin.pojo.AuthUser" keyProperty="id">
-    insert into auth_user ( NAME, PASSWORD,
-      CDT,UDT,AVATAR,
-      ADDRESS, PHONE)
-    values ( #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{cdt,jdbcType=TIMESTAMP}, #{udt,jdbcType=TIMESTAMP},#{avatar,jdbcType=VARCHAR},
-      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
-  </insert>
-  <update id="updateUser" parameterType="com.dcits.scott.admin.pojo.AuthUser" >
+  <update id="update" parameterType="com.dcits.scott.admin.pojo.AuthUser" >
     update auth_user
     <set>
-      <if test="name != null">
+      <if test="name != null and name !=''">
         name = #{name},
       </if>
-      <if test="password != null">
+      <if test="password !=null and password != ''">
         password = #{password},
       </if>
-      <if test="avatar != null||avatar!=''">
+      <if test="avatar != null and avatar != ''">
         avatar = #{avatar},
       </if>
-      <if test="phone != null">
+      <if test="phone != null and phone != ''">
         phone = #{phone},
       </if>
-      <if test="address != null">
+      <if test="address != null and address != ''">
         address = #{address},
       </if>
-      <if test="udt != null">
-        udt = #{udt},
+      <if test="udt != null and udt != ''">
+        udt = now(),
       </if>
-      <if test="cdt != null">
-        cdt = #{cdt},
+      <if test="cdt != null and cdt != ''">
+        cdt = now(),
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ID, NAME, PASSWORD, CDT, UDT, AVATAR, ADDRESS, PHONE
+    from auth_user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select ID, NAME, PASSWORD, CDT, UDT, AVATAR, ADDRESS, PHONE
     from auth_user
     where ID = #{id,jdbcType=INTEGER}
@@ -121,7 +162,7 @@
     </if>
   </select>
 
-  <delete id="delSysUserByUserId" parameterType="Map">
+  <delete id="delete" parameterType="Map">
     DELETE FROM auth_user
     <where>
       <if test="userIds != null">

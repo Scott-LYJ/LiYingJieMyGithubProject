@@ -9,8 +9,6 @@ import java.util.Map;
 
 /**
  * 网关api分组mapper
- * @author chenhailong
- * @date 2019年2月14日 下午2:29:32
  */
 @Repository
 public interface GatewayApiGroupMapper extends CommonMapper<GatewayApiGroupDO> {

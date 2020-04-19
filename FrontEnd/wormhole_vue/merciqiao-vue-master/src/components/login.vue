@@ -1,25 +1,22 @@
 <template>
     <div class="login_wrapper" :style ="note">
         <div class="login">
-            <el-form :model="formLogin">
+            <el-form :model="formLogin" :rules="rules" ref="formLogin">
                 <el-form-item>
                     <h2 class="title">WormHoleApi</h2>
                 </el-form-item>
-                <el-form-item>
-                    <el-input v-model="formLogin.loginName" placeholder="账号"><template slot="prepend"><i class="el-icon-user"></i></template></el-input>
+                <el-form-item prop="loginName">
+                    <el-input v-model="formLogin.loginName"  placeholder="账号"><template slot="prepend"><i class="el-icon-user"></i></template></el-input>
+                </el-form-item>
+                <el-form-item prop="password">
+                    <el-input v-model="formLogin.password"  show-password placeholder="密码"><template slot="prepend"><i class="el-icon-lock"></i></template></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-input v-model="formLogin.password" placeholder="密码"><template slot="prepend"><i class="el-icon-lock"></i></template></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="verify">test</el-button>
-                    <el-button type="primary" @click="login" >登陆</el-button>
+                    <el-button type="primary" @click="verify">登录</el-button>
                     <span v-show="this.errorInfo.isShowError" class='error'>
                         {{this.errorInfo.text}}
                     </span>
 
-                  <el-button @click="verify"
-                  >验证</el-button>
                 </el-form-item>
 
             </el-form>
@@ -103,6 +100,14 @@ export default {
             backgroundSize: "100% 100%",
             marginTop: "0px",
           },
+          rules: {
+            loginName: [
+              { required: true, message: '请输入用户名', trigger: 'blur' },
+            ],
+            password: [
+              { required: true, message: '请输入密码', trigger: 'blur' }
+            ],
+          }
 
         }
     },
@@ -135,48 +140,40 @@ export default {
     },
     methods: {
       verify(){
-        var _this = this
-        var captcha1 = new TencentCaptcha('2005990633', function(res) {
-          console.log(res)
-          // res（用户主动关闭验证码）= {ret: 2, ticket: null}
-          // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
-          if(res.ret === 0){
-           this.test()
+        this.$refs['formLogin'].validate((valid) => {
+          if (valid) {
+            var _this = this
+            var captcha1 = new TencentCaptcha('2005990633', function(res) {
+              console.log(res)
+              // res（用户主动关闭验证码）= {ret: 2, ticket: null}
+              // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
+              if(res.ret === 0){
+                _this.login()
+              }
+            });
+            captcha1.show(); // 显示验证码
+          } else {
+            console.log('error submit!!');
+            return false;
           }
         });
-        captcha1.show(); // 显示验证码
+
       },
-      test2(){
-        apis.adminApi.querySysUserList({})
-          .then(data=>{
-            console.log(data)
-          })
-      }
-
-
-      ,
-      test() {
-        // if (this.isVerify==false){
-        //   this.$message({
-        //     showClose: true,
-        //     message: '请先进行验证',
-        //     type: 'error'
-        //   });
-        //
-        // } else{
-        apis.shiroApi.test(this.formLogin)
+      login() {
+        var _this = this
+        const loading = this.$loading({
+          lock: true,
+          text: '正在加载请稍后......',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+        apis.shiroApi.loginIn(this.formLogin)
           .then(data=>{
             //监听事件
-
-          //  console.log('success:', data.data.data);
             if (data && data.data) {
-           //   console.log("1111111111111")
               var json = data.data.result.data.data;
               console.log('json',json);
               if (data.data.result.status == 'SUCCESS') {
-
-                // this.$common.setSessionStorage("message",this.websock)
-                // this.$common.setSessionStorage('token', json.data.userInfo.token);
                 this.$common.setSessionStorage('token', data.data.token);
                 console.log('token',this.$common.getSessionStorage('token'))
                 this.$common.setSessionStorage('username',json.userInfo.name);
@@ -198,7 +195,6 @@ export default {
                 this.$store.dispatch("add_Menus",json.sysMenuVoList);
 
                 console.log('add_Menus',json.sysMenuVoList)
-                // console.log('add_Permission',this.$store.getters.btnPermissions())
                 //存入头像
                 this.$common.setSessionStorage('icon',json.userInfo.avatar);
                 console.log('icon',json.userInfo.avatar)
@@ -208,14 +204,10 @@ export default {
                 this.$store.dispatch("add_Routes", json.sysMenuVoList);
                 console.log('add_Routes',json.sysMenuVoList)
 
-
-                //存储按钮权限
-               // this.$store.dispatch("add_Permissions", json.data.rolePermissionVoList);
                 setTimeout(()=>{   //设置延迟执行
                   this.$router.replace({ path: "/index" });
+                  loading.close();
                   },1000);
-
-
 
                 var loginLog={
                   ip:returnCitySN["cip"],
@@ -226,9 +218,7 @@ export default {
 
                 return;
               }
-              // else if (json.message) {
-              //   this.errorInfo.text = json.message;
-              // }
+
             }
             this.errorInfo.isShowError = true;
             this.$store.dispatch("loginLog",loginLog);
@@ -237,53 +227,10 @@ export default {
           console.log('error:', err);
           this.errorInfo.isShowError = true;
           this.errorInfo.text = '系统接口异常';
+          loading.close();
         });
       },
-        login() {
-            //调用后端登陆接口
-            apis.shiroApi.loginIn(this.formLogin)
-                .then((data) => {
-                    console.log('success:', data.data.message);
-                    if (data && data.data) {
-                        var json = data.data;
-                        if (json.status == 'SUCCESS') {
-                           // this.$common.setSessionStorage('token', json.data.userInfo.token);
-                            this.$common.setSessionStorage('token', json.data.userInfo.token);
-                            this.$common.setSessionStorage('username',json.data.userInfo.userName);
-                            this.$common.setSessionStorage('lev',json.data.sysRoleVoList);
-                            //存入菜单,渲染菜单
-                            this.$store.dispatch("add_Menus",json.data.sysMenuVoList);
 
-
-                             //动态设置路由
-                            this.$store.dispatch("add_Routes", json.data.sysMenuVoList);
-                          console.log('add_Routes', json.data.sysMenuVoList)
-                            //存储按钮权限
-                            this.$store.dispatch("add_Permissions", json.data.rolePermissionVoList);
-                            this.$router.replace({ path: "/index" });
-
-                            var loginLog={
-                                ip:returnCitySN["cip"],
-                                city:returnCitySN["cname"]+'-'+json.data.userInfo.userName+'-登陆'
-                            };
-
-                            apis.shiroApi.loginLog(loginLog);
-                            return;
-                        }
-                        else if (json.message) {
-                            this.errorInfo.text = json.message;
-                        }
-                    }
-                    this.errorInfo.isShowError = true;
-                    this.$store.dispatch("loginLog",loginLog);
-                })
-                .catch((err) => {
-                    console.log('error:', err);
-                    this.errorInfo.isShowError = true;
-                    this.errorInfo.text = '系统接口异常';
-                });
-
-        },
          rollBackTables() {
             var text = '数据还原';
             apis.shiroApi.rollBackTables()

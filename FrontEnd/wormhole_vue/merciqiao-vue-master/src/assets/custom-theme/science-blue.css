@@ -15,6 +15,10 @@
 
   background-image: url('../../../static/img/th.jpg') !important;
 }
+.science-blue .sidebar-el-menu .el-menu-item {
+
+  background-color: #5f9fc9!important;
+ }
 .science-blue .left-sidebar .el-menu {
   background-color: #5f9fc9;
 }

@@ -11,7 +11,7 @@
       <!-- 接口信息编辑页面-->
       <interface-detail ref="interfaceDetail" v-if="active==0" @isSave="is_save" @interfaceDetailSave="interfaceDetailSave"></interface-detail>
       <zookeeper-detail v-if="active==1" @zookeeperDetailSave="zookeeperDetailSave"></zookeeper-detail>
-      <dubbo-detail v-if="active==2" @dubboDetailSave="dubboDetailSave"></dubbo-detail>
+      <dubbo-detail v-if="(active==2||isZkEnable)&&active!=3" @dubboDetailSave="dubboDetailSave"></dubbo-detail>
       <request-params v-if="active==3" @requestParamsSave="requestParamsSave"></request-params>
       <!--<interface-detail v-if="active==1"></interface-detail>-->
       <!--<interface-detail v-if="active==2"></interface-detail>-->
@@ -55,7 +55,7 @@
         },
         data() {
           return {
-
+            isZkEnable:false,
             dialogVisible: false,
 
             isSave:false,
@@ -139,6 +139,9 @@
                 console.log(this.isSave)
           },
           next() {
+            if ( this.$common.getSessionStorage("isZkEnable")==0){
+              this.isZkEnable=true;
+            }
             if (this.active++ > 3) this.active = 0;
           },
           prev(){
@@ -204,7 +207,7 @@
               console.log("provider",provider)
               this.$router.push({
                 path: '/TestInterface',
-                query:{zk: _this.submitInformation.zookeeper[0],
+                query:{zk: _this.submitInformation.zookeeper,
                   serviceName:_this.submitInformation.serviceName,
                   provider:provider,
                   methodName:_this.submitInformation.serviceMethod,

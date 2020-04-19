@@ -31,15 +31,15 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author everythingbest
+ * 存入缓存的类
  *
  */
 public class LocalStore {
 
 
-
+    //请求模板
     public static final Map<String, RequestTemplate> CACHED_TEMPLATES = new ConcurrentHashMap<>();
-
+    //dubbo模板
     public static final Map<String, DubboModel> DUBBO_MODEL_MAP = new ConcurrentHashMap<>();
 
     /**

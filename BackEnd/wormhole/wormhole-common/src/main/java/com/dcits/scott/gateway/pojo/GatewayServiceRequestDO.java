@@ -7,8 +7,6 @@ import java.util.Date;
 
 /**
  * 网关API请求参数-DO对象
- * @author chenhailong
- * @date 2019年2月14日 上午10:44:04
  */
 public class GatewayServiceRequestDO extends CommonDO {
 

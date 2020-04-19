@@ -6,6 +6,9 @@ import com.dcits.scott.common.ProtoBean;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 资源类
+ */
 public class AuthResource extends ProtoBean {
     private Integer id;
 

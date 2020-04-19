@@ -33,8 +33,6 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author everythingbest
- * 用于根据zk提供的基础数据和下载的api.jar生成运行时的dubboModel
  */
 public class DubboAppCreator {
     

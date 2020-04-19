@@ -29,7 +29,7 @@ import com.dcits.scott.common.CommonDO;
 import lombok.Data;
 
 /**
- * @author everythingbest
+ * @author 参数模板
  *
  */
 

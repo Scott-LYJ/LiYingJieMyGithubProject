@@ -43,23 +43,23 @@ public class ProjectApiController {
                 gatewayApiDO.setAuthorized(true);
             }else gatewayApiDO.setAuthorized(false);
         }
-        return new Result<>("","",gatewayApiDOS);
+        return new Result<>(Result.OK,"查询成功",gatewayApiDOS);
     }
     @PostMapping("/insertAuthorized")
     public Result<String> insertAuthorized(@RequestBody Map<String,Object> map){
         gatewayProjectGroupService.insertByProApi(map);
 
-        return new Result<>("200","插入成功");
+        return new Result<>(Result.OK,"插入成功");
     }
     @PostMapping("/deleteAuthorized")
     public Result<String> deleteAuthorized(@RequestBody Map<String,Object> map){
         gatewayProjectGroupService.deleteByProApi(map);
-        return new Result<>("200","删除成功");
+        return new Result<>(Result.OK,"删除成功");
     }
     @PostMapping("/queryApiCount")
     public Result<Integer> queryGroupCount(@RequestBody Map<String,Object> map) throws Exception {
         Integer total = gatewayApiService.selectCount(map);
         Integer count = gatewayProjectGroupService.selectCount2(map);
-        return new Result<Integer>("200","查询成功","",total,count);
+        return new Result<Integer>(Result.OK,"查询成功","",total,count);
     }
 }

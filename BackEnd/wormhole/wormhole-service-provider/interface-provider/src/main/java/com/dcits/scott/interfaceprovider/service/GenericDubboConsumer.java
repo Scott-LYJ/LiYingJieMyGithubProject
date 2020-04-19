@@ -43,7 +43,6 @@ import java.util.WeakHashMap;
 
 /**
  * 统一的消费dubbo的服务
- * @author everythingbest
  */
 @Service
 public class GenericDubboConsumer {
@@ -65,7 +64,7 @@ public class GenericDubboConsumer {
 
         if(request.getPath() == null){
 
-//            return WebApiRspDto.error("必须选择一个接口和方法进行访问",ResponseCode.SYSTEM_ERROR.code);
+            return WebApiRspDto.error("必须选择一个接口和方法进行访问");
         }
 
         logger.info("请求路径:"+request.getPath());
@@ -78,7 +77,6 @@ public class GenericDubboConsumer {
 
         }catch (Exception exp){
 
-//            String expStr = ExceptionnHelper.getExceptionStackString(exp);
 
             return WebApiRspDto.error("解析参数错误:");
         }
@@ -115,7 +113,7 @@ public class GenericDubboConsumer {
 //            String exceptionStr = ExceptionHelper.getExceptionStackString(exp);
 
 ///           return WebApiRspDto.error(exceptionStr,ResponseCode.APP_ERROR.code);
-            return WebApiRspDto.error("cuowu");
+            return WebApiRspDto.error("error");
         }
     }
 

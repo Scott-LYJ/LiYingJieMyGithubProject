@@ -30,7 +30,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author everythingbest
  * 对于每一个zk地址构建一个对应的zkService用于处理这个zk下面节点变动的同步
  */
 public class ZkServiceFactory {

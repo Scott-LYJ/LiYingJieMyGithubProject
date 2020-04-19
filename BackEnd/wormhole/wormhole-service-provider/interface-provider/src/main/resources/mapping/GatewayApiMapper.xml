@@ -112,7 +112,7 @@
         <result column="ZOOKEEPER" jdbcType="VARCHAR" property="zookeeper" />
         <!-- 对多级联查询，ofType表示集合中的元素类型 -->
         <collection property="gatewayServiceRequestDOS" ofType="com.dcits.scott.gateway.pojo.GatewayServiceRequestDO">
-            <id property="id" column="id" />
+            <id property="id" column="cid" />
             <result column="API_ID" jdbcType="BIGINT" property="apiId" />
             <result column="PARAMS_INDEX" jdbcType="INTEGER" property="paramsIndex" />
             <result column="NAME" jdbcType="VARCHAR" property="name" />
@@ -447,7 +447,7 @@
         WHERE ID=#{id}
     </delete>
     <select id="selectMessage" resultMap="gatewayMessage">
-        select gm.ID,gm.USER_ID,gm.ROLE_ID,au.NAME AS USER_NAME,ar.NAME as ROLE_NAME,SEND_DATE,MESSAGE,IS_READ from gateway_message gm INNER  JOIN auth_user au ON gm.USER_ID = au.ID INNER JOIN auth_role ar ON gm.ROLE_ID=ar.id
+        select gm.ID,gm.USER_ID,gm.ROLE_ID,au.NAME AS USER_NAME,ar.NAME as ROLE_NAME,SEND_DATE,MESSAGE,IS_READ from gateway_message gm INNER  JOIN auth_user au ON gm.USER_ID = au.ID INNER JOIN auth_role ar ON gm.ROLE_ID=ar.id order by send_date desc
     </select>
   <insert id="insertSelective" parameterType="com.dcits.scott.gateway.pojo.GatewayApiDO">
     <!--
@@ -725,11 +725,11 @@
 
 
     <select id="showInterfaceTimeCount"  resultType="com.dcits.scott.support.entity.InterfaceTimeCount">
-        select CDT as interfaceTime,count(*) as count from gateway_api where CDT is not NULL GROUP BY CDT
+        select CDT as interfaceTime,count(*) as count from gateway_api where CDT is not NULL GROUP BY CDT order by CDT ASC
 
     </select>
     <select id="showDocumentTimeCount"  resultType="com.dcits.scott.support.entity.DocumentTimeCount">
-        select DOCUMENT_TIME as documentTime,count(*) as count from gateway_api where DOCUMENT_TIME is not NULL GROUP BY DOCUMENT_TIME
+        select DOCUMENT_TIME as documentTime,count(*) as count from gateway_api where DOCUMENT_TIME is not NULL GROUP BY DOCUMENT_TIME order by DOCUMENT_TIME ASC
 
     </select>
 
@@ -815,7 +815,7 @@
     SELECT * FROM 
     (SELECT
     a.`ID`,a.GROUP_ID,a.`NAME`,a.`DESCRIPTION`,a.special,a.`STATUS`,a.HTTP_METHOD,a.IS_AUTH,a.IS_LOGIN,a.AUTH_VERSION,a.SERVICE_NAME,a.INTERFACE_NAME,a.ZOOKEEPER,
-    a.SERVICE_METHOD,a.SERVICE_VERSION,a.TIME_OUT,a.CREATE_BY,a.UPDATE_BY,a.`CDT`,a.`UDT`,a.`VERSION`,b.name as group_name ,c.API_ID,c.TYPE_NAME,c.PARAMS_INDEX,c.EXAMPLE,c.DESCRIPTION as request_description,c.IS_REQUIRED as ISA_REQUIRED
+    a.SERVICE_METHOD,a.SERVICE_VERSION,a.TIME_OUT,a.CREATE_BY,a.UPDATE_BY,a.`CDT`,a.`UDT`,a.`VERSION`,b.name as group_name ,c.id as cid,c.API_ID,c.TYPE_NAME,c.PARAMS_INDEX,c.EXAMPLE,c.DESCRIPTION as request_description,c.IS_REQUIRED as ISA_REQUIRED
       FROM gateway_api a inner join gateway_api_group b on a.GROUP_ID = b.id inner join  gateway_service_request c on a.id = c.API_Id
     <include refid="apiwhere"/> ) a 
     

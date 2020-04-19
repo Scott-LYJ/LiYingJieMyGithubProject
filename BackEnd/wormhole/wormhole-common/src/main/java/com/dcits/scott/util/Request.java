@@ -31,8 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author everythingbest
- *
+ *请求类
  */
 public class Request extends CommonDO {
     private static final long serialVersionUID = -3240543338269708158L;

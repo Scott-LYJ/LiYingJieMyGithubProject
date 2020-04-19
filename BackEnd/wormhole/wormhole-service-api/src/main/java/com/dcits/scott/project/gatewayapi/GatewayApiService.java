@@ -14,14 +14,7 @@ import java.util.Map;
  * 
  * API接口表 接口
  * 
- * @version 
- * @author chenhailong
- * <pre>
- * Author	Version		Date		Changes
- * chenhailong 	1.0  2018年06月22日 Created
- *
- * </pre>
- * @since 1.
+
  */
 public interface GatewayApiService extends CommonService<GatewayApiDO> {
 
@@ -69,18 +62,4 @@ public interface GatewayApiService extends CommonService<GatewayApiDO> {
 
   List<GatewayMessageDO> selectMessage();
 
-
-//  /**
-//   * 同步数据
-//   * @param bean
-//   * @return
-//   */
-//  boolean transferData(GatewayApiRequestDO bean);
-//
-//  /**
-//   * 拷贝数据
-//   * @param bean
-//   * @return
-//   */
-//  boolean copyData(GatewayApiRequestDO bean);
 }

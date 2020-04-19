@@ -1,7 +1,7 @@
 
 import adminApi from './adminApi';
 import shiroApi from './shiroApi';
-import mayiApi from './mayiApi';
+import solrApi from './solrApi';
 import msgApi from './msgApi';
 /**
  * 接口汇总
@@ -11,8 +11,8 @@ export default {
     adminApi: adminApi,
     /**认证接口 */
     shiroApi: shiroApi,
-    /**蚂蚁种树接口 */
-    mayiApi:mayiApi,
+    /**solr接口 */
+    solrApi:solrApi,
     /**消息接口 */
     msgApi:msgApi
 }

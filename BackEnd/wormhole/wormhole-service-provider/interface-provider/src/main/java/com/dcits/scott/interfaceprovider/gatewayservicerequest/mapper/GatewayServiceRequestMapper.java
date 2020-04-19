@@ -9,8 +9,6 @@ import java.util.Map;
 
 /**
  * 网关请求参数 mapper类
- * @author chenhailong
- * @date 2019年2月14日 下午2:36:18
  */
 @Repository
 public interface GatewayServiceRequestMapper extends CommonMapper<GatewayServiceRequestDO> {

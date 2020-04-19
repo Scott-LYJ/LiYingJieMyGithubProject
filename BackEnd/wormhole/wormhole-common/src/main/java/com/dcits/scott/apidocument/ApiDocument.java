@@ -7,6 +7,10 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+
+/**
+ * 接口文档实体类
+ */
 @Document("document")
 public class ApiDocument extends CommonDO {
     @Id

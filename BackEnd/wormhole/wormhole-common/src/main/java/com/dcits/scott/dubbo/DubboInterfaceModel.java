@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author everythingbest
+ * interface接口model类
  *
  */
 public class DubboInterfaceModel implements Serializable {
@@ -47,7 +47,6 @@ public class DubboInterfaceModel implements Serializable {
 
     Set<String> serverIps = new HashSet<>();
 
-//    @JsonIgnore
     Class<?> interfaceClass;
     
     Set<String> methodNames = new HashSet<>();

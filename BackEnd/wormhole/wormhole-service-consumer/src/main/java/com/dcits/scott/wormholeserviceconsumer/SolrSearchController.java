@@ -24,7 +24,7 @@ public class SolrSearchController {
                                @RequestParam(value = "currPage",defaultValue = "1",required = false)Integer currtPage){
         PageUtils pageUtils =null;
         try {
-             pageUtils= solrSearchService.search(keyword, isLogin, isAuth,status, serviceVersion,authVersionStr, psort, currtPage, 9);
+             pageUtils= solrSearchService.search(keyword, isLogin, isAuth,status, serviceVersion,authVersionStr, psort, currtPage, 8);
             System.out.println("controllor ------------>"+pageUtils);
 
         } catch (Exception e) {

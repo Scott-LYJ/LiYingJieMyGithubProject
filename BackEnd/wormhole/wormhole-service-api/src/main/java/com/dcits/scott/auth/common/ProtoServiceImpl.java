@@ -7,8 +7,6 @@ import java.util.Map;
 
 /**
  * 公共数据操作层
- * @author xxx
- * @date 2018年8月21日 下午6:48:25
  */
 public abstract class ProtoServiceImpl<T extends ProtoBean> implements ProtoService<T> {
 
@@ -27,7 +25,7 @@ public abstract class ProtoServiceImpl<T extends ProtoBean> implements ProtoServ
   @Override
   public void insert(T bean) throws Exception {
     int result = getMapper().insert(bean);
-    if (result <= 0) {
+    if (result <=0) {
   //    throw DaoException.DB_INSERT_RESULT_0;
     }
   }

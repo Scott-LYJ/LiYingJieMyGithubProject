@@ -2,6 +2,9 @@ package com.dcits.scott.apidocument.SubDocument;
 
 import com.dcits.scott.common.CommonDO;
 
+/**
+ * 响应码类
+ */
 public class ResponseCode extends CommonDO {
     private Integer code;
     private String description;

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ResultInfo<T> {
+    public final static String OK = "ok";
+    public final static String ERROR = "error";
     private String status;
     private String message;
     private List<T> dataList;
@@ -12,8 +14,7 @@ public class ResultInfo<T> {
     private String success;
 
     public ResultInfo() {
-    }
-
+}
     public ResultInfo(String status, String message, List<T> dataList, Map<String, Info> data, Integer count, String success) {
         this.status = status;
         this.message = message;
@@ -22,7 +23,11 @@ public class ResultInfo<T> {
         this.count = count;
         this.success = success;
     }
-
+    public ResultInfo(String status, String message,String success) {
+        this.status = status;
+        this.message = message;
+        this.success = success;
+    }
     @Override
     public String toString() {
         return "ResultInfo{" +

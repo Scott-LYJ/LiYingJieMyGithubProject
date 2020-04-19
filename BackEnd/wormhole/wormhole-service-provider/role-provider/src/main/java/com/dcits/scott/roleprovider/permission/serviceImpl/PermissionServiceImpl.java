@@ -2,9 +2,11 @@ package com.dcits.scott.roleprovider.permission.serviceImpl;
 
 import com.dcits.scott.admin.pojo.AuthPermission;
 import com.dcits.scott.auth.authpermission.PermissionService;
-import com.dcits.scott.roleprovider.common.ProtoMapper;
-import com.dcits.scott.roleprovider.common.ProtoServiceImpl;
+import com.dcits.scott.auth.common.ProtoMapper;
+import com.dcits.scott.auth.common.ProtoServiceImpl;
 import com.dcits.scott.roleprovider.permission.mapper.PermissionMapper;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,13 +17,17 @@ import java.util.Map;
 
 /**
  * 权限服务接口
- * @author fendyguo
- * @date 2018年09月13日 下午7:26:45
  */
 @Service
 public class PermissionServiceImpl extends ProtoServiceImpl<AuthPermission> implements PermissionService {
   @Resource
   private PermissionMapper permissionMapper;
+
+  @HystrixCommand(commandProperties = {
+          @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+          @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000")
+  })
+
 
   @Override
   protected ProtoMapper<AuthPermission> getMapper() {

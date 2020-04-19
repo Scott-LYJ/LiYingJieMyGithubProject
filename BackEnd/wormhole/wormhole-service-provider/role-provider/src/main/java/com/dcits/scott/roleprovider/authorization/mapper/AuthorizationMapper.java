@@ -1,15 +1,13 @@
 package com.dcits.scott.roleprovider.authorization.mapper;
 
 import com.dcits.scott.admin.pojo.AuthAuthorization;
-import com.dcits.scott.roleprovider.common.ProtoMapper;
+import com.dcits.scott.auth.common.ProtoMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author fendyguo
- * @date 2018年09月13日 下午7:26:45
  */
 @Repository
 public abstract interface AuthorizationMapper extends ProtoMapper<AuthAuthorization> {

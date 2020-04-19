@@ -40,7 +40,7 @@ public class ExtendFunction {
             try {
                 BeanUtils.copyProperties(user, key);
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
             authorizationList = authorizationService.selectByUserId(user.getId());
             for (AuthAuthorization authorization : authorizationList) {
@@ -48,9 +48,7 @@ public class ExtendFunction {
             }
 
             map1.put("roleIds", roleIds);
-          //  List<AuthRole> authRoleList = roleService.selectList(map1);
             List<AuthRole> authRoleList = roleService.queryRoleUserList(roleIds);
-           // permissionList = permissionService.selectList(map1);
             permissionList = permissionService.querPermissionList(roleIds);
             for (AuthPermission permission : permissionList) {
                 resourceIds.add(permission.getResId());
@@ -63,24 +61,20 @@ public class ExtendFunction {
             map1.put("resourceIds", resourceIds);
 
             resourceList = resourceService.selectList(map1);
-          //  List<Menu> menuList = resourceService.selectList(map1);
             map1.put("resourceList", resourceList);
             map1.clear();
-           //JSONObject jsonObject =  queryMenuList(resourceList);
            resourceList= queryMenuList(resourceList,permissionButton);
-          // map1.put("Menu",jsonObject);
 
            info = new Info(user,authRoleList,resourceList);
            map1.clear();
            Map<String,Info> resultMap = new HashMap<>();
-            resultMap.put("data",info);
+           resultMap.put("data",info);
            resultInfo = new ResultInfo("SUCCESS","登录成功",null,resultMap,null,"");
            map1.put("result",resultInfo);
            map1.put("permission",permissionButton);
 
         } catch (Exception e) {
             e.printStackTrace();
-//            log.error(e.getLocalizedMessage(), e);
         }
         return map1;
     }
@@ -104,10 +98,7 @@ public class ExtendFunction {
         for (AuthResource authResource : menuList) {
             authResource.setChildren(getChild(authResource.getId(), rootResource,permissionButton));
         }
-//        Map<String,Object> jsonMap = new HashMap<>();
-//        jsonMap.put("menu", menuList);
-//        JSONObject json = new JSONObject(jsonMap);
-//        System.out.println(json);
+
         return menuList;
     }
 

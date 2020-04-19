@@ -29,7 +29,6 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author everythingbest
  * 定义参数的匹配关系
  */
 public class RequestParam implements Serializable{
@@ -38,11 +37,9 @@ public class RequestParam implements Serializable{
 
     private String paraName;
 
-    private Class<?> targetParaType;
 
     private String paraType;
 
-    private Object targetParaDefaultValue;
 
     private String example;
 
@@ -84,19 +81,5 @@ public class RequestParam implements Serializable{
         this.paraName = paraName;
     }
 
-    public Class<?> getTargetParaType() {
-        return targetParaType;
-    }
 
-    public void setTargetParaType(Class<?> targetParaType) {
-        this.targetParaType = targetParaType;
-    }
-
-    public Object getTargetParaDefaultValue() {
-        return targetParaDefaultValue;
-    }
-
-    public void setTargetParaDefaultValue(Object targetParaDefaultValue) {
-        this.targetParaDefaultValue = targetParaDefaultValue;
-    }
 }

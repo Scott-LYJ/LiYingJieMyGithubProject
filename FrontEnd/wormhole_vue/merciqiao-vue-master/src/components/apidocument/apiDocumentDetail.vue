@@ -365,7 +365,7 @@
       <el-form :label-position="labelPosition" label-width="80px" :model="otherFunction" :inline="true">
         <el-form-item label="是否评论">
           <el-switch
-            v-model="otherFunction.isDiscuss"
+            v-model="otherFunction.discuss"
             active-color="#13ce66"
             inactive-color="#ff4949"
             active-value="true"
@@ -374,7 +374,7 @@
         </el-form-item>
         <el-form-item label="是否可赞">
           <el-switch
-            v-model="otherFunction.isThumbsUp"
+            v-model="otherFunction.thumbsUp"
             active-color="#13ce66"
             inactive-color="#ff4949"
             active-value="true"
@@ -383,7 +383,7 @@
         </el-form-item>
         <el-form-item label="是否可踩">
           <el-switch
-            v-model="otherFunction.isThumbsDown"
+            v-model="otherFunction.thumbsDown"
             active-color="#13ce66"
             inactive-color="#ff4949"
             active-value="true"
@@ -540,10 +540,10 @@
             { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
           ],
           region: [
-            { required: true, message: '请选择活动区域', trigger: 'change' }
+            { required: true, message: '请选择活动区域', trigger: 'blur' }
           ],
           date1: [
-            { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+            {  required: true, message: '请选择日期', trigger: 'blur' }
           ],
           dataStyle: [
             { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
@@ -685,6 +685,7 @@
           message: '接口信息保存成功',
           type: 'success'
         });
+        this.$router.go(-1)
         // console.log('save!');
         // //创建接口
         // this.$ajax({
@@ -718,6 +719,7 @@
     },
     mounted(){
       this.apiDetails=this.$route.query.apiDetails;
+
     },
   }
 </script>

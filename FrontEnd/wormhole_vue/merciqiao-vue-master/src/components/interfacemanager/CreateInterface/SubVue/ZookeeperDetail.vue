@@ -88,8 +88,8 @@
               message:  'zk信息保存成功',
               type: 'success'
             });
-            console.log('save!');
-            this.zookeeperDetailForm.zookeeper=this.zkAddress
+            console.log(this.zkAddress);
+            this.zookeeperDetailForm.zookeeper=this.zkAddress[0]
             this.$emit("zookeeperDetailSave",this.zookeeperDetailForm)
           },
         submitForm(formName) {
@@ -123,7 +123,7 @@
               });
 
 
-              this.$ajax({
+              this.$ajax ({
                 method: "get",
                 url: "/interface/zkConfig/config?zookeeper="+this.zookeeperDetailForm.zookeeper+"&pass="+this.zookeeperDetailForm.pass,
               }).then((resultData) => {
@@ -137,6 +137,7 @@
                   "createBy":""}
                 }).then((res) => {
                   console.log(res)
+                  this.$common.setSessionStorage("isZkEnable",1);
                 })
                 console.log(resultData)
                 let code = resultData.data.code;
@@ -146,7 +147,7 @@
                     message:  '保存成功',
                     type: 'success'
                   });
-
+                   loading.close();
                 }else{
                   let error = resultData.data.error
                   this.$notify.error({
@@ -172,6 +173,9 @@
             let zkAddress = res.data.data;
             console.log("返回的zk地址:",zkAddress);
             this.zkAddress = zkAddress;
+            //存入局部变量
+            this.$common.setSessionStorage("isZkEnable",0);
+            console.log(this.$common.getSessionStorage("isZkEnable"))
           });
         },
 

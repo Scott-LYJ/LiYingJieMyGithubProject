@@ -19,10 +19,6 @@ import java.util.Iterator;
 import java.util.Objects;
 
 /**
- *
- * @Author: http://gblfy.com
- * @Version 1.0.0
- *
  * 自定义session管理
  * <br/>
  * 传统结构项目中，shiro从cookie中读取sessionId以此来维持会话，在前后端分离的项目中（也可在移动APP项目使用），

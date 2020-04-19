@@ -5,6 +5,9 @@ import com.dcits.scott.tool.DateUtil;
 
 import java.util.Date;
 
+/**
+ * 文档创建时间
+ */
 public class DocumentTimeCount extends CommonDO {
     Date documentTime;
     Integer count;

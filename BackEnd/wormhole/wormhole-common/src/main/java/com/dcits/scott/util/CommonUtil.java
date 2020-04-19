@@ -25,7 +25,6 @@
 package com.dcits.scott.util;
 
 /**
- * @author everythingbest
  */
 public class CommonUtil {
     
@@ -46,7 +45,7 @@ public class CommonUtil {
 
     /**
      * 把ip地址拼接成zk地址
-     * zookeeper://192.168.11.29:2181?backup=192.168.11.32:2181,192.168.11.20:2181
+     * zookeeper://192.168.81.128:2181
      * @param zk
      * @return
      */

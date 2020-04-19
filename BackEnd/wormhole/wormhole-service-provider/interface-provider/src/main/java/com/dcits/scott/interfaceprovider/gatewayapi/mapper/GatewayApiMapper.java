@@ -12,8 +12,6 @@ import java.util.Map;
 
 /**
  * 网关api mapper类
- * @author chenhailong
- * @date 2019年2月14日 下午2:30:17
  */
 @Repository
 public interface GatewayApiMapper extends CommonMapper<GatewayApiDO> {

@@ -43,18 +43,12 @@ import java.util.Map;
 
 /**
  * 用于解析请求dubbo的参数
- * @author everythingbest
  */
 @Service
 public class TemplateFetcher {
 
     static Logger logger = LoggerFactory.getLogger(TemplateFetcher.class);
-//
-//    @Resource
-//    LoadRuntimeInfo loadJarClassService;
-//
-//    @Resource
-//    TemplateBuilder templateBuilder;
+
 
     @Resource
     RedisService redisService;
@@ -63,7 +57,6 @@ public class TemplateFetcher {
 
         String requestPath = request.getPath();
 
-//        RequestTemplate oldTemplate = LocalStore.get(requestPath);
         Object object = redisService.mapGet(RedisKeys.CACHED_TEMPLATES, "cache_templates");
         Object o=null;
         try {
@@ -91,19 +84,6 @@ public class TemplateFetcher {
         }
 
 
-//        Map<String,DubboModel> dubboModelMap =(Map<String,DubboModel>) o1;
-//        DubboModel dubboModel = dubboModelMap.get(requestPath);
-
-        //服务重启的时候需要重新构建运行时信息
-//        if(!dubboModel.getLoadedToClassLoader()){
-//
-//            loadJarClassService.load(dubboModel);
-//        }
-//
-//        if(!oldTemplate.isHasRunTimeInfo()){
-//
-//            templateBuilder.addTemplateRuntimeInfo(dubboModel);
-//        }
 
         Map<String,Object> bodyMap = JSON.parseObject(request.getBody(), Map.class);
 
@@ -132,73 +112,10 @@ public class TemplateFetcher {
             template.getParamValues().add(paramValue);
         }
 
-//        //方法的一级参数名称
-//        List<RequestParam> paramList = template.getMatcherParams();
-//
-//        //遍历模板的参数名称
-//        for(RequestParam param : paramList){
-//
-//            String paramName = param.getParaName();
-//
-//            Class<?> targetType = param.getTargetParaType();
-//
-//            boolean nullParam = false;
-//
-//            Object paramValue = null;
-//
-//            Object value = bodyMap.get(paramName);
-//
-//            if(value == null){
-//
-//                //传入null的参数
-//                nullParam = true;
-//
-//            }else{
-//
-//                ClassLoader old = Thread.currentThread().getContextClassLoader();
-//                Thread.currentThread().setContextClassLoader(targetType.getClassLoader());
-//
-//                try {
-//                    paramValue = JSON.mapper.convertValue(value, targetType);
-//                }catch (Exception exp){
-//                    logger.error("参数反序列化失败:"+exp.getMessage());
-//                }
-//                Thread.currentThread().setContextClassLoader(old);
-//            }
-//
-//            if(!nullParam && paramValue == null){
-//
-////                throw new ParamException("参数匹配错误,参数名称:"+paramName+",请检查类型,参数类型:"+targetType.getName());
-//            }
-//
-//            template.getParamTypes().add(targetType.getName());
-//
-//            template.getParamValues().add(paramValue);
-//        }
-//        template.getParamTypes().add("java.lang.Integer");
-//        template.getParamValues().add(20);
         return template;
     }
 
     void parseExternalParams(Map<String,Object> queryParams, RequestTemplate template)  {
-
-        if(queryParams.get("dubboIp") != null){
-
-            String dubboIp = queryParams.get("dubboIp").toString();
-
-            String realIp = dubboIp.split(":")[0];
-
-//            boolean ipAddress = IpUtil.isIp(realIp);
-//
-//            if(!ipAddress){
-//
-//                throw new ParamException(dubboIp+"不是合法的IP地址");
-//            }
-
-            template.setDubboUrl(template.getDubboUrl().replace("ip",dubboIp));
-
-            template.setUseDubbo(true);
-        }
 
         if(queryParams.get("ZK") != null){
 

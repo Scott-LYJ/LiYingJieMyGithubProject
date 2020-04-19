@@ -19,15 +19,7 @@ import java.util.Map;
 /**
  * 
  * API请求参数表ServiceImpl
- * 
- * @version 
- * @author chenhailong
- * <pre>
- * Author	Version		Date		Changes
- * chenhailong 	1.0  		2018年06月22日 	Created
  *
- * </pre>
- * @since 1.
  */
 
 
@@ -82,7 +74,12 @@ public class GatewayServiceRequestServiceImpl extends AbstractCommonServiceImpl<
       
     }
 
-    @Override
+  @Override
+  public void deleteLogic(Long id) throws Exception {
+
+  }
+
+  @Override
     public void insert(GatewayServiceRequestDO t) throws Exception {
       int result = gatewayservicerequestMapper.insertSelective(t);
       if (result <= 0){

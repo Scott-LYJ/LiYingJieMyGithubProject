@@ -33,15 +33,18 @@ public class BeforeTestInterface {
     @PostMapping("/createDubboModel")
     public String createDubboModel(@RequestBody Map<String,Object> map) throws IOException {
         String zk="";
+        Long apiId=null;
         if(map.get("zookeeper")!=null) {
-            List<String> list = (List) map.get("zookeeper");
-            zk = String.valueOf(list.get(0));
-        }else {
-            zk = String.valueOf(map.get("zk"));
+            zk = String.valueOf(map.get("zookeeper"));
+             apiId = Long.parseLong(String.valueOf(map.get("id")));
         }
-        Long apiId = Long.parseLong(String.valueOf(map.get("id")));
+        if (map.get("zk")!=null){
+            zk = String.valueOf(map.get("zk"));
+             apiId = Long.parseLong(String.valueOf(map.get("id")));
+        }
+
+
         //
-       List<GatewayServiceRequestDO> gatewayServiceRequestDOList = gatewayServiceRequestService.selectByApiId(apiId);
        //修改测试时间
         gatewayApiService.updateTestTime(apiId);
         //
@@ -51,7 +54,30 @@ public class BeforeTestInterface {
         String interfaceName = String.valueOf(map.get("interfaceName"));
         String serviceMethod = String.valueOf(map.get("serviceMethod"));
         String modelKey = CommonUtil.getDubboModelKey(zk, serviceName);
+        Object object1 = redisService.mapGet(RedisKeys.CACHED_TEMPLATES, "cache_templates");
+        if (object1!=null){
+            Object o=null;
+            String requestPath = "/"+serviceName+"/"+interfaceName+"/"+serviceMethod;
+            try {
+                o = SerializeUtils.serializeToObject((String) object1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            Map<String,RequestTemplate> requestTemplateMap = (Map<String, RequestTemplate>) o;
+            RequestTemplate oldTemplate = requestTemplateMap.get(requestPath) ;
+
+            if(oldTemplate != null){
+                return "";
+            }
+        }
         String str = (String) redisService.mapGet(RedisKeys.DUBBO_MODEL_KEY, modelKey);
+        if (str==null){
+
+        }
+        List<GatewayServiceRequestDO> gatewayServiceRequestDOList = gatewayServiceRequestService.selectByApiId(apiId);
+
         try {
             Object object = SerializeUtils.serializeToObject(str);
             DubboModel dubboModel = (DubboModel) object;
@@ -60,7 +86,6 @@ public class BeforeTestInterface {
 
             for (GatewayServiceRequestDO gatewayServiceRequestDO : gatewayServiceRequestDOList) {
                 DubboParamModel dubboParamModel = new DubboParamModel();
-//                dubboParamModel..gatewayServiceRequestDO.getTypeName();
                 dubboParamModel.setName(gatewayServiceRequestDO.getName());
                 dubboParamModel.setType(gatewayServiceRequestDO.getTypeName());
                 dubboParamModel.setExample(gatewayServiceRequestDO.getExample());
@@ -70,7 +95,6 @@ public class BeforeTestInterface {
 
             for (DubboInterfaceModel dubboInterfaceModel : serviceModelList) {
                 if (dubboInterfaceModel.getKey().equals(interfaceName)) {
-                    List<DubboMethodModel> methods = dubboInterfaceModel.getMethods();
                     List<DubboMethodModel> methodModels = new ArrayList<>(dubboInterfaceModel.getMethodNames().size());
 
                     Set<String> set = dubboInterfaceModel.getMethodNames();
@@ -84,15 +108,6 @@ public class BeforeTestInterface {
                             methodModels.add(dubboMethodModel);
                         }
                     }
-//                    for (int i=0;i<dubboInterfaceModel.getMethodNames().size();i++) {
-//                        if((serviceMethod).equals(dubboInterfaceModel.getMethodNames().)){
-//                            DubboMethodModel dubboMethodModel = new DubboMethodModel();
-//                            dubboMethodModel.setName(serviceMethod);
-//                            dubboMethodModel.setParams(dubboParamModels);
-//                            methodModels.add(dubboMethodModel);
-//                        }
-//
-//                    }
                     dubboInterfaceModel.setMethods(methodModels);
                 }
             }
@@ -102,58 +117,23 @@ public class BeforeTestInterface {
             //更新redis
             redisService.mapPut(RedisKeys.DUBBO_MODEL_KEY,modelKey,modelString);
             //构建requesttemplete
-            buildRequestDubboTemplate(dubboModel);
+            buildRequestDubboTemplate(dubboModel,interfaceName,serviceMethod);
             System.out.println(dubboModel.getServiceName());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        //
-        //拿到这个serviceName的dubboModel
-
-
-//        String a = String.valueOf(map.get("createBy"));
-//        Map<String, Map<String, InterfaceMetaInfo>> allProviders = ZkServiceFactory.get(zk).allProviders;
-//        Iterator<Map.Entry<String, Map<String, InterfaceMetaInfo>>> iterator  = allProviders.entrySet().iterator();
-//        while (iterator.hasNext()) {
-//
-//            Map.Entry<String, Map<String, InterfaceMetaInfo>> entry = iterator.next();
-//            String serviceName = entry.getKey();
-//            System.out.println(entry.getKey()+":"+entry.getValue());
-//            Map<String, InterfaceMetaInfo> interfaceMetaInfoMap = allProviders.get(entry.getKey());
-//            DubboModel dubboModel = DubboAppCreator.create(zk,serviceName,g,a,v,interfaceMetaInfoMap);
-//
-//            buildRequestDubboTemplate(dubboModel);
-
-
-
-
-
         return "";
     }
 
-    private void buildRequestDubboTemplate(DubboModel model) throws IOException {
+    private void buildRequestDubboTemplate(DubboModel model,String interfaceName,String serviceMethod) throws IOException {
 
-        //loadJarClassService.load(model);
-
-
-
-      buildTemplateByDubboModel(model);
+      buildTemplateByDubboModel(model,interfaceName,serviceMethod);
 
       addTemplateRuntimeInfo(model);
-
 
     }
 
     private void persistent() throws IOException {
-
-//        String modelString = SerializeUtils.serialize(dubboModel);
-//        String localStore = SerializeUtils.serialize(LocalStore.class);
-//        String modelKey = CommonUtil.getDubboModelKey(dubboModel.getZkAddress(), dubboModel.getServiceName());
-//
-//        redisService.mapPut(RedisKeys.DUBBO_MODEL_KEY, modelKey, modelString);
-//        redisService.setAdd(dubboModel.getZkAddress(), dubboModel.getServiceName());
-//        redisService.mapPut(RedisKeys.DUBBO_LOCALSTORE,"dubbo_localStore",localStore);
-
 
         redisService.mapPut(RedisKeys.CACHED_TEMPLATES,"cache_templates", SerializeUtils.serialize(LocalStore.CACHED_TEMPLATES));
         redisService.mapPut(RedisKeys.DUBBO_MODEL_MAP,"dubbo_model_map", SerializeUtils.serialize(LocalStore.DUBBO_MODEL_MAP));
@@ -162,46 +142,47 @@ public class BeforeTestInterface {
     }
 
 
-    public void buildTemplateByDubboModel(DubboModel model){
+    public void buildTemplateByDubboModel(DubboModel model,String interfaceName,String serviceMethod){
 
         for(DubboInterfaceModel interfaceModel : model.getServiceModelList()){
+                if (interfaceName.equals(interfaceModel.getKey())) {
+                    for (String methodNam : interfaceModel.getMethodNames()) {
+                            if (serviceMethod.equals(methodNam)){
+                        String methodName = methodNam;
 
-            for(String methodNam : interfaceModel.getMethodNames()){
+                        //一个template对应一个唯一的方法访问
+                        RequestTemplate template = new RequestTemplate();
 
-                String methodName = methodNam;
+                        template.setInterfaceName(interfaceModel.getInterfaceName());
 
-                //一个template对应一个唯一的方法访问
-                RequestTemplate template = new RequestTemplate();
+                        template.setDubboUrl("dubbo" + "://" + "ip");
 
-                template.setInterfaceName(interfaceModel.getInterfaceName());
+                        template.setRetries(interfaceModel.getRetries());
 
-                template.setDubboUrl("dubbo" + "://" + "ip");
+                        String zkRegistry = CommonUtil.buildZkUrl(model.getZkAddress());
 
-                template.setRetries(interfaceModel.getRetries());
+                        template.setRegistry(zkRegistry);
 
-                String zkRegistry = CommonUtil.buildZkUrl(model.getZkAddress());
+                        template.setServiceName(model.getServiceName());
 
-                template.setRegistry(zkRegistry);
+                        template.setVersion(interfaceModel.getVersion());
 
-                template.setServiceName(model.getServiceName());
+                        template.setGroup(interfaceModel.getGroup());
 
-                template.setVersion(interfaceModel.getVersion());
+                        String requestPath = model.getServiceName() + "/" + interfaceModel.getGroup() + "/"
+                                + interfaceModel.getInterfaceName().replace(".", "/");
 
-                template.setGroup(interfaceModel.getGroup());
+                        if (!interfaceModel.getVersion().isEmpty()) {
 
-                String requestPath = model.getServiceName() + "/" + interfaceModel.getGroup() + "/"
-                        + interfaceModel.getInterfaceName().replace(".", "/");
+                            requestPath += "/" + interfaceModel.getVersion().replace(".", "/");
+                        }
 
-                if (!interfaceModel.getVersion().isEmpty()) {
+                        requestPath = "/" + requestPath + "/" + methodName;
 
-                    requestPath += "/" + interfaceModel.getVersion().replace(".", "/");
+                        LocalStore.put(requestPath, template, model);
+                    }
+                    }
                 }
-
-                requestPath = "/" + requestPath + "/" + methodName;
-
-                LocalStore.put(requestPath, template, model);
-                System.out.println("");
-            }
         }
     }
     //
@@ -252,33 +233,15 @@ public class BeforeTestInterface {
                 requestParam.setParaName(paramModel.getName());
                 requestParam.setParaType(paramModel.getType());
 
-//                requestParam.setParaName(methodModel.getParams().get(paramIndex).getName());
 
                 paramIndex++;
 
-//                requestParam.setTargetParaType(type);
 
                 template.getMatcherParams().add(requestParam);
             }
         }
 
-//        if (methodModel.getMethod().getParameterTypes().length >= 1) {
-//
-//            int paramIndex = 0;
-//
-//            for (Class<?> type : methodModel.getMethod().getParameterTypes()) {
-//
-//                RequestParam requestParam = new RequestParam();
-//
-//                requestParam.setParaName(methodModel.getParams().get(paramIndex).getName());
-//
-//                paramIndex++;
-//
-//                requestParam.setTargetParaType(type);
-//
-//                template.getMatcherParams().add(requestParam);
-//            }
-//        }
+
     }
     //
     String requestPath(DubboModel dubboModel, DubboInterfaceModel interfaceModel, String methodName){

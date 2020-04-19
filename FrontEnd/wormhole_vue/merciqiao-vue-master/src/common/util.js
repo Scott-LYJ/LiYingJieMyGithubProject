@@ -15,7 +15,8 @@ exports.install = function (Vue,options){
             path:param,
 
         });
-        window.open(routeData.href,'_blank');
+        console.log(routeData)
+        window.open(routeData.href.substr(1),'_blank');
     }
     /**
      * 写入sessionStorage

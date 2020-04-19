@@ -59,9 +59,9 @@
                   <span>{{ props.row.udt }}</span>
                 </el-form-item>
                 <el-form-item label="分组状态">
-                  <span>{{ props.row.status?'启用':'禁止' }}</span>
+                  <span>{{ props.row.status?'启用':'禁用' }}</span>
                 </el-form-item>
-                <el-form-item label="商品描述">
+                <el-form-item label="分组描述">
                   <span>{{ props.row.description }}</span>
                 </el-form-item>
               </el-form>
@@ -120,8 +120,8 @@
 				</el-form-item>
         <br/>
         <el-form-item label="是否启用" prop="">
-          <el-radio v-model="addForm.status" label="1" border>启用</el-radio>
-          <el-radio v-model="addForm.status" label="0" border>禁用</el-radio>
+          <el-radio v-model="addForm.status" label=1 border>启用</el-radio>
+          <el-radio v-model="addForm.status" label=0 border>禁用</el-radio>
 				</el-form-item>
         <br/>
 
@@ -153,8 +153,12 @@
         </el-form-item>
         <br/>
         <el-form-item label="是否启用" >
-          <el-radio v-model="editForm.status" label="1" border>启用</el-radio>
-          <el-radio v-model="editForm.status" label="0" border >禁用</el-radio>
+          <el-radio-group v-model="editForm.status">
+            <el-radio :label=1 border>启用</el-radio>
+            <el-radio :label=0 border>禁用</el-radio>
+          </el-radio-group>
+          <!--<el-radio v-model="editForm.status" label="1" border>启用</el-radio>-->
+          <!--<el-radio v-model="editForm.status" label="0" border >禁用</el-radio>-->
         </el-form-item>
         <br/>
 
@@ -189,6 +193,7 @@
 
   data() {
     return {
+      radio:'1',
       versions: [{
       value: '1',
       label: '1'
@@ -230,10 +235,10 @@
       //输入框验证
       addFormRules: {
         name: [
-          { required: true, message: "请输入登录名", trigger: "blur" }
+          { required: true, message: "请输入分组名称", trigger: "blur" }
         ],
         description: [
-          { required: true, message: "请输入登录密码", trigger: "blur" }
+          { required: true, message: "请输入分组描述", trigger: "blur" }
         ],
       },
       //新增界面数据
@@ -252,7 +257,7 @@
       editForm: {
         id: "",
         name: "",
-        status:"",
+        status:null,
         version:"",
         description:"",
         updateBy:this.$common.getSessionStorage("username"),
@@ -449,8 +454,8 @@
 
     //显示编辑界面
     handleEdit: function(index, row) {
-      this.editFormVisible = true;
       this.editForm = Object.assign({}, row);
+      this.editFormVisible = true;
       console.log(this.editForm)
     },
     //编辑

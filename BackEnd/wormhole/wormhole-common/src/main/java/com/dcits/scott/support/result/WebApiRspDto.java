@@ -30,8 +30,8 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * @author everythingbest powered by WebApiResonse
- * @param <T>
+ * 接口响应模板
+ *
  */
 public class WebApiRspDto<T> extends CommonDO {
 
@@ -46,10 +46,7 @@ public class WebApiRspDto<T> extends CommonDO {
 
     private long elapse;
 
-    /**
-     * 是否需要重试。只有在 code != 0，也就是说有错的时候才有意义。
-     * 为真时表示一定要重试，为假时表示一定不要重试，为空时由调用方自行决定。
-     */
+
     private Boolean isNeedRetry;
 
 

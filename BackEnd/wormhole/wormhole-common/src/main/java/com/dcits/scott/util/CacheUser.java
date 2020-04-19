@@ -6,10 +6,6 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author http://gblfy.com
- * @Description 缓存用户信息
- * @Date 2019/9/14 15:34
- * @version1.0
  */
 
 public class CacheUser implements Serializable {

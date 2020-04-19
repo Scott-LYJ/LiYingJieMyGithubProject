@@ -7,7 +7,4 @@ import java.util.List;
 
 public interface ApiDocumentRepository extends MongoRepository<ApiDocument,String> {
     List<ApiDocument> findBySid(String sid);
-
-
-
 }

@@ -8,21 +8,13 @@
 package com.dcits.scott.project.common;
 
 import com.dcits.scott.common.CommonDO;
-import com.dcits.scott.support.page.PageParam;
-import com.dcits.scott.support.page.PageResult;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * 
- * @author chenhailong
- * @date 2018年7月18日 下午1:42:47 
- */
+
 public abstract class AbstractCommonServiceImpl<T extends CommonDO> {
-  
   /**
    * 获取mapper对象
    * @return
@@ -61,31 +53,10 @@ public abstract class AbstractCommonServiceImpl<T extends CommonDO> {
    * @throws Exception 数据库访问异常
    */
 
-  public PageResult<T> selectPage(PageParam pageParam) throws Exception {
-    Map<String, Object> paramMap = pageParam.getParamMap();
-    Integer count = this.getMapper().selectCount(paramMap);
-    List<T> list = new ArrayList<T>();
-    if (count != null && count.intValue() > 0) {
-      int startRecord = (pageParam.getPageNum() - 1) * pageParam.getNumPerPage();
-      int endRecord = pageParam.getNumPerPage();
-      paramMap.put("skip", startRecord);
-      paramMap.put("size", endRecord);
-      list = this.getMapper().selectList(paramMap);
-    }
-    return new PageResult<T>(pageParam.getPageNum(), pageParam.getNumPerPage(), count.intValue(), list);
-  }
-
 
   public List<T> selectPage(Map<String, Object> map) throws Exception {
     return getMapper().selectPage(map);
   }
   
-  /**
-   * 逻辑删除
-   * @param id
-   * @throws Exception
-   */
-  public void deleteLogic(Long id) throws Exception {
-    
-  }
+
 }

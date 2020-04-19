@@ -48,7 +48,7 @@
                 </div>
                 <div style=" width:45%;float:right;">
                     <el-button type="success" icon="el-icon-search" @click="saveRoleacl" size="mini" v-has="'/auth/resource/save'">保存</el-button>
-                    <el-tree :data="treeData" class="mgt20" show-checkbox default-expand-all node-key="id" ref="tree" highlight-current :check-strictly=true :props="defaultProps">
+                    <el-tree :data="treeData" class="mgt20" show-checkbox default-expand-all node-key="id" ref="tree" highlight-current :check-strictly=true :props="defaultProps" >
                     </el-tree>
                 </div>
             </div>
@@ -105,17 +105,15 @@ export default {
                 data: param
             }).then(
                 function(resultData) {
-
-                    _this.tableData = resultData.data.data;
-                    _this.roletotal = resultData.data.count;
-                    _this.listLoading = false;
-                },
-                function(resultData) {
-                    // _this.tableData.message = "Local Reeuest Error!";
-                    //console.log(resultData);
-                }
-                );
-
+                    var json = resultData.data;
+                    if (json.status == 'ok'){
+                      _this.tableData = json.data;
+                      _this.roletotal = json.count;
+                      _this.listLoading = false;
+                    }else{
+                      _this.$message({message: json.message,type: "error"});
+                    }
+                });
         },
         handleSizeChange(val) {
             this.pageSize = val;
@@ -133,16 +131,14 @@ export default {
                 data: param
             }).then(
                 function(resultData) {
-                  console.log(resultData)
+                  var json = resultData.data;
+                  if (json.status=='ok'){
                     _this.treeData = resultData.data.data;
-                     console.log(_this.treeData);
+                  }else {
+                    _this.$message({message: json.message,type: "error"});
 
-                },
-                function(resultData) {
-                    // _this.tableData.message = "Local Reeuest Error!";
-                    //console.log(resultData);
-                }
-                );
+                  }
+                });
         },
         clickRow: function(row) {
             var _this = this;
@@ -157,24 +153,15 @@ export default {
             }).then(
                 function(resultData) {
                   console.log(resultData)
+                    var json = resultData.data;
                     let list = [];
-
-                    // resultData.data.data.forEach(item => {
-                    //     list.push(item.resoureId);
-                    // });
-                    list = resultData.data.data
-                    //alert(list);
-                    console.log(JSON.stringify(list))
-                    _this.$refs.tree.setCheckedKeys(list);
-
-                },
-                function(resultData) {
-                    // _this.tableData.message = "Local Reeuest Error!";
-                    //console.log(resultData);
-                }
-                );
-
-
+                    if (json.status=='ok'){
+                      list = json.data
+                      _this.$refs.tree.setCheckedKeys(list);
+                    }else {
+                      _this.$message({message: json.message,type: "error"});
+                    }
+                });
         },
 
         saveRoleacl: function() {

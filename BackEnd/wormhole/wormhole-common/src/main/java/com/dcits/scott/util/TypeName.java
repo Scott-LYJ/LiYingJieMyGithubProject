@@ -1,5 +1,8 @@
 package com.dcits.scott.util;
 
+/**
+ * 储存参数类型
+ */
 public class TypeName {
 
     public final static String List = "java.util.List";

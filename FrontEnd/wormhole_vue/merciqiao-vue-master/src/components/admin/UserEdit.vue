@@ -15,6 +15,7 @@
         name="picture"
         :before-upload="beforeUpload"
         :on-success="handleSuccess"
+        :headers="importHeaders"
         :show-file-list="true"
        >
         <el-button size="small" type="primary">点击上传</el-button>
@@ -137,6 +138,7 @@
     data() {
 
       return {
+        importHeaders: {token: this.$common.getSessionStorage("token")},
         isLocked:"0",
         passwordCheck:true,
         editPassword:{
@@ -288,8 +290,9 @@
           message: '图片上传成功',
           duration: 6000
         });
+        console.log(res)
         console.log(file)
-        if (file.response.status=='200') {
+        if (file.response.status=='ok') {
           console.log(file.response.data)
           //this.editForm.picture = file.response.data; //将返回的文件储存路径赋值picture字段
          // this.userIcon=this.$common.setSessionStorage("icon",file.response.data)

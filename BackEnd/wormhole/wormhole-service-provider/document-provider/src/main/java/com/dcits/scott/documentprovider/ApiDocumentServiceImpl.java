@@ -34,6 +34,8 @@ public class ApiDocumentServiceImpl implements ApiDocumentService {
 
     @Override
     public List<Map<String, Object>> findBySid(String sid) {
+
+//        throw new RuntimeException("Exception to show hystrix enabled.");
         List<Map<String, Object>> result = new ArrayList<>();
         List<ApiDocument> apiDocumentList = apiDocumentRepository.findBySid(sid);
         apiDocumentList.forEach(apiDocument -> {
@@ -70,7 +72,7 @@ public class ApiDocumentServiceImpl implements ApiDocumentService {
 
     @Override
     public void updateComment(List<Comment> comments,String sid) {
-            Query query = new Query(Criteria.where("_id").is("1240844956868939776")) ;
+            Query query = new Query(Criteria.where("_id").is(sid)) ;
         ApiDocument one = mongoTemplate.findOne(query, ApiDocument.class);
         Update update = new Update().set("comments",comments);
         List<ApiDocument> all = mongoTemplate.findAll(ApiDocument.class);

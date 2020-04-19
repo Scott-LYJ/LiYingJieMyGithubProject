@@ -2,6 +2,9 @@ package com.dcits.scott.gateway.pojo;
 
 import com.dcits.scott.common.CommonDO;
 
+/**
+ * 项目-分组-接口关系DO
+ */
 public class GatewayProjectGroupDO extends CommonDO {
     private Integer id;
 

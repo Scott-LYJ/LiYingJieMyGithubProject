@@ -3,6 +3,9 @@ package com.dcits.scott.apidocument;
 import com.dcits.scott.common.CommonDO;
 import org.bson.types.ObjectId;
 
+/**
+ * 回复类
+ */
 public class Reply extends CommonDO {
     private String from;
     private String fromId;

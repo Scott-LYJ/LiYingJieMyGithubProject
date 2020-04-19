@@ -115,7 +115,6 @@
                         <el-button size="mini" type="text" @click="reset">重置</el-button>
                         <el-button type="primary" size="mini" @click="Screening">筛选</el-button>
                       </div>
-                      <!--<el-button  >删除</el-button>-->
                       <el-button type="info" icon="el-icon-edit" size="mini"  slot="reference" style="margin-top: -2px"></el-button>
 
                     </el-popover>
@@ -461,23 +460,36 @@
           let param={
             "keyword":this.keyword,
           }
+          const loading = this.$loading({
+            lock: true,
+            text: '正在搜索中，请稍后......',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)'
+          });
           this.$ajax({
             method: "get",
-           // http://localhost:8085/solr/search?keyword=测试&isLogin=1&isAuth=1&status=1&serviceVersion=1&authVersionStr=1&psort=1 psort:''currtPage:'',
             url: "/solr/search?keyword="+this.keyword+"&isLogin="+this.isLogin+"&isAuth="+this.isAuth+"&status="+this.status+"&serviceVersion="+this.serviceVersion+"&authVersionStr="+this.authVersionStr+"&psort="+this.psort+"&currPage="+this.currPage,
             dataType: "json",
           }).then(res => {
             this.editLoading = false;
             console.log(res.data)
-            this.count=res.data.count,
-            this.currPage = res.data.currPage
-            this.countPage =res.data.countPage
-            this.api = res.data.list
+            if (res.data.count==0){
+              this.$notify.info({
+                title: '提示',
+                message: '抱歉！未搜索到。'
+              });
+              this.count=res.data.count,
+              this.currPage = res.data.currPage
+              this.countPage =res.data.countPage
+              this.api =null
+            } else {
+              this.count=res.data.count,
+              this.currPage = res.data.currPage
+              this.countPage =res.data.countPage
+              this.api = res.data.list
+            }
             this.$emit("toFatherData",this.api);
-            this.$message({
-              message: "提交成功",
-              type: "success"
-            });
+            loading.close();
           })
         },
       }

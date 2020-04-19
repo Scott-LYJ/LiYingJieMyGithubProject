@@ -5,6 +5,9 @@ import com.dcits.scott.common.ProtoBean;
 
 import java.util.Date;
 
+/**
+ * 角色-资源类
+ */
 public class AuthPermission extends ProtoBean {
     private Integer id;
 

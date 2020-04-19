@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,17 +32,17 @@ public class ApiGroupController {
         try {
             List<GatewayApiGroupDO> gatewayApiGroupDOS = gatewayApiGroupService.selectPage(map);
             Integer count = gatewayApiGroupDOS.size();
-            return new Result<>("200","查询成功","",gatewayApiGroupDOS,count);
+            return new Result<>(Result.OK,"查询成功","",gatewayApiGroupDOS,count);
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result<>("500","查询失败",null);
+            return new Result<>(Result.ERROR,"查询失败",null);
         }
 
     }
     @PostMapping("/addSubmit")
     public Result<String> addSubmit(@RequestBody Map<String,Object> map){
         gatewayApiGroupService.insertByMap(map);
-        return new Result<>("200","添加成功");
+        return new Result<>(Result.OK,"添加成功");
     }
     @PostMapping("/delSysGroupByIds")
     public Result<String> delSysGroupByIds(@RequestBody Map<String,Object> map){
@@ -50,12 +51,12 @@ public class ApiGroupController {
         List<String> strings =  Arrays.asList(str);
         map.put("ids",strings);
         gatewayApiGroupService.delSysGroupByIds(map);
-        return new Result<>("200","添加成功");
+        return new Result<>(Result.OK,"添加成功");
     }
     @PostMapping("/updateGroup")
     public Result<String> updateGroup(@RequestBody Map<String,Object> map){
         gatewayApiGroupService.updateGroupByMap(map);
-        return new Result<>("200","更新成功");
+        return new Result<>(Result.OK,"更新成功");
     }
     @PostMapping("/queryApi")
     public Result<List<GatewayApiDO>> queryApi(@RequestBody Map<String,Object> map){
@@ -66,7 +67,7 @@ public class ApiGroupController {
                 gatewayApiDO.setGroupauthorized(true);
             }else gatewayApiDO.setGroupauthorized(false);
         }
-        return new Result<>("200","查询成功",gatewayApiDOS);
+        return new Result<>(Result.OK,"查询成功",gatewayApiDOS);
     }
     @PostMapping("/insertGroupAuthorized")
     public Result<String> insertAuthorized(@RequestBody String json){
@@ -76,7 +77,7 @@ public class ApiGroupController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new Result<>("200","修改成功");
+        return new Result<>(Result.OK,"修改成功");
     }
     @PostMapping("/deleteGroupAuthorized")
     public Result<String> deleteAuthorized(@RequestBody String json){
@@ -87,13 +88,14 @@ public class ApiGroupController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new Result<>("200","成功");
+        return new Result<>(Result.OK,"成功");
     }
     @PostMapping("/queryGroupApiCount")
     public Result<Integer> queryGroupCount(@RequestBody Map<String,Object> map) throws Exception {
-        Integer total = gatewayApiGroupService.selectCount(map);
+        Map<String,Object> map1 = new HashMap<String, Object>() ;
+        Integer total = gatewayApiService.selectCount(map1);
         Integer count = gatewayApiService.selectCount(map);
-        return new Result<Integer>("200","查询成功","",total,count);
+        return new Result<Integer>(Result.OK,"查询成功","",total,count);
     }
 
 }

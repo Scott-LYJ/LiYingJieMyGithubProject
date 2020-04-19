@@ -99,6 +99,7 @@
 
         data() {
             return {
+              bool:true,
               messageList:[{
                 id:1,
                 userName:'dasdas',
@@ -201,8 +202,9 @@
               method: "post",
               url: "/message/del",
               data: param
-            }).then(function(resultData) {
-
+            }).then((resultData)=> {
+              console.log("3123")
+                this.draw()
             });
           },
           draw(){

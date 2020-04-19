@@ -14,8 +14,6 @@ import java.util.Map;
 
 /**
  * 公共dao层方法
- * @author chenhailong
- * @date 2018年7月18日 下午1:48:45 
  */
 public interface CommonMapper<T extends CommonDO> {
   

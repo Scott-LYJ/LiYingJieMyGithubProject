@@ -6,11 +6,11 @@
                 <el-input v-model="formSearch.id" placeholder="模糊匹配"></el-input>
             </el-form-item>
             <el-form-item label="项目名称" prop="name">
-                <el-input v-model="formSearch.name" placeholder="城市"></el-input>
+                <el-input v-model="formSearch.name" placeholder="名称"></el-input>
             </el-form-item>
 
             <el-form-item label="创建者id" prop="createrid">
-                <el-input type="number" v-model="formSearch.createrid" placeholder="年龄"></el-input>
+                <el-input type="number" v-model="formSearch.createrid" placeholder="编号"></el-input>
             </el-form-item>
             <br/>
             <el-form-item label="创建时间" prop="cdt">
@@ -47,7 +47,7 @@
             width="90px">
             <!--插入图片链接的代码-->
             <template slot-scope="scope">
-              <img  :src="scope.row.avatar" alt="" @click="openDetail(scope.row)" style="width: 50px;height: 50px">
+              <img  :src="scope.row.avatar" alt="" @click="openAvatar(scope.row)" style="width: 50px;height: 50px">
             </template>
           </el-table-column>
             <el-table-column prop="name" label="项目名" width="150" align="center" sortable>
@@ -77,13 +77,15 @@
         <!-- 编辑弹框---start -->
         <el-dialog  :title="formEditTitle" :visible.sync="dialogEdittVisible" width="600px" @close="closeDialog('formEdit')">
             <el-form :label-position="labelPosition" :label-width="labelWidth" :rules="rulesEdit" :disabled="formEditDisabled" :inline="true" ref="formEdit" :model="formEdit" class="demo-form-inline">
-              <el-form-item :label="$t('SysUser.icon')" prop="imageurl">
+              <el-form-item :label="$t('SysUser.icon')" prop="imageurl" >
                 <el-upload
+                  v-show ="!formEditDisabled"
                   v-model="formEdit.imageurl"
                   ref="upload"
                   action="/project/upload"
                   name="picture"
                   list-type="picture-card"
+                  :headers="importHeaders"
                   :limit="1"
                   :file-list="fileList"
                   :on-exceed="onExceed"
@@ -98,7 +100,9 @@
                 <el-dialog :visible.sync="dialogVisible">
                   <img width="100%" :src="dialogImageUrl" alt="">
                 </el-dialog>
+                <div class="user-avator" v-show ="formEditDisabled"><img :src="formEdit.avatar" v-model="formEdit.avatar" ></div>
               </el-form-item>
+                <!-- 用户头像 -->
               &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
               <br/>
                  <el-form-item label="项目名称" prop="name">
@@ -135,6 +139,15 @@
         width: 220px;
     }
 }
+.user-avator{
+  margin-left: 20px;
+}
+.user-avator img{
+  display: block;
+  width:60px;
+  height:60px;
+  border-radius: 50%;
+}
 
 </style>
 
@@ -144,6 +157,7 @@ export default {
     name: 'messageboard',
     data() {
         return {
+          importHeaders:{token: this.$common.getSessionStorage("token")},
           //文件上传的参数
           dialogImageUrl: '',
           dialogVisible: false,
@@ -174,7 +188,7 @@ export default {
              rulesEdit:  {
                 name: [
                     { required: true, message: "请输入项目名称", trigger: "blur" },
-                    { min: 2, max: 4, message: "长度在 2 到 4 个字符", trigger: "blur" }
+                    { min: 2, max: 10, message: "长度在 2 到 10 个字符", trigger: "blur" }
                 ],
                 des:[{ required: true, message: "请输入项目的基本描述", trigger: "blur" }]
                 ,
@@ -234,12 +248,6 @@ export default {
     },
     mounted(){
         this.onSearch();
-        // var loginLog = {
-        //     ip: returnCitySN["cip"],
-        //     city: returnCitySN["cname"] + "-增删改查页"
-        // };
-
-       // apis.shiroApi.loginLog(loginLog);
     },
     methods: {
       //查看分组和接口
@@ -265,7 +273,7 @@ export default {
         });
 
         console.log(file)
-        if (file.response.status='200') {
+        if (file.response.status='ok') {
           console.log(file.response.message)
           this.formEdit.picture = file.response.data; //将返回的文件储存路径赋值picture字段
         }
@@ -326,7 +334,7 @@ export default {
 
                         var json = data.data;
                         console.log("json",json)
-                        if (json.status == '200') {
+                        if (json.status == 'ok') {
                             this.pageInfo.pageTotal=json.count;
                             this.tableData=json.data;
                         }
@@ -374,14 +382,15 @@ export default {
                     .then((data)=>{
                         if(data&&data.data){
                             var json=data.data;
-                             if(json&&json.status=='200'){
+                             if(json&&json.status=='ok'){
                                 this.$message({message: '执行成功',type: "success"});
                                 this.dialogEdittVisible = false;
                                 this.onSearch();
                                 return;
                             }
                         }
-                       this.$message({message: '执行失败，请重试',type: "error"});
+                        console.log(json)
+                       this.$message({message: '执行失败，请重试'+json.data,type: "error"});
                     })
                     .catch((err)=>{
                         this.$message({message: '执行失败，请重试',type: "error"});
@@ -402,7 +411,7 @@ export default {
                     .then((data)=>{
                         if(data&&data.data){
                             var json=data.data;
-                             if(json&&json.status=='200'){
+                             if(json&&json.status=='ok'){
                                 this.$message({message: '执行成功',type: "success"});
                                 this.dialogEdittVisible = false;
                                 this.onSearch();
@@ -461,7 +470,7 @@ export default {
                  this.$message({message: '请选择要删除的项',type: "warn"});
                 return;
             }
-            debugger;
+            // debugger;
             this.$confirm('此操作将批量永久删除文件, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
@@ -470,12 +479,10 @@ export default {
                         apis.msgApi.deleteBatch({ids:ids})
                         .then((data)=>{
                             this.$common.isSuccess(data,()=>{
-                                debugger;
                                 this.onSearch();
                             });
                         })
                         .catch((err)=>{
-                            debugger;
                             this.$message({message: '执行失败，请重试',type: "error"});
                         });
 
@@ -488,10 +495,11 @@ export default {
             this.$refs['formSearch'].resetFields();
         },
         /**
-         * 打开编辑弹窗
+         * 打开新增弹窗
          */
         handleAdd() {
             this.dialogEdittVisible = true;
+            this.fileList=[]
             this.$nextTick(()=>{
                 this.dialogType='add';
                 this.formEditTitle='新增';
@@ -504,7 +512,8 @@ export default {
          * 打开编辑弹窗
          */
         handleEdit(index, rowData) {
-            //var msg = "索引是:" + index + ",行内容是:" + JSON.stringify(rowData);
+          this.fileList=[]
+          //var msg = "索引是:" + index + ",行内容是:" + JSON.stringify(rowData);
             //this.$message({message: msg,type: "success"});
             this.dialogEdittVisible = true;//等dom渲染完，读取data中初始值，然后再复制，这样重置的是data中初始值
             this.$nextTick(()=>{
@@ -522,13 +531,16 @@ export default {
          */
         handleDetail(index,rowData){
             this.dialogEdittVisible = true;
-            this.$nextTick(()=>{
+          // console.log(this.formEdit)
+          this.$nextTick(()=>{
                  this.dialogType='show';
                 this.formEditTitle='详情';
                 this.formEditDisabled=true;
                 this.formEdit= Object.assign({}, rowData) ;
-                this.formEdit.creater=rowData.authuer.name;
+                this.formEdit.creater=rowData.authUser.name;
+                this.formEdit.picture=rowData.avatar;
                 this.formEdit.gender+='';
+                console.log(this.formEdit)
             });
 
         },
@@ -565,7 +577,7 @@ export default {
         /**
          * 打开详情页
          */
-           openDetail(row){
+           openAvatar(row){
              console.log(row)
             this.$common.OpenNewPage(this,'detail',row.avatar);
         }

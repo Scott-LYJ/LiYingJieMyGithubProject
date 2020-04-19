@@ -18,8 +18,9 @@ public class GatewayProjectServiceImpl extends AbstractCommonServiceImpl<Gateway
     GatewayProjectMapper gatewayProjectMapper;
 
 
-    public String hello(){
-        return "success";
+    @Override
+    public String hello() {
+        return null;
     }
 
     @Override
@@ -48,8 +49,13 @@ public class GatewayProjectServiceImpl extends AbstractCommonServiceImpl<Gateway
     }
 
     @Override
+    public GatewayProjectDO selectByIntId(int id) {
+        return this.gatewayProjectMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     protected CommonMapper<GatewayProjectDO> getMapper() {
-        return null;
+        return gatewayProjectMapper;
     }
 
 
@@ -65,6 +71,11 @@ public class GatewayProjectServiceImpl extends AbstractCommonServiceImpl<Gateway
 
     @Override
     public void delete(Long id) throws Exception {
+
+    }
+
+    @Override
+    public void deleteLogic(Long id) throws Exception {
 
     }
 

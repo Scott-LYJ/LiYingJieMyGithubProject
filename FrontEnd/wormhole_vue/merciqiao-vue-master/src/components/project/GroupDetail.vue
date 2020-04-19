@@ -118,7 +118,6 @@
               type: "success"
             });
             this.getResult();
-            // this.$emit('update', this.update)
           });
         }else{
           this.$ajax({

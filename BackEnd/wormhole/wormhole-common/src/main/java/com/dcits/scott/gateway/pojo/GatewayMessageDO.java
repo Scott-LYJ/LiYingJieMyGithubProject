@@ -6,6 +6,9 @@ import org.apache.http.client.utils.DateUtils;
 
 import java.util.Date;
 
+/**
+ * 消息DO
+ */
 public class GatewayMessageDO extends CommonDO {
 
     private Long id;

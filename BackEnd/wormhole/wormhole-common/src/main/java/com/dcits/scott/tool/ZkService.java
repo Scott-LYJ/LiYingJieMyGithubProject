@@ -18,10 +18,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.StringUtils;
 
 /**
- *
- * 
- * @author wuyuan.lfk
- * @date 2018年12月25日 下午5:05:08 
  */
 public class ZkService implements InitializingBean {
   private static final Logger logger = LoggerFactory.getLogger(ZkService.class);

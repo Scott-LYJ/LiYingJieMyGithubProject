@@ -266,9 +266,9 @@
         <span class="author-time" v-text="dateStr(item.time)"></span>
       </div>
       <div class="icon-btn">
-        <span @click="showReplyInput(i,item.name,item.id,item.commentNum)"><i class="iconfont el-icon-s-comment"></i>{{item.commentNum}}</span>
-        <i class="iconfont el-icon-caret-top" @click="likeUp(item,item.like)"></i>{{item.like}}
-        <i class="iconfont el-icon-caret-bottom" @click="likeDown(item,item.unLike)"></i>{{item.unLike}}
+        <span @click="showReplyInput(i,item.name,item.id,item.commentNum)" v-if="otherFunction.discuss"><i  class="iconfont el-icon-s-comment"></i>{{item.commentNum}}</span>
+        <i class="iconfont el-icon-caret-top" @click="likeUp(item,item.like)" v-if="otherFunction.thumbsUp"></i>{{item.like}}
+        <i class="iconfont el-icon-caret-bottom" @click="likeDown(item,item.unLike)" v-if="otherFunction.thumbsDown"></i>{{item.unLike}}
       </div>
       <div class="talk-box">
         <p>
@@ -372,9 +372,9 @@
             sid:"",
             //
             otherFunction:{
-              discuss:'',
-              thumbsUp:'',
-              thumbsDown:'',
+              discuss:null,
+              thumbsUp:null,
+              thumbsDown:null,
             },
             //
             apiDetails:{
@@ -479,11 +479,12 @@
           method: "get",
           url: "/test/apiDocument/find/"+sid,
         }).then((resultData)=>{
-
+          console.log(resultData)
           let data =  resultData.data[0];
           this.sid=data.sid;
           this._id=data._id;
-
+          this.otherFunction=data.otherFunction
+          console.log(this.otherFunction)
           this.apiDetails=data.apiDetails;
           this.upContent=data.upContent;
           this.downContent=data.downContent;

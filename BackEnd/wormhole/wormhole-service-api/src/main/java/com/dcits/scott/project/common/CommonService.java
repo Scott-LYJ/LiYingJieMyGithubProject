@@ -1,8 +1,7 @@
 package com.dcits.scott.project.common;
 
 import com.dcits.scott.common.CommonDO;
-import com.dcits.scott.support.page.PageParam;
-import com.dcits.scott.support.page.PageResult;
+import com.dcits.scott.gateway.pojo.GatewayProjectDO;
 
 
 import java.util.List;
@@ -11,8 +10,6 @@ import java.util.Map;
 /**
  *
  * 公共service接口层
- * @author chenhailong
- * @date 2018年7月17日 下午6:50:53 
  */
 public interface CommonService<T extends CommonDO> {
 
@@ -75,14 +72,7 @@ public interface CommonService<T extends CommonDO> {
    */
   List<T> selectList(Map<String, Object> map) throws Exception;
 
-  /**
-   * 公共分页方法
-   * @param pageParam 分页参数
-   * @return
-   * @throws Exception
-   */
-  PageResult< T > selectPage(PageParam pageParam) throws Exception;
-  
+
   /**
    * 分页方法
    * @param map
@@ -90,5 +80,5 @@ public interface CommonService<T extends CommonDO> {
    * @throws Exception
    */
   List<T> selectPage(Map<String, Object> map) throws Exception ;
-  
+
 }

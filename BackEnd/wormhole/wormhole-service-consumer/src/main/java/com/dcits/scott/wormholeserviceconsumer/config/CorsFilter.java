@@ -7,6 +7,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+/**
+ * 前后分离解决请求出错
+ */
 @Component
 public class CorsFilter implements Filter {
 
@@ -17,10 +21,7 @@ public class CorsFilter implements Filter {
         res.addHeader("Access-Control-Allow-Origin", "*");
         res.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
         res.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
-//        if (((HttpServletRequest) servletRequest).getMethod().equals("OPTIONS")) {
-//            servletResponse.getWriter().println("ok");
-//            return;
-//        }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

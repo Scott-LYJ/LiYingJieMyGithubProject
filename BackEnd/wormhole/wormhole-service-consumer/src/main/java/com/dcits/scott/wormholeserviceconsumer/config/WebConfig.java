@@ -10,6 +10,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 import javax.servlet.MultipartConfigElement;
 
+/**
+ * 图片资源映射：使用fastDFS后弃用
+ */
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
     @Override

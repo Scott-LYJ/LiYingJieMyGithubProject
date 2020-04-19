@@ -2,9 +2,11 @@ package com.dcits.scott.roleprovider.authorization.serviceImpl;
 
 import com.dcits.scott.admin.pojo.AuthAuthorization;
 import com.dcits.scott.auth.authauthorization.AuthorizationService;
-import com.dcits.scott.roleprovider.common.ProtoMapper;
-import com.dcits.scott.roleprovider.common.ProtoServiceImpl;
+import com.dcits.scott.auth.common.ProtoMapper;
+import com.dcits.scott.auth.common.ProtoServiceImpl;
 import com.dcits.scott.roleprovider.authorization.mapper.AuthorizationMapper;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,14 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author fendyguo
- * @date 2018年09月13日 下午7:26:45
- */
 @Service
 public class AuthorizationServiceImpl extends ProtoServiceImpl<AuthAuthorization> implements AuthorizationService {
   @Resource
   private AuthorizationMapper authorizationMapper;
+
+  @HystrixCommand(commandProperties = {
+          @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+          @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000")
+  })
+
 
   @Override
   protected ProtoMapper<AuthAuthorization> getMapper() {

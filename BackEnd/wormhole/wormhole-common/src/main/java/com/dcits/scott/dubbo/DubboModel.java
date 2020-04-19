@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author everythingbest
+ *  dubbo服务
  *
  */
 public class DubboModel implements Serializable {
@@ -51,11 +51,6 @@ public class DubboModel implements Serializable {
 
     long generateTime;
 
-    /**
-     * 标识是否加载到classLoader
-     * 这个值不能持久化
-     */
-//    Boolean loadedToClassLoader = false;
 
     /**
      * 一个dubbo应用包含多个接口定义
@@ -118,13 +113,7 @@ public class DubboModel implements Serializable {
         this.generateTime = generateTime;
     }
 
-//    public Boolean getLoadedToClassLoader() {
-//        return loadedToClassLoader;
-//    }
-//
-//    public void setLoadedToClassLoader(Boolean loadedToClassLoader) {
-//        this.loadedToClassLoader = loadedToClassLoader;
-//    }
+
 
     public List<DubboInterfaceModel> getServiceModelList() {
         return serviceModelList;

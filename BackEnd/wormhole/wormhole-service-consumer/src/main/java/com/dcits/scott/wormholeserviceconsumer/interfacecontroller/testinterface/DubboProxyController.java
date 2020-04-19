@@ -49,7 +49,6 @@ public class DubboProxyController {
 
         if(logger.isDebugEnabled()){
 
-//            logger.debug("接收DUBBO-POSTMAN请求:"+ JSON.objectToString(request));
         }
 
        return dubboProxyService.send(request);

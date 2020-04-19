@@ -6,8 +6,7 @@ import java.util.Date;
 
 /**
  * 时间工具类
- * @author chenhailong
- * @date 2019年2月14日 上午10:45:41
+
  */
 public class DateUtil {
   public final static String DATE_FORMAT_PARTNER_1 = "yyyy-MM-dd HH:mm:ss";

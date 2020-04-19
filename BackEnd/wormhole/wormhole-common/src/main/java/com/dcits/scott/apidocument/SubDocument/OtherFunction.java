@@ -2,6 +2,9 @@ package com.dcits.scott.apidocument.SubDocument;
 
 import com.dcits.scott.common.CommonDO;
 
+/**
+ * 文档其他功能类
+ */
 public class OtherFunction extends CommonDO {
     private boolean discuss;
     private boolean thumbsUp;

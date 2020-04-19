@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author everythingbest
  * 一个方法唯一标识一个访问路径,path通常是一个全路径信息
  */
 public class DubboMethodModel extends CommonDO {

@@ -79,14 +79,6 @@ public interface ProtoService < T extends ProtoBean>{
      */
     List< T > selectList( Map< String, Object > map ) throws Exception;
 
-    /**
-     * 根据查询条件分页查询。
-     *
-     * @param pageParam 查询条件映射
-     * @return
-     * @throws Exception 数据库访问异常
-     */
-  //  PageResult< T > selectPage( PageParam pageParam ) throws Exception;
 
     /**
      * 根据查询条件分页查询。

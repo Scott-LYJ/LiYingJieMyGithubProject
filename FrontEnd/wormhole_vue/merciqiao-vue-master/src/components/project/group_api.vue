@@ -49,7 +49,7 @@
       <el-table-column
         label="版本"
         sortable
-        prop="version">
+        prop="authVersion">
       </el-table-column>
       <el-table-column
         fixed="right"

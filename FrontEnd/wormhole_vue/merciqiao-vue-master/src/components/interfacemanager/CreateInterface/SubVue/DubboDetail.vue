@@ -3,7 +3,7 @@
     <br/>
     <br/>
     <br/>
-    <el-form ref="dubboDetailForm" :model="dubboDetailForm" label-width="80px">
+    <el-form ref="dubboDetailForm" v-show="show1" :model="dubboDetailForm" label-width="80px" id="isEnable">
       <el-form-item label="zk名称">
         <el-select v-model="dubboDetailForm.zk" placeholder="必填，访问的ZK地址" filterable @change="changeZk">
           <el-option v-for="(option,index) in pageTotal.zkList" v-bind:value="option" :key="index" :label="option">
@@ -53,33 +53,33 @@
     </el-form>
 
 
-  <!--<el-form ref="dubboDetailForm" :model="dubboDetailForm" label-width="80px">-->
-    <!--<el-form-item label="服务名称">-->
-      <!--<el-input v-model="dubboDetailForm.serviceName" style="width: 600px"></el-input>-->
-    <!--</el-form-item>-->
-    <!--<el-form-item label="接口路径">-->
-      <!--<el-input v-model="dubboDetailForm.interfaceName" style="width: 600px"></el-input>-->
-    <!--</el-form-item>-->
-    <!--<el-form-item label="方法名称">-->
-      <!--<el-input v-model="dubboDetailForm.serviceMethod" style="width: 300px"></el-input>-->
-    <!--</el-form-item>-->
-    <!--<el-form-item label="版本号">-->
-      <!--<el-select v-model="dubboDetailForm.serviceVersion" placeholder="版本号">-->
-        <!--<el-option label="1.0.0.local" value="1.0.0.local"></el-option>-->
-        <!--<el-option label="1.0.0.dev" value="1.0.0.dev"></el-option>-->
-        <!--<el-option label="1.0.0.daily" value="1.0.0.daily"></el-option>-->
-        <!--<el-option label="1.0.0.prehub" value="1.0.0.prehub"></el-option>-->
-        <!--<el-option label="1.0.0.online" value="1.0.0.online"></el-option>-->
-      <!--</el-select>-->
-    <!--</el-form-item>-->
-    <!--<el-form-item label="超时时间">-->
-      <!--<el-input-number v-model="dubboDetailForm.timeOut" :step="1000"></el-input-number>-->
-    <!--</el-form-item>-->
-    <!--<el-form-item>-->
-      <!--<el-button type="primary" @click="onSave">保存</el-button>-->
-      <!--<el-button>取消</el-button>-->
-    <!--</el-form-item>-->
-  <!--</el-form>-->
+  <el-form ref="dubboDetailForm" v-show="show2" :model="dubboDetailForm" label-width="80px" id="isNoEnable">
+    <el-form-item label="服务名称">
+      <el-input v-model="dubboDetailForm.serviceName" style="width: 600px"></el-input>
+    </el-form-item>
+    <el-form-item label="接口路径">
+      <el-input v-model="dubboDetailForm.interfaceName" style="width: 600px"></el-input>
+    </el-form-item>
+    <el-form-item label="方法名称">
+      <el-input v-model="dubboDetailForm.serviceMethod" style="width: 300px"></el-input>
+    </el-form-item>
+    <el-form-item label="版本号">
+      <el-select v-model="dubboDetailForm.serviceVersion" placeholder="版本号">
+        <el-option label="1.0.0.local" value="1.0.0.local"></el-option>
+        <el-option label="1.0.0.dev" value="1.0.0.dev"></el-option>
+        <el-option label="1.0.0.daily" value="1.0.0.daily"></el-option>
+        <el-option label="1.0.0.prehub" value="1.0.0.prehub"></el-option>
+        <el-option label="1.0.0.online" value="1.0.0.online"></el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item label="超时时间">
+      <el-input-number v-model="dubboDetailForm.timeOut" :step="1000"></el-input-number>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="onSave">保存</el-button>
+      <el-button @click="onSwitch">切换</el-button>
+    </el-form-item>
+  </el-form>
   </div>
 </template>
 
@@ -92,6 +92,8 @@
         name: "DubboDetail",
         data() {
           return {
+            show1:false,
+            show2:true,
             dubboDetailForm: {
               zk:'',
               timeOut:'5000',
@@ -212,14 +214,39 @@
           //
           get(){
             console.log("sssssssssss")
+          },
+          onSwitch(){
+              if (this.show1=true){
+                this.show1=false;
+                this.show2=true;
+              }else if (this.show1=false){
+                this.show1=true;
+                this.show2=false;
+                getZkList().then((res)=>{
+                  console.log(res)
+                  this.pageTotal.zkList = res.data.data;
+                })
+              }
           }
         },
       mounted(){
-          console.log("11111111111111")
-          getZkList().then((res)=>{
-            console.log(res)
-          this.pageTotal.zkList = res.data.data;
-        })
+          console.log("11111111111111");
+          console.log(this.$common.getSessionStorage("isZkEnable"))
+          if (this.$common.getSessionStorage("isZkEnable")==0){
+
+            this.show1=true;
+            this.show2=false;
+            getZkList().then((res)=>{
+              console.log(res)
+              this.pageTotal.zkList = res.data.data;
+            })
+
+          }else {
+
+            this.show1=false;
+            this.show2=true;
+          }
+
       }
     }
 </script>

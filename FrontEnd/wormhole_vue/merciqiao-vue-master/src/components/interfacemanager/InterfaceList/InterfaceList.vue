@@ -60,13 +60,21 @@
                         <span>{{ props.row.id }}</span>
                       </el-form-item>
                       <el-form-item label="版本">
-                        <span>{{ props.row.version }}</span>
+                        <span>{{ props.row.authVersion }}</span>
                       </el-form-item>
                       <el-form-item label="隶属分组">
                         <span>{{ props.row.groupName }}</span>
                       </el-form-item>
                       <el-form-item label="接口状态">
                         <span>{{ props.row.status?'启用':'禁止' }}</span>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <span>{{ props.row.isAuth?'需要鉴权':'不需要鉴权' }}</span>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <span>{{ props.row.isLogin?'需要登录':'不需要登录 ' }}</span>
                       </el-form-item>
                       <el-form-item label="接口描述">
                         <span>{{ props.row.description }}</span>
@@ -87,37 +95,21 @@
                       <el-form-item label="方法名称">
                         <span>{{ props.row.serviceMethod }}</span>
                       </el-form-item>
-                      <el-form-item label="接口状态">
-                        <span>{{ props.row.status?'启用':'禁止' }}</span>
-                      </el-form-item>
-                      <el-form-item label="接口描述">
-                        <span>{{ props.row.description }}</span>
-                      </el-form-item>
+
                     </el-form>
                   </el-tab-pane>
                   <el-tab-pane label="请求参数信息">
-                    <!--<el-table :data="props.row.gatewayServiceRequestDOS" size="mini" style="width: 1000px"  highlight-current-row border   max-height="400"   class="el-tb-edit mgt20" ref="multipleTable" tooltip-effect="dark" >-->
-                      <!--<el-table-column prop="paramsIndex" label="参数位置" style="width: 20%">-->
-                      <!--</el-table-column>-->
-                      <!--<el-table-column prop="typeName" label="参数类型" style="width: 20%">-->
-                      <!--</el-table-column>-->
-                      <!--<el-table-column prop="example" label="参数示例" style="width: 30%">-->
-                      <!--</el-table-column>-->
-                      <!--<el-table-column prop="description" label="参数描述" style="width: 30%">-->
-                      <!--</el-table-column>-->
-                    <!--</el-table>-->
                     <el-table
                       :data="props.row.gatewayServiceRequestDOS"
-                      height="250"
                       border
-                      style="width: 100%">
-                      <el-table-column prop="paramsIndex" label="参数位置" style="width: 100px;">
+                      style="width: 550px">
+                      <el-table-column prop="paramsIndex" label="参数位置" style="width: 50px;">
                       </el-table-column>
-                      <el-table-column prop="typeName" label="参数类型">
+                      <el-table-column prop="typeName" label="参数类型" style="width: 100px;">
                       </el-table-column>
-                      <el-table-column prop="example" label="参数示例">
+                      <el-table-column prop="example" label="参数示例" style="width: 200px;">
                       </el-table-column>
-                      <el-table-column prop="description" label="参数描述">
+                      <el-table-column prop="description" label="参数描述" style="width: 200px;">
                       </el-table-column>
                     </el-table>
                   </el-tab-pane>
@@ -153,7 +145,7 @@
                   disable-transitions>{{scope.row.status?'启用':'禁用'}}</el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="serviceVersion" label="版本" >
+            <el-table-column prop="serviceVersion" label="服务版本" >
             </el-table-column>
             <el-table-column prop="groupName" label="隶属分组" >
             </el-table-column>
@@ -187,7 +179,7 @@
               <el-input v-model="apiEdit.id" :disabled="true"></el-input>
             </el-form-item>
             <el-form-item label="版本">
-              <el-input-number v-model="apiEdit.version" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
+              <el-input-number v-model="apiEdit.authVersion" @change="handleChange" :min="1"  label="描述文字"></el-input-number>
             </el-form-item>
             <el-form-item label="分组名称">
               <el-select v-model="apiEdit.groupId" placeholder="请选择" >
@@ -201,10 +193,44 @@
             </el-form-item>
             <el-form-item label="接口状态">
               <el-switch
-                v-model="apiEdit.status"
+              v-model="apiEdit.status"
+              :active-value="1"
+              :inactive-value="0"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="启用"
+              inactive-text="禁用">
+            </el-switch>
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              <el-switch
+                v-model="apiEdit.isAuth"
+                :active-value="1"
+                :inactive-value="0"
                 active-color="#13ce66"
-                inactive-color="#ff4949">
+                inactive-color="#ff4949"
+                active-text="鉴权"
+                inactive-text="非鉴权">
               </el-switch>
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              <el-switch
+                v-model="apiEdit.isLogin"
+                :active-value="1"
+                :inactive-value="0"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                active-text="登录"
+                inactive-text="非登录">
+              </el-switch>
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
             </el-form-item>
             <el-form-item label="接口描述">
               <el-input type="textarea" v-model="apiEdit.description"></el-input>
@@ -239,7 +265,7 @@
             </el-table-column>
             <el-table-column label="参数类型" width="200">
               <template slot-scope="scope">
-                <el-select v-model="scope.row.typeName" placeholder="请选择">
+                <el-select v-model="scope.row.typeName" placeholder="请选择" change="selectType">
                   <el-option
                     v-for="item in options"
                     :key="item.value"
@@ -305,7 +331,7 @@
         apiEdit:{
             name: '',
             id: '',
-            version: '',
+            authVersion: '',
             description: '',
             isRequest: '',
             groupId: '',
@@ -313,7 +339,7 @@
             serviceName:"",
             interfaceName:'',
             serviceMethod:'',
-
+            status:'',
         },
         activeName: 'first',
         //
@@ -419,11 +445,11 @@
           createBy:this.apiEdit.createBy,
           zookeeper:this.apiEdit.zookeeper,
           cdt:this.apiEdit.cdt,
-          serviceName:this.apiEdit.serviceName+"/"+this.apiEdit.interfaceName+"/"+this.apiEdit.methodName,
+          serviceName:this.apiEdit.serviceName+"/"+this.apiEdit.interfaceName+"/"+this.apiEdit.serviceMethod,
           url:"",
           desctiption:this.apiEdit.description,
-
         }
+        console.log(apiDetails)
         this.$router.push({
           path: '/apiDocumentDetail',
           query:{
@@ -450,9 +476,7 @@
         if (tab.index==3){
           this.toShowApiDocument(event);
         }
-        console.log(sid);
-        console.log(tab);
-        console.log(event);
+
       },
       //查看接口
       //查看分组和接口
@@ -677,7 +701,19 @@
               this.editLoading = true;
               // this.editForm.updateBy=this.$common.getSessionStorage("username")
                let param = Object.assign({}, this.apiEdit);
-               let param1 = Object.assign({}, this.requestParamsForm.tableData);
+              for (var i=0;i<this.requestParamsForm.tableData.length;i++){
+                var requestParam = this.requestParamsForm.tableData[0];
+                console.log(requestParam.typeName)
+                switch (requestParam.typeName){
+                  case 'java.lang.Float':requestParam.type=5;break;
+                  case 'java.lang.Integer':requestParam.type=2;break;
+                  case 'java.lang.Long':requestParam.type=3;break;
+                  case 'java.util.Map':requestParam.type=7;break;
+                  case 'java.lang.String':requestParam.type=1;break;
+                }
+              }
+               let param1 = Object.assign([], this.requestParamsForm.tableData);
+               console.log(param1)
               // let param ={
               //   apiEdit:this.apiEdit,
               //   requestParams:this.requestParamsForm.tableData
@@ -690,15 +726,15 @@
                 this.$ajax({
                   method: "post",
                   url: "/interface/interfaceList/updateRequestById",
-                  data: param1
+                  data: param1,
                 }).then(res => {
                   this.editLoading = false;
                    this.$message({
                      message: "提交成功",
                      type: "success"
                    });
-                   this.$refs["apiEdit"].resetFields();
-                   this.$refs["requestParamsForm"].resetFields();
+                   console.log("qqqqqqqqqqqqqqq")
+                   // this.$refs.requestParamsForm.resetFields();
                    this.editFormVisible = false;
                    this.getResult(1);
                 });

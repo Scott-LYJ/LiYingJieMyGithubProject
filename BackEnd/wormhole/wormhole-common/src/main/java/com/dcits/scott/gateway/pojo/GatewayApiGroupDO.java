@@ -7,8 +7,7 @@ import java.util.Date;
 /**
  *
  * 网关群组-DO信息
- * @author chenhailong
- * @date 2019年2月14日 上午10:40:06
+
  */
 public class GatewayApiGroupDO extends CommonDO {
 

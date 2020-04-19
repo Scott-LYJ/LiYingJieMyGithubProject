@@ -33,7 +33,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
- * @author everythingbest
  * redis连接相关的配置
  */
 //@Configuration

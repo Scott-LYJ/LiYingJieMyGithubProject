@@ -2,9 +2,15 @@ package com.dcits.scott.admin.pojo;
 
 import com.dcits.scott.common.CommonDO;
 import com.dcits.scott.common.ProtoBean;
+import com.dcits.scott.tool.DateUtil;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+/**
+ * 用户类
+ */
 public class AuthUser extends ProtoBean {
     private static final long serialVersionUID = 1L;
     private Integer id;
@@ -47,16 +53,16 @@ public class AuthUser extends ProtoBean {
         this.password = password == null ? null : password.trim();
     }
 
-    public Date getCdt() {
-        return cdt;
+    public String getCdt() {
+       return DateUtil.getFormatDate(cdt);
     }
 
     public void setCdt(Date cdt) {
         this.cdt = cdt;
     }
 
-    public Date getUdt() {
-        return udt;
+    public String getUdt() {
+        return DateUtil.getFormatDate(udt);
     }
 
     public void setUdt(Date udt) {

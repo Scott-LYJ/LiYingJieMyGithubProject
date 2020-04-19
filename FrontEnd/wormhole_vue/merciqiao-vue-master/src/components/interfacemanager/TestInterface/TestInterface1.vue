@@ -1,20 +1,20 @@
 <template>
   <section class="app-container">
-    <el-form label-width="90px"
+    <el-form label-width="100px"
              @submit.prevent="onSubmit"
              style="margin:0px;width:100%;min-width:600px;">
       <el-row v-show=pageArray[pageIndex].zkServiceShow>
-        <el-col :span="14">
+        <el-col :span="3">
           <el-form-item label="注册中心：" >
-            <el-select v-model="pageArray[pageIndex].zk" placeholder="必填，访问的ZK地址" filterable @change="changeZk">
+            <el-select v-model="pageArray[pageIndex].zk" placeholder="必填，访问的ZK地址" filterable @change="changeZk" width="100px">
               <el-option v-for="(option,index) in pageArray[pageIndex].zkList" v-bind:value="option" :key="index" :label="option">
                 {{ option }}
               </el-option>
             </el-select>
           </el-form-item>
         </el-col>
-
-        <el-col :span="6">
+        <br/>
+        <el-col :span="2">
           <el-form-item label="服务名称：">
             <el-select v-model="pageArray[pageIndex].serviceName" style="width: 100%" placeholder="必填，访问的服务名称" filterable @change="changeService">
               <el-option v-for="(option,index) in pageArray[pageIndex].serviceNames" :key="index" v-bind:value="option" :label="option">
@@ -52,39 +52,10 @@
           </el-form-item>
         </el-col>
 
-        <el-col :span="7">
-          <el-form-item label="测试用例：">
-            <el-cascader
-              placeholder="可选，使用保存的用例名称"
-              v-model="pageArray[pageIndex].groupNames"
-              expand-trigger="hover"
-              filterable
-              :options="pageArray[pageIndex].groupWithCase"
-              @change="changeTestCase">
-            </el-cascader>
-          </el-form-item>
-        </el-col>
 
-        <el-col :span="1">
-          <el-form-item label-width="0px">
-            <el-button class="cpLink my-button" plain type="info" v-clipboard:error="onError"
-                       v-clipboard:copy="pageArray[pageIndex].caseName"  v-clipboard:success="onCopy">
-              复制
-            </el-button>
-          </el-form-item>
-        </el-col>
       </el-row>
 
       <el-row >
-        <el-col :span="5">
-          <el-form-item label="实例IP：" label-width="90px">
-            <el-select v-model="pageArray[pageIndex].ip" placeholder="可选，调试的时候使用" filterable clearable>
-              <el-option v-for="(option,index) in pageArray[pageIndex].ips" :key="index" v-bind:value="option" :label="option">
-                {{ option }}
-              </el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
 
         <el-col :span="1" :offset="1">
           <el-form-item label-position="left" label-width="0px">
@@ -92,20 +63,6 @@
           </el-form-item>
         </el-col>
 
-        <el-col :span="5" :offset="1">
-          <el-form-item >
-            <el-dropdown  @command="handleCommand"  split-button @click="saveNewTemplate" type="info">
-              保存
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="saveAs">另存为...</el-dropdown-item>
-                <el-dropdown-item command="zkServiceShow">
-                  {{pageArray[pageIndex].zkServiceShow == true ?
-                  pageArray[pageIndex].zkServiceHideName : pageArray[pageIndex].zkServiceShowName}}
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </el-form-item>
-        </el-col>
       </el-row>
 
       <el-row>
@@ -161,30 +118,6 @@
           </div>
         </el-col>
       </el-row>
-
-      <el-dialog title="保存到测试用例" :visible.sync="pageArray[pageIndex].dialogFormVisible">
-        <el-form-item label="用例组名称：" label-width="100px">
-          <el-select
-            v-model="pageArray[pageIndex].groupName"
-            filterable
-            allow-create
-            placeholder="请选择或输入组名称">
-            <el-option
-              v-for="item in pageArray[pageIndex].groupOnlyNames"
-              :key="item"
-              :label="item"
-              :value="item">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="用例名称：" label-width="100px">
-          <el-input v-model="pageArray[pageIndex].caseName" auto-complete="off"></el-input>
-        </el-form-item>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="pageArray[pageIndex].dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="saveNewTemplate">确 定</el-button>
-        </div>
-      </el-dialog>
 
       <el-tooltip placement="top" content="返回顶部">
         <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="50" transition-name="fade"/>
@@ -383,7 +316,7 @@
 
           const loading = this.$loading({
             lock: true,
-            text: '正在刷新服务中,需要下载依赖的jar比较耗时,请耐心等待......',
+            text: '正在刷新服务中,请耐心等待......',
             spinner: 'el-icon-loading',
             background: 'rgba(0, 0, 0, 0.7)'
           });

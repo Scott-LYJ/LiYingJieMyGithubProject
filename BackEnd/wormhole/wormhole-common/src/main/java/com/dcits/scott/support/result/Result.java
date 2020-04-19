@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 /**
  * 统一结果响应对象
- * @author chenhailong
- * @date 2019年2月21日 下午6:53:55
+
  */
 public class Result<T> implements Serializable {
 

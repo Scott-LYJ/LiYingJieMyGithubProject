@@ -2,6 +2,9 @@ package com.dcits.scott.apidocument.SubDocument;
 
 import com.dcits.scott.common.CommonDO;
 
+/**
+ * 请求参数类
+ */
 public class RequestParam extends CommonDO {
     private String param;
     private String name;

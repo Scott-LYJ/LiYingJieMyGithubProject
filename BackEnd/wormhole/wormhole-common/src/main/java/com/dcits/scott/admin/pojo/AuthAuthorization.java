@@ -5,6 +5,9 @@ import com.dcits.scott.common.ProtoBean;
 
 import java.util.Date;
 
+/**
+ * 角色-用户关系类
+ */
 public class AuthAuthorization extends ProtoBean {
     private Integer id;
 

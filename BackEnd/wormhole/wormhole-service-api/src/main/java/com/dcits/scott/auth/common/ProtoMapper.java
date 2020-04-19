@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 原型数据访问接口。提供基础的数据访问层增、删、改、查等数据访问操作。
  *
- * @author 翁耀中 2016/12/7.
+
  */
 public interface ProtoMapper< T extends ProtoBean> {
 

@@ -6,6 +6,9 @@ import com.dcits.scott.tool.DateUtil;
 
 import java.util.Date;
 
+/**
+ * 项目实体类
+ */
 public class GatewayProjectDO extends CommonDO {
     private Integer id;
 

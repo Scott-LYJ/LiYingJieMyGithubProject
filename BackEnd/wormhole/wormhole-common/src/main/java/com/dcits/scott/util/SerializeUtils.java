@@ -2,6 +2,9 @@ package com.dcits.scott.util;
 
 import java.io.*;
 
+/**
+ * 序列化
+ */
 public class SerializeUtils {
     public static String serialize(Object obj) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

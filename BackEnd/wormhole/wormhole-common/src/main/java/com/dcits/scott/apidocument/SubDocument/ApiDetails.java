@@ -2,6 +2,9 @@ package com.dcits.scott.apidocument.SubDocument;
 
 import com.dcits.scott.common.CommonDO;
 
+/**
+ * 文档接口信息类
+ */
 public class ApiDetails extends CommonDO {
     private String id;
     private String name;

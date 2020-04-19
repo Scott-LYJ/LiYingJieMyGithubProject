@@ -71,7 +71,7 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   });
 //接口请求超时设置
-axios.defaults.timeout = 5000;//毫秒
+axios.defaults.timeout = 10000;//毫秒
 /**
  * 应答拦截器,添加请求头token
  */

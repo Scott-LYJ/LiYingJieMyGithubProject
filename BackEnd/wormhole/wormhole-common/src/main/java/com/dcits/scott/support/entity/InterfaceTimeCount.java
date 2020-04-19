@@ -5,6 +5,9 @@ import com.dcits.scott.tool.DateUtil;
 
 import java.util.Date;
 
+/**
+ * 接口创建时间实体类
+ */
 public class InterfaceTimeCount extends CommonDO {
     Date interfaceTime;
     Integer count;

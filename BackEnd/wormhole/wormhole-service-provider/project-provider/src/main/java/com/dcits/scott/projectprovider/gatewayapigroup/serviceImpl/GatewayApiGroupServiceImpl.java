@@ -39,6 +39,11 @@ public class GatewayApiGroupServiceImpl extends AbstractCommonServiceImpl<Gatewa
     }
 
     @Override
+    public void deleteLogic(Long id) throws Exception {
+
+    }
+
+    @Override
     public void update(GatewayApiGroupDO gatewayApiGroupDO) throws Exception {
 
     }

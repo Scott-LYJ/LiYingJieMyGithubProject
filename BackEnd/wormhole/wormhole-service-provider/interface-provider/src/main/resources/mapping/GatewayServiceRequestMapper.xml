@@ -207,8 +207,8 @@
       <if test="apiId != null">
         API_ID = #{apiId,jdbcType=BIGINT},
       </if>
-      <if test="paramIndex != null">
-        `PARAMS_INDEX` = #{paramIndex,jdbcType=INTEGER},
+      <if test="paramsIndex != null">
+        `PARAMS_INDEX` = #{paramsIndex,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         `NAME` = #{name,jdbcType=VARCHAR},
@@ -242,7 +242,7 @@
     -->
     update gateway_service_request
     set API_ID = #{apiId,jdbcType=BIGINT},
-      `PARAMS_INDEX` = #{paramIndex,jdbcType=INTEGER},
+      `PARAMS_INDEX` = #{paramsIndex,jdbcType=INTEGER},
       `NAME` = #{name,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=INTEGER},
       TYPE_NAME = #{typeName,jdbcType=VARCHAR},
@@ -261,7 +261,7 @@
     -->
     update gateway_service_request
     set API_ID = #{apiId,jdbcType=BIGINT},
-      `PARAMS_INDEX` = #{paramIndex,jdbcType=INTEGER},
+      `PARAMS_INDEX` = #{paramsIndex,jdbcType=INTEGER},
       `NAME` = #{name,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=INTEGER},
       TYPE_NAME = #{typeName,jdbcType=VARCHAR},
@@ -277,7 +277,7 @@
 	<where>
 	    <if test="id != null and id != ''">and `ID` = #{id}</if>
         <if test="apiId != null and apiId != ''">and API_ID = #{apiId}</if>
-        <if test="paramIndex != null and paramIndex != ''">and `PARAMS_INDEX` = #{paramIndex}</if>
+        <if test="paramsIndex != null and paramsIndex != ''">and `PARAMS_INDEX` = #{paramsIndex}</if>
         <if test="name != null and name != ''">and `NAME` = #{name}</if>
         <if test="type != null and type != ''">and `TYPE` = #{type}</if>
         <if test="typeName != null and typeName != ''">and TYPE_NAME = #{typeName}</if>

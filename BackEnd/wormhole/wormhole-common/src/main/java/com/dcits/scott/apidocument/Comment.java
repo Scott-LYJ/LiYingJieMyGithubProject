@@ -7,6 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+/**
+ * 评论实体类
+ */
 public class Comment extends CommonDO {
     private String name;
     private String id;

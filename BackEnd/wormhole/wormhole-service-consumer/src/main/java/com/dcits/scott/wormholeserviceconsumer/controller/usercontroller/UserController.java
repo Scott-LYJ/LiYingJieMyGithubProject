@@ -6,6 +6,8 @@ import com.dcits.scott.support.result.ResultInfo;
 import com.dcits.scott.auth.authuser.AuthUserService;
 import com.dcits.scott.wormholeserviceconsumer.ExtendFunction;
 import com.dcits.scott.wormholeserviceconsumer.config.fastdfs.FastDFSClientUtil;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.exception.HystrixBadRequestException;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
@@ -30,34 +32,36 @@ public class UserController {
     private FastDFSClientUtil dfsClient;
 
     //查询所有用户
+    @HystrixCommand(fallbackMethod = "querySysUserListError",ignoreExceptions=HystrixBadRequestException.class)
     @PostMapping("/querySysUserList")
-    public Map<String,Object> querySysUserList(@RequestBody Map<String,Object> map){
-
-        Object object = map.get("cdt");
-        if (object!=null){
-            String date = ExtendFunction.changeDate(object);
-            map.put("cdt",date);
-        }
+    public ResultInfo<AuthUser> querySysUserList(@RequestBody Map<String,Object> map) throws Exception {
+        ResultInfo<AuthUser> resultInfo;
         //获取列表
-        List<AuthUser> authUsers = authUserService.querySysUserList(map);
+        List<AuthUser> authUsers = authUserService.selectPage(map);
         //获取总条数
-        Integer count = authUserService.selectCount();
-
-        ResultInfo<AuthUser> resultInfo = new ResultInfo();
-        resultInfo = new ResultInfo("SUCCESS","查询成功",authUsers,null,count,"");
-        Map<String,Object> map1 = new HashMap<>();
-        map1.put("result",resultInfo);
-        return map1;
-
+        Integer count = authUserService.selectCount(map);
+        resultInfo = new ResultInfo(ResultInfo.OK,"查询成功",authUsers,null,count,"成功");
+        return resultInfo;
+    }
+    public ResultInfo<AuthUser> querySysUserListError(Map<String,Object> ma,Throwable e){
+        ResultInfo<AuthUser> resultInfo = new ResultInfo(ResultInfo.ERROR,"查询失败,出现异常",e.getMessage());
+        return resultInfo;
     }
     //删除选中的用户
+    @HystrixCommand(fallbackMethod = "delSysUserByUserIdError",ignoreExceptions=HystrixBadRequestException.class)
     @PostMapping("/delSysUserByUserId")
-    public void delSysUserByUserId(@RequestBody Map<String,Object> map){
+    public Result<String> delSysUserByUserId(@RequestBody Map<String,Object> map) throws Exception {
         String ids = String.valueOf(map.get("ids"));
         String str[] = ids.split(",");
         List<String> strings =  Arrays.asList(str);
         map.put("ids",strings);
-        authUserService.delSysUserByUserId(map);
+        authUserService.delete(map);
+        Result<String> result = new Result(ResultInfo.OK,"删除成功",null);
+        return result;
+    }
+    public Result<String> delSysUserByUserIdError(Map<String,Object> map,Throwable e){
+        Result<String> result = new Result(ResultInfo.OK,"删除失败，出现异常",e.getMessage());
+        return result;
     }
     //上传图片
     /**
@@ -105,33 +109,22 @@ public class UserController {
         //将文件放入fastdfs的storage
         try {
              s= dfsClient.uploadFile(picture);
-            System.out.println(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             String fileUrl1 = dfsClient.uploadFile(picture);
             request.setAttribute("msg", "成功上传文件，  '" + fileUrl1 + "'");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //将文件保存到服务器指定位置
-        try {
             picture.transferTo(targetFile);
             System.out.println("上传成功");
             //将文件在服务器的存储路径返回
-            return new Result("200","上传成功",s);
+            return new Result(Result.OK,"上传成功",s);
         } catch (IOException e) {
             System.out.println("上传失败");
-            e.printStackTrace();
-            return new Result("500", "上传失败","上传失败");
+            return new Result(Result.ERROR, "上传失败,出现异常","上传失败");
         }
     }
 
     //新增提交
+    @HystrixCommand(fallbackMethod = "addSubmitError",ignoreExceptions=HystrixBadRequestException.class)
     @PostMapping("/addSubmit")
-    public Result<String> addSubmit(@RequestBody Map<String,Object> map){
+    public Result<String> addSubmit(@RequestBody Map<String,Object> map) throws Exception {
         //加密密码
         String hashAlgorithName = "MD5";
         String password =String.valueOf(map.get("password"));
@@ -139,15 +132,6 @@ public class UserController {
         ByteSource credentialsSalt = ByteSource.Util.bytes(String.valueOf(map.get("name")));
         Object obj = new SimpleHash(hashAlgorithName, password, credentialsSalt, hashIterations);
         map.put("password",obj);
-        //获取系统时间cdt
-        Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
-        map.put("cdt",sdf.format(d));
-//        try {
-//            authUserService.addUser(map);
-//        }catch (Exception e){
-//            return new Result<String>("500","添加失败");
-//        }
         //创建对象
         AuthUser authUser = new AuthUser();
         authUser.setName(String.valueOf(map.get("name")));
@@ -155,17 +139,21 @@ public class UserController {
         authUser.setPhone(String.valueOf(map.get("phone")));
         authUser.setAddress(String.valueOf(map.get("address")));
         authUser.setAvatar(String.valueOf(map.get("avatar")));
-        authUser.setCdt(d);
-        authUser.setUdt(d);
-        authUserService.addUser(authUser);
-        return new Result<>("200","添加成功",authUser.getId()+"");
+        authUserService.insert(authUser);
+        return new Result<>(Result.OK,"添加成功",authUser.getId()+"");
+    }
+    public Result<String> addSubmitError(Map<String,Object> map ,Throwable e){
+        return new Result<>(Result.ERROR,"添加失败，出现异常",e.getMessage());
     }
 
-
-
+    @HystrixCommand(fallbackMethod = "updateUserError",ignoreExceptions = HystrixBadRequestException.class)
     @PostMapping("/updateUser")
-    public Result<String> updateUser(@RequestBody Map<String,Object> map){
+    public Result<String> updateUser(@RequestBody Map<String,Object> map) throws Exception {
         AuthUser authUser  = new AuthUser();
+        if (map.get("picture")!=null){
+            AuthUser authUser1 = authUserService.selectById(Integer.parseInt(String.valueOf(map.get("id"))));
+            dfsClient.delFile(authUser1.getAvatar());
+        }
         String isLocked = String.valueOf(map.get("isLocked"));
         if ("0".equals(isLocked)){
             //密码未修改
@@ -174,10 +162,6 @@ public class UserController {
             authUser.setAvatar(String.valueOf(map.get("picture")));
             authUser.setAddress(String.valueOf(map.get("address")));
             authUser.setPhone(String.valueOf(map.get("phone")));
-            //获取系统时间udt
-            Date d = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
-            authUser.setUdt(d);
         }
         else {
             //密码加密
@@ -194,15 +178,15 @@ public class UserController {
             authUser.setAvatar(String.valueOf(map.get("picture")));
             authUser.setAddress(String.valueOf(map.get("address")));
             authUser.setPhone(String.valueOf(map.get("phone")));
-            //获取系统时间udt
-            Date d = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
-            authUser.setUdt(d);
         }
-        authUserService.updateUser(authUser);
-        return new Result<>("200","修改成功");
+        authUserService.update(authUser);
+        return new Result<>(Result.OK,"修改成功");
+    }
+    Result<String> updateUserError(Map<String,Object> map,Throwable e){
+        return new Result<>(Result.ERROR,"修改失败,出现异常",e.getMessage());
     }
     //校验密码
+    @HystrixCommand(fallbackMethod = "checkPasswordError",ignoreExceptions = HystrixBadRequestException.class)
     @PostMapping("/checkPassword")
     public Result<String> checkPassword(@RequestBody Map<String,Object> map){
         String name = String.valueOf(map.get("name"));
@@ -218,11 +202,11 @@ public class UserController {
         authUser.setName(name);
         AuthUser authUser1 =authUserService.selectPasswordByName(authUser);
         if (psd.trim().equals(authUser1.getPassword().trim())){
-            return new Result<>("200","校验成功","");
+            return new Result<>(Result.OK,"校验成功","");
         }
-        else return new Result<>("500","校验失败","");
-
+        else return new Result<>(Result.ERROR,"校验失败","yes");
     }
-
-
+    public Result<String> checkPasswordError(Map<String,Object> map,Throwable e){
+        return new Result<>(Result.ERROR,"校验失败出现异常",e.getMessage());
+    }
 }

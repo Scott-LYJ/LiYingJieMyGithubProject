@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 使用webSocket广播一个实体类
+ */
 public class EncoderClassVo implements Encoder.Text<GatewayMessageDO>{
 
     @Override
@@ -24,20 +27,6 @@ public class EncoderClassVo implements Encoder.Text<GatewayMessageDO>{
         // TODO Auto-generated method stub
 
     }
-//    //我向web端传递的是Map类型的
-//    @Override
-//    public String encode(Map<String, List> map) throws EncodeException {
-//        ObjectMapper mapMapper= new ObjectMapper();
-//        try {
-//            String json="";
-//            json=mapMapper.writeValueAsString(map);
-//            return  json;
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//            return "false";
-//        }
-//    }
     //如果你传递的是一个类，则使用如下写法
     @Override
     public String encode(GatewayMessageDO gatewayMessageDO) throws EncodeException {

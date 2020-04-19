@@ -209,7 +209,6 @@ public class ShiroConfig {
     /**
      * Session ID 生成器
      *
-     * @return JavaUuidSessionIdGenerator
      */
     @Bean
     public JavaUuidSessionIdGenerator sessionIdGenerator() {

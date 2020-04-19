@@ -255,17 +255,20 @@ export default {
                 data: param
             }).then(
                 function(resultData) {
-                  console.log(resultData)
-                 let count =  resultData.data.count
-                  console.log( resultData.data.data)
-                    _this.tableData = resultData.data.data;
+                  var json = resultData.data;
+                  console.log(json)
+                  if (json.status=='ok'){
+                    console.log(resultData)
+                    let count =  json.count
+                    console.log( resultData.data.data)
+                    _this.tableData = json.data;
                     _this.roletotal = count;
                     _this.listLoading = false;
+                  }else{
+                    _this.$message({message: json.message,type: "error"});
+                  }
+
                 },
-                function(resultData) {
-                    // _this.tableData.message = "Local Reeuest Error!";
-                    //console.log(resultData);
-                }
                 );
 
         },
@@ -286,14 +289,22 @@ export default {
                             url: "/role/addRole",
                             data: param
                         }).then(res => {
+                          var json = res.data;
+                          if (json.status=='ok'){
                             this.addLoading = false;
                             this.$message({
-                                message: "提交成功",
-                                type: "success"
+                              message: "提交成功",
+                              type: "success"
                             });
-                            this.$refs["addForm"].resetFields();
-                            this.addFormVisible = false;
-                            this.getResult(1);
+
+                          }else{
+                            this.$message({message: json.message,type: "error"});
+
+                          }
+                          this.$refs["addForm"].resetFields();
+                          this.addFormVisible = false;
+                          this.getResult(1);
+
                         });
                     });
                 }
@@ -311,42 +322,24 @@ export default {
                 url: "/role/editRole",
                 data: param
               }).then(res => {
-                // this.addLoading = false;
-                this.$message({
-                  message: "提交成功",
-                  type: "success"
-                });
-                this.$refs["editForm"].resetFields();
+                var json = res.data;
+                if (json.status=='ok'){
+                  this.$message({
+                    message: "编辑成功",
+                    type: "success"
+                  });
+                }else {
+                  this.$message({message: json.message,type: "error"});
+                }
+                 this.$refs["editForm"].resetFields();
                  this.editFormVisible = false;
-                this.getResult(1);
+                 this.getResult(1);
               });
             });
           }
         });
 
       },
-        getRoleType: function() {
-
-            var _this = this;
-            this.listLoading = true;
-            let param = new URLSearchParams();
-            param.append("code", "PT_ROLETYPE");
-            this.$ajax({
-                method: "post",
-                url: "/api/execute/api/sysDict/Web/searchCodeSysDictDetail",
-                data: param
-            }).then(
-                function(resultData) {
-                    _this.roleTypeData = resultData.data.data;
-                    //alert(_this.roleTypeData)
-
-                },
-                function(resultData) {
-                    // _this.tableData.message = "Local Reeuest Error!";
-                    //console.log(resultData);
-                }
-                );
-        },
         //显示新增界面
         handleAdd: function() {
             this.addFormVisible = true;
@@ -369,17 +362,7 @@ export default {
             console.log(formatDate(new Date(row.cdt), 'yyyy-MM-dd hh:mm')+"===============")
             this.editForm.udt=formatDate(new Date(row.udt), 'yyyy-MM-dd hh:mm:ss')
           console.log(formatDate(new Date(row.udt), 'yyyy-MM-dd hh:mm')+"===============")
-            // this.$ajax({
-            //     method: "post",
-            //     url: "/api/sysrole-api/getSysRoleByid",
-            //     data: param
-            // }).then(
-            //     function(resultData) {
-            //
-            //         _this.addForm = resultData.data.data;
-            //         _this.listLoading = false;
-            //     }
-            //     );
+
         },
         delRole: function(row) {
             // let param = new URLSearchParams();
@@ -393,21 +376,18 @@ export default {
                 url: "/role/deleteSysRoleByid",
                 data: param
             })
-            .then(()=>{
-                  this.$message({
-                        message: "删除成功",
-                        type: "success"
+            .then((res)=>{
+                  var json = res.data;
+                  if (json.status =='ok'){
+                    this.$message({
+                      message: "删除成功",
+                      type: "success"
                     });
-              this.getResult(1)
-            })
-            .catch(()=>{
-                this.$message({
-                        message: "删除失败",
-                        type: "success"
-                    });
-              this.getResult(1)
-            })
-            ;
+                  }else {
+                    this.$message({message: json.message,type: "error"});
+                  }
+                  this.getResult(1)
+            });
 
         },
         getRoleUserList: function(val) {
@@ -423,8 +403,6 @@ export default {
                     console.log(resultData)
                     _this.roleUserList = resultData.data.data;
                     _this.roleusercount = resultData.data.count;
-                    //alert(_this.tableData);
-                    //_this.listLoading = false;
                 }
                 ).catch(
               function(resultData) {
@@ -453,35 +431,23 @@ export default {
                 data: param
             }).then(
                 function(resultData) {
-                    console.log(resultData)
-                 let dataList =  resultData.data.result.dataList;
-                  for (var i = 0;i<dataList.length;i++){
-                    let cdt = dataList[i].cdt;
-                    var dateCdt = new Date(cdt);
-                    dataList[i].cdt=formatDate(dateCdt, 'yyyy-MM-dd hh:mm')
-                  }
+                  var json = resultData.data
+                  if (json.status=='ok'){
+                    let dataList =  json.dataList;
+                    for (var i = 0;i<dataList.length;i++){
+                      let cdt = dataList[i].cdt;
+                      var dateCdt = new Date(cdt);
+                      dataList[i].cdt=formatDate(dateCdt, 'yyyy-MM-dd hh:mm')
+                    }
                     _this.userData =dataList
-                    _this.usercount = resultData.data.result.count;
-                    //alert(_this.tableData);
-                    //_this.listLoading = false;
+                    _this.usercount = json.count;
+                  }
+                  else{
+                      _this.$message({message: json.message, type:"error"});
+                      console.log("Error========>"+json.success);
+                  }
                 }
                 );
-
-        },
-        deleteRoleUser: function() {
-            let param = new URLSearchParams();
-            param.append("id", row.id);
-
-            this.$ajax({
-                method: "post",
-                url: "/api/sysrole-api/deleteSysRoleUserByid",
-                data: param
-            }).then(()=>{
-                 this.$message({
-                        message: "删除成功",
-                        type: "success"
-                    });
-            });
 
         },
         userSelectionChange: function(val) {
@@ -532,10 +498,10 @@ export default {
                 function(resultData) {
 
                   // alert("成功")
-                 getRoleUserList()
+                 this.getRoleUserList(1)
                 }
                 ).catch(function (result) {
-                getRoleUserList()
+                this.getRoleUserList(1)
               })
             }
             // this.$refs["addRoleUser"].resetFields();
@@ -546,22 +512,6 @@ export default {
         deleteUserRole: function() {
             var rows = this.roleuserSelect;
             if (rows) {
-                // rows.forEach(row => {
-                //     var _this = this;
-                //     this.listLoading = true;
-                //     let param = {
-                //       id:row.id
-                //     }
-                //     this.$ajax({
-                //         method: "post",
-                //         url: "/authorization/deleteSysRoleUserByid",
-                //         data: param
-                //     }).then(
-                //         function(resultData) {
-                //
-                //         }
-                //         );
-                // });
               let userIds=[];
               for (var i=0;i<rows.length;i++){
                 userIds[i]=rows[i].id
@@ -578,9 +528,7 @@ export default {
                       url: "/authorization/deleteSysRoleUserByid",
                       data: param
                   }).then(
-                      function(resultData) {
-                        getRoleUserList(1)
-                      }
+                        this.getRoleUserList(1)
                       );
 
 

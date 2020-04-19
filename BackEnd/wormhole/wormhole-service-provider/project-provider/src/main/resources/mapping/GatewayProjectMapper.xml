@@ -11,12 +11,12 @@
   </resultMap>
   <sql id="where">
     <where>
-      <if test="id != null">id = #{id}</if>
-      <if test="name != null">and name like concat('%', #{name}, '%')</if>
-      <if test="createrid != null">and createrid like concat('%', #{createrid}, '%')</if>
-      <if test="cdt != null">
+      <if test="id != null and id !='' ">id = #{id}</if>
+      <if test="name != null and name !=''">and name like concat('%', #{name}, '%')</if>
+      <if test="createrid != null and createrid !=''">and createrid like concat('%', #{createrid}, '%')</if>
+      <if test="cdt != null and cdt !=''">
         <![CDATA[
-                  and cdt between date_format(#{cdt}, '%Y-%m-%d 00:00:00') and date_format(#{cdt}, '%Y-%m-%d 23:59:59')
+                  and cdt between date_format(#{cdt[0]}, '%Y-%m-%d 00:00:00') and date_format(#{cdt[1]}, '%Y-%m-%d 23:59:59')
                 ]]>
       </if>
 
@@ -79,8 +79,8 @@
   </update>
 
 
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select ID, NAME, DESC, AVATAR, CDT, CREATERID
+  <select id="selectByPrimaryKey"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ID, NAME, DES, AVATAR, CDT, CREATERID
     from gateway_project
     where ID = #{id,jdbcType=INTEGER}
   </select>

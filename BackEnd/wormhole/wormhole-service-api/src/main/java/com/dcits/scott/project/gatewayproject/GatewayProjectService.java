@@ -9,15 +9,6 @@ import java.util.Map;
 /**
  * 
  * API分组表 接口
- * 
- * @version 
- * @author chenhailong
- * <pre>
- * Author	Version		Date		Changes
- * chenhailong 	1.0  2018年06月22日 Created
- *
- * </pre>
- * @since 1.
  */
 public interface GatewayProjectService extends CommonService<GatewayProjectDO> {
 
@@ -31,4 +22,6 @@ public interface GatewayProjectService extends CommonService<GatewayProjectDO> {
     void updateByMap(Map<String,Object> map);
 
     void deleteByPrimaryKey(Integer id);
+
+    GatewayProjectDO selectByIntId(int id);
 }

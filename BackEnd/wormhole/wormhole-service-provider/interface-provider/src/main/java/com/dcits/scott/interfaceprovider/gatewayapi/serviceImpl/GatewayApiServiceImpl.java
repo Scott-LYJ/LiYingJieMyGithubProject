@@ -28,15 +28,7 @@ import java.util.Map;
 /**
  * 
  * API接口表ServiceImpl
- * 
- * @version 
- * @author chenhailong
- * <pre>
- * Author	Version		Date		Changes
- * chenhailong 	1.0  		2018年06月22日 	Created
- *
- * </pre>
- * @since 1.
+
  */
 
 
@@ -150,6 +142,11 @@ public class GatewayApiServiceImpl extends AbstractCommonServiceImpl<GatewayApiD
 
     @Override
     public void delete(Long id) throws Exception {
+
+    }
+
+    @Override
+    public void deleteLogic(Long id) throws Exception {
 
     }
 

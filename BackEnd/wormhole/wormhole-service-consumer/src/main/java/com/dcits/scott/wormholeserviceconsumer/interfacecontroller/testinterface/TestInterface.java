@@ -10,9 +10,11 @@ import com.dcits.scott.util.CommonUtil;
 import com.dcits.scott.util.RedisKeys;
 import com.dcits.scott.util.SerializeUtils;
 import com.dcits.scott.wormholeserviceconsumer.interfacecontroller.createinterface.zk.ZkServiceFactory;
+import com.dcits.scott.wormholeserviceconsumer.interfacecontroller.testinterface.function.DubboAppCreator;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,10 +105,61 @@ public class TestInterface {
 
         return WebApiRspDto.error("查找接口对应的服务异常");
     }
+    //
+    @RequestMapping(value = "refresh",method = RequestMethod.GET)
+    @ResponseBody
+    public WebApiRspDto refreshService(@RequestParam("zk") String zk,
+                                       @RequestParam("zkServiceName") String serviceName){
+
+        if(serviceName == null || serviceName.isEmpty()){
+
+            return WebApiRspDto.error("必须选择一个服务名称",-1);
+        }
+
+        String modelKey = CommonUtil.getDubboModelKey(zk, serviceName);
+
+        Object modelObj = redisService.mapGet(RedisKeys.DUBBO_MODEL_KEY, modelKey);
+
+        DubboModel dubboModel = JSON.parseObject((String) modelObj,DubboModel.class);
+
+        String g = dubboModel.getGroupId();
+
+        String a = dubboModel.getArtifactId();
+
+        String v = dubboModel.getVersion();
+
+        String versionDirName = v.replaceAll("\\.","_");
+
+        String errorContent = "操作成功";
+        Map<String, InterfaceMetaInfo> interfaceMetaInfoMap = ZkServiceFactory.get(zk).allProviders.get(serviceName);
+        dubboModel = DubboAppCreator.create(zk,serviceName,g,a,v,interfaceMetaInfoMap);
+        try {
+            buildRequestDubboTemplate(dubboModel);
+        } catch (Exception exp) {
+            return WebApiRspDto.error(errorContent+"\n"+exp.getMessage());        }
+
+        return WebApiRspDto.success(errorContent);
+    }
+    private void buildRequestDubboTemplate(DubboModel model) throws IOException {
+
+        persistent(model);
+
+    }
+
+
+    private void persistent(DubboModel dubboModel) throws IOException {
+
+        String modelString = SerializeUtils.serialize(dubboModel);
+        String modelKey = CommonUtil.getDubboModelKey(dubboModel.getZkAddress(), dubboModel.getServiceName());
+
+        redisService.mapPut(RedisKeys.DUBBO_MODEL_KEY, modelKey, modelString);
+        redisService.setAdd(dubboModel.getZkAddress(), dubboModel.getServiceName());
+    }
 
 
 
 
+    //
    public Map<String,String> getAllClassName(String zk, String serviceName)  {
 
         String modelKey = CommonUtil.getDubboModelKey("["+zk+"]",serviceName);

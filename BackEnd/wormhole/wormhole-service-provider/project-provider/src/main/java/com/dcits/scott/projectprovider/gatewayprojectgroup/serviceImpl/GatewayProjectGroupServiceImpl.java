@@ -6,8 +6,6 @@ import com.dcits.scott.project.common.AbstractCommonServiceImpl;
 import com.dcits.scott.project.common.CommonMapper;
 import com.dcits.scott.project.gatewayprojectgroup.GatewayProjectGroupService;
 import com.dcits.scott.projectprovider.gatewayprojectgroup.mapper.GatewayProjectGroupMapper;
-import com.dcits.scott.support.page.PageParam;
-import com.dcits.scott.support.page.PageResult;
 import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
@@ -52,10 +50,6 @@ public class GatewayProjectGroupServiceImpl extends AbstractCommonServiceImpl<Ga
         return gatewayProjectGroupMapper;
     }
 
-    @Override
-    public GatewayProjectGroupDO selectById(Long id) throws Exception {
-        return super.selectById(id);
-    }
 
     @Override
     public Integer selectCount(Map<String, Object> map) throws Exception {

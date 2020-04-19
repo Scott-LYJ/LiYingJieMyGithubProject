@@ -22,7 +22,7 @@ import java.util.*;
 public class TestController {
     //test
     @Reference
-
+    AuthUserService authUserService;
 
 
 
@@ -40,13 +40,13 @@ public class TestController {
 //        String s = testInterface.testInterface("1");
 //        return s;
 //    }
-//    @GetMapping("/test")
-//    public String test(@RequestParam(required = true) Integer id){
-//        System.out.println("============"+id+"-------------");
-//        String s = authUserService.testMybatis(id);
-//        System.out.println(s+"ssssssssssssssssssssssssss");
-//        return s;
-//    }
+    @GetMapping("/test")
+    public String test(@RequestParam(required = true) Integer id){
+        System.out.println("============"+id+"-------------");
+        String s = authUserService.testMybatis(id);
+        System.out.println(s+"ssssssssssssssssssssssssss");
+        return s;
+    }
     @GetMapping("/h")
     public String test() {
 

@@ -7,16 +7,8 @@ export default {
     /**
      * 系统登陆
      */
-    loginIn: function ({ loginName, password }) {
-        var param = {
-            loginName: loginName,
-            password: password
-        };
-        return Axios.post('/api/shiro-api/login', param);
 
-    },
-  test: function({loginName, password}){
-      //return Axios.get('/test/home')
+  loginIn: function({loginName, password}){
     var param = {
       loginName: loginName,
       password: password

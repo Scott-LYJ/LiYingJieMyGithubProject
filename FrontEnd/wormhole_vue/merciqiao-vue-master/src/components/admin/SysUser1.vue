@@ -13,7 +13,10 @@
         <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
             <el-form :inline="true" :model="filters">
                 <el-form-item>
-                {{$t("SysUser.name")}}:<el-input v-model="filters.name"  :placeholder="$t('SysUser.name')" style="width:200px; heght:30px;" size="mini"></el-input>
+                {{$t("SysUser.name")}}:
+                  <el-input
+                  v-model="filters.name"  :placeholder="$t('SysUser.name')" style="width:200px; heght:30px;" size="mini">
+                </el-input>
                 </el-form-item>
                  <el-form-item>
                    {{$t("SysUser.id")}}:<el-input v-model="filters.id"   :placeholder="$t('SysUser.id')" style="width:200px; heght:30px;" size="mini"></el-input>
@@ -132,7 +135,7 @@
           <el-input v-model="addForm.address2" auto-complete="off"></el-input>
 				</el-form-item>
         <el-form-item :label="$t('SysUser.phone')" prop="phone">
-					<el-input v-model="addForm.phone" auto-complete="off" @blur.capture.native='checkPhone()'></el-input>
+					<el-input v-model="addForm.phone" auto-complete="off" ></el-input>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -152,11 +155,13 @@
         <el-form-item :label="$t('SysUser.name')" prop="name">
 					<el-input v-model="selectForm.name" auto-complete="off" :disabled="true"></el-input>
 				</el-form-item>
+        <br/>
         	<el-form-item :label="$t('SysUser.password')" prop="password">
 					<el-input v-model="selectForm.password" auto-complete="off" :disabled="true"></el-input>
 				</el-form-item>
-        <el-form-item :label="$t('SysUser.address')" prop="address">
-					<el-input v-model="selectForm.address" auto-complete="off" :disabled="true"></el-input>
+        <br/>
+        <el-form-item :label="$t('SysUser.address')" prop="address" >
+					<el-input v-model="selectForm.address" auto-complete="off" :disabled="true" style="width:200px" ></el-input>
 
 				</el-form-item>
          &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
@@ -200,6 +205,7 @@
             <img width="100%" :src="dialogImageUrl" alt="">
           </el-dialog>
         </el-form-item>
+        <br/>
         <el-form-item :label="$t('SysUser.name')" prop="loginName">
 					<el-input v-model="editForm.name" auto-complete="off"></el-input>
 				</el-form-item>
@@ -242,7 +248,7 @@
                   </el-form-item>
                 </el-form>
                 <el-form  label-width="80px" :inline="true">
-                  <div v-for="item in roleData" :key="item.id">
+                <div v-for="item in roleData" :key="item.id">
                   <el-form-item :label="$t('SysUser.rolename')" prop="">
                     <el-input v-model="item.name" auto-completen="off" :disabled="true"></el-input>
                   </el-form-item>
@@ -268,7 +274,20 @@
        verifyPassWordTip,
      },
   data() {
+    //手机号校验
+    var checkPhone=(rule,value,callback)=>{
+      if (value === ''){
+        callback(new Error( '手机号不能为空'))
+      }
+      if(!(/^1[3456789]\d{9}$/.test(this.addForm.phone))){
+        callback(new Error( '手机号格式错误'))
+      }else{
+          callback();
+        }
+
+    };
     return {
+      restaurants:[],
       importHeaders: {token: this.$common.getSessionStorage("token")},
       //文件上传的参数
       dialogImageUrl: '',
@@ -286,12 +305,10 @@
 
       //搜索区域参数
       filters: {
-        // name: "",
-        // phone: "",
-        // id: "",
-        // cdt: "",
-        mobile: "",
-        sex: "",
+        name: null,
+        phone: null,
+        id: null,
+        cdt: null,
         //性别下拉框
         sexOptions: [
           {
@@ -323,19 +340,24 @@
       addFormVisible: false,
       //添加按钮Loading加载
       addLoading: false,
+
       //输入框验证
       addFormRules: {
         name: [
           { required: true, message: "请输入登录名", trigger: "blur" }
         ],
         password: [
-          { required: true, message: "请输入登录密码", trigger: "blur" }
+          { required: true, message: "请输入登录密码", trigger: "blur" },
+          { min: 0, max: 24, message: '长度在 0 到 24 个字符', trigger: 'blur' }
+
         ],
         repassword: [
-           { required: true, message: "请再次输入登录密码", trigger: "blur"}
+           { required: true, message: "请再次输入登录密码", trigger: "blur"},
+          { min: 0, max: 24, message: '长度在 0 到 24 个字符', trigger: 'blur' }
+
         ],
         phone: [
-          { required: true, message: "请输入手机号", trigger: "blur"}
+          {  required: true,validator: checkPhone,trigger: "blur"}
         ],
         address: [
           { required: true, message: "请选择省市区", trigger: "blur"}
@@ -398,20 +420,34 @@
     };
   },
   methods: {
+    querySearchAsync(queryString, cb) {
+      var restaurants = this.restaurants;
+      var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
+
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        cb(results);
+      }, 2000 );
+    },
+    createStateFilter(queryString) {
+      return (filters) => {
+        return (filters.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+      };
+    },
     geticon(){
       let userIcon = this.$common.getSessionStorage('icon');
       console.log(userIcon+"------------")
       return userIcon ? userIcon:'static/img/user/hongbao.png'
     },
     editCancle(){
+      this.$refs.upload2.clearFiles();
       this.editFormVisible = false
       this.$refs["editForm"].resetFields();
-      this.$refs.upload2.clearFiles();
     },
     addCancle(){
+      this.$refs["upload"].clearFiles();
       this.addFormVisible = false
       this.$refs["addForm"].resetFields();
-      this.$refs.upload.clearFiles();
     },
 //文件上传成功的钩子函数
     handleSuccess(res, file) {
@@ -517,15 +553,7 @@
 
 
     //  @blur.capture.native='changePasswordTip(false)'
-    //手机号校验
-    checkPhone(){
-      if(!(/^1[3456789]\d{9}$/.test(this.addForm.phone))){
-        this.$notify.error({
-          message: '手机号格式错误',
-        });
 
-      }
-    },
     /**
      * 改变密码提示是否显示
      **/
@@ -573,33 +601,48 @@
           size: 10,
           name: this.filters.name,
           id: this.filters.id,
-          cdt: this.filters.cdt,
+          cdt: (this.filters.cdt!=null && this.filters.cdt!='')? new Date(parseInt(this.filters.cdt)+8*60*60*1000):'',
           phone: this.filters.phone
         }
       );
+      console.log(param)
       //delSysUserByUserId,querySysUserList
       this.$ajax({
         method: "post",
         url: "/user/querySysUserList",
         data: param
       }).then(function(resultData) {
-        console.log(resultData.data.result)
-       let dataList =  resultData.data.result.dataList
-        for (var i = 0;i<dataList.length;i++){
-          let cdt = dataList[i].cdt;
-          let udt = dataList[i].udt;
-          var dateCdt = new Date(cdt);
-          var dateUdt = new Date(udt)
-          dataList[i].cdt=formatDate(dateCdt, 'yyyy-MM-dd hh:mm')
-          dataList[i].udt=formatDate(dateUdt, 'yyyy-MM-dd hh:mm')
+        console.log(resultData.data)
+        if (resultData.data.status=="ok") {
+          let dataList =  resultData.data.dataList
+          _this.tableData = resultData.data.dataList;
+          _this.count = resultData.data.count;
+          _this.listLoading = false;
+        }else{
+          _this.tableData = resultData.data.dataList;
+          _this.count = resultData.data.count;
+          _this.error(resultData.data.message,resultData.data.success);
         }
-        _this.tableData = resultData.data.result.dataList;
-        _this.count = resultData.data.result.count;
-        _this.listLoading = false;
+
       });
     },
     //
-
+    error(message,info) {
+      this.$confirm(message, '错误', {
+        confirmButtonText: '确定',
+        cancelButtonText: '查看错误信息',
+        type: 'error',
+      }).then(() => {
+        this.$router.go(-1)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '请到控制台查看错误信息'
+        });
+        console.log("Error=============>"+info);
+        this.$router.go(-1)
+      });
+    },
 
     //是否有效显示转换
     formatState: function(row, column) {
@@ -639,10 +682,14 @@
     //显示新增界面
     handleAdd: function() {
       this.addFormVisible = true;
+      this.fileList=[]
     },
     //新增
     addSubmit: function() {
+      console.log("qqqq")
+      // this.$refs["upload"].clearFiles();
       this.$refs.addForm.validate(valid => {
+        console.log(valid)
         if (valid) {
           //主机构必填提示
           if (this.addForm.name == "") {
@@ -705,11 +752,13 @@
                 type: "success"
               });
               this.$refs["addForm"].resetFields();
-              this.$refs.upload.clearFiles();
+              this.$refs["upload"].clearFiles();
               this.addFormVisible = false;
               this.getResult(1);
             });
           });
+        }else{
+          console.log("222222")
         }
       });
     },
@@ -717,6 +766,10 @@
     //批量删除
     handleDeleteList: function() {
       const length = this.selectList.length;
+      if(length==0){
+        this.$message({message: '请选择要删除的项',type: "warn"});
+        return;
+      }
       let id = "";
       for (let i = 0; i < length; i++) {
         id += this.selectList[i].id + ",";
@@ -724,17 +777,16 @@
 
       //去掉结尾,
       id = id.substring(0, id.length - 1);
-
       let param = Object.assign(
         {},
         {
          ids:id
         }
       );
+      console.log(param)
       this.$confirm("确认删除该记录吗?", "提示", {
         type: "warning"
-      })
-        .then(() => {
+      }).then(() => {
           this.listLoading = true;
           // let param = new URLSearchParams();
           // param.append("ids", id);
@@ -758,6 +810,7 @@
     },
     //显示编辑界面
     handleEdit: function(index, row) {
+      this.fileList=[]
       this.editFormVisible = true;
       this.editForm = Object.assign({}, row);
     }, //编辑
@@ -807,6 +860,8 @@
     indexMethod(index) {
       return index + 1;
     },
+
+
 
 
   },

@@ -4,7 +4,8 @@
   <index-header  @toFatherData="sendSonData"></index-header>
     </div>
     <br/>
-  <el-row>
+
+  <el-row v-show="solr">
     <!--就改这里一行-->
     <el-col :span="4"  v-for="(project,index) in this.list" :key="index" :offset="1" style="margin-bottom:30px;" >
       <el-card :body-style="{ padding: '0px', height:'300px'}" shadow="hover" style="width: 230px;height: 300px;">
@@ -12,7 +13,6 @@
             <span v-html="project.name"></span>
            <div style="float: right;" >
              <div style="margin-top: -1px" v-html="project.authVersion">
-
              </div>
            </div>
           </div>
@@ -53,7 +53,13 @@
                   <el-tag v-if="project.status==1">启用</el-tag>
                   <el-tag type="danger" v-if="project.status==0">禁用</el-tag>
                   &nbsp;
-                  <i class="el-icon-view"></i><span>22222</span>
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
                   &nbsp;
                   <i class="el-icon-time"></i><span >{{project.cdt}}</span>
                 </el-form-item>
@@ -69,6 +75,7 @@
     </el-col>
   </el-row>
     <live2d />
+    <solr-empty v-show="solrEnpty"></solr-empty>
 
     <!-- 详情界面-->
     <el-dialog title="接口详情" :visible.sync="detailFormVisible" :close-on-click-modal="false">
@@ -82,7 +89,7 @@
               <el-input v-model="apiDetail.id" :disabled="true"></el-input>
             </el-form-item>
             <el-form-item label="版本">
-              <el-input-number v-model="apiDetail.version" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
+              <el-input-number v-model="apiDetail.authVersion" @change="handleChange" :min="1"  label="描述文字" :disabled="true"></el-input-number>
             </el-form-item>
             <el-form-item label="分组名称">
               <el-input v-model="apiDetail.groupName" :disabled="true"></el-input>
@@ -150,7 +157,7 @@
         </el-tab-pane>
       </el-tabs>
       <div slot="footer" class="dialog-footer">
-        <el-button>{{$t('SysUser.cancle')}}</el-button>
+        <el-button @click="cancle">{{$t('SysUser.cancle')}}</el-button>
       </div>
     </el-dialog>
     <!--详情界面结束-->
@@ -213,20 +220,22 @@
 import apis from "../apis/apis";
 import apiCard from "./card/apiCard.vue";
 import indexHeader from "./indexHeader.vue";
+import solrEmpty from "./common/solrEmpty.vue";
 
 import live2d from 'vue-live2d'
 import 'vue-live2d/dist/vue-live2d.css'
 
 export default {
-
-
   components:{
     apiCard,
     indexHeader,
     live2d,
+    solrEmpty,
   },
   data() {
     return {
+      solrEnpty:true,
+      solr:true,
       options:[],
       activeName: 'first',
       detailFormVisible:false,
@@ -263,7 +272,9 @@ export default {
   },
 
   methods: {
-
+    cancle(){
+      this.detailFormVisible=false;
+    },
     //table序号
     indexMethod(index) {
       return index + 1;
@@ -283,9 +294,6 @@ export default {
         data: param
       }).then((resultData) =>{
          console.log(resultData)
-        // for (var i=0;i<resultData.data.length;i++){
-        //   this.apiDetail = resultData.data.data.get(0);
-        // }
         this.apiDetail = resultData.data.data[0];
          console.log(this.apiDetail.gatewayServiceRequestDOS)
         this.requestParamsForm =  resultData.data.data[0].gatewayServiceRequestDOS;
@@ -372,12 +380,19 @@ export default {
       if (data!=null){
         this.list=[];
       }
-      // this.list = data
-      for (var i=0;i<data.length;i++) {
-        this.api=data[i];
-        this.list.push(this.api)
-      }
+      if (data==null){
+        this.solr=false;
+        this.solrEnpty=true;
+      }else{
+        // this.list = data
+        for (var i=0;i<data.length;i++) {
+          this.api=data[i];
+          this.solr=true;
+          this.solrEnpty=false;
+          this.list.push(this.api)
+        }
 
+      }
 
     },
 
@@ -417,27 +432,11 @@ export default {
         apis.shiroApi.loginLog(loginLog);
       }
     },
-    openZanZhu(){
-      this.$common.OpenNewPage(this,'zanzhu');
-    },
-    getZanZhu(){
-      apis.mayiApi.getZanZhu().then(res=>{
-        if(res.status=="200"){
-          if(res.data.dataList){
-            this.zanzhu=res.data.dataList;
-          }
-        }
-      }).catch(
-
-      );
-    },
     getDate(param){
       return this.$common.toDate(param);
     }
   },
-  mounted() {
-    this.getZanZhu();
-  },
+
 
   computed:{
 

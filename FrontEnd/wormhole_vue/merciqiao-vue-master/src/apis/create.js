@@ -42,7 +42,7 @@ export function upload(params) {
 
 export function refresh(params) {
     return request({
-        url:'/dubbo-postman/refresh',
+        url:'/testInterface/refresh',
         method:'get',
         params
     })

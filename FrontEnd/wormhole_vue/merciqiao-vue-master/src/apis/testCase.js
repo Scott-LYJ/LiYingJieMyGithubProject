@@ -27,7 +27,7 @@ import request from '@/utils/request'
 export function saveCase(data) {
 
     return request({
-        url:'/dubbo-postman/case/save',
+        url:'/test/testCaseController/case/save',
         method:'post',
         data
     })
@@ -35,7 +35,7 @@ export function saveCase(data) {
 
 export function getGroupAndCaseName(params) {
     return request({
-        url:'/dubbo-postman/case/group/list',
+        url:'/test/testCaseController/case/group/list',
         method:'get',
         params
     })
@@ -43,7 +43,7 @@ export function getGroupAndCaseName(params) {
 
 export function getAllGroupName(params) {
     return request({
-        url:'/dubbo-postman/case/group-name/list',
+        url:'/test/testCaseController/case/group-name/list',
         method:'get',
         params
     })
@@ -51,7 +51,7 @@ export function getAllGroupName(params) {
 
 export function queryCaseDetail(params) {
     return request({
-        url:'/dubbo-postman/case/detail',
+        url:'/test/testCaseController/case/detail',
         method:'get',
         params
     })
@@ -59,7 +59,7 @@ export function queryCaseDetail(params) {
 
 export function deleteDetail(params) {
     return request({
-        url:'/dubbo-postman/case/delete',
+        url:'/test/testCaseController/case/delete',
         method:'get',
         params
     })
@@ -67,7 +67,7 @@ export function deleteDetail(params) {
 
 export function queryAllCaseDetail(params) {
     return request({
-        url:'/dubbo-postman/case/group-case-detail/list',
+        url:'/test/testCaseController/case/group-case-detail/list',
         method:'get',
         params
     })

@@ -1,5 +1,8 @@
 package com.dcits.scott.support.entity;
 
+/**
+ * 测试和文档数实体类
+ */
 public class TestAndDocumentCount {
     Integer testCount;
     Integer DocumentCount;

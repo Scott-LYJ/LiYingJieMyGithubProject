@@ -39,7 +39,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author everythingbest
  * 这个类的所有变量都是私有的
  * 处理一个zk集群下面dubbo节点的变更同步
  */

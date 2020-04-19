@@ -26,7 +26,7 @@ public class InterfaceStatusController {
         Integer allDocument =gatewayApiService.selectAllDocument();
 
 
-        Map<String, TestAndDocumentCount> map = new HashMap<>();
+        Map<String, TestAndDocumentCount> map = new TreeMap<>();
         List<InterfaceTimeCount> interfaceTimeCountList = gatewayApiService.showInterfaceTimeCount();
 
         List<DocumentTimeCount> documentTimeCountList = gatewayApiService.showDocumentTimeCount();

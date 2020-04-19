@@ -32,8 +32,6 @@ public class ZkConfigController {
     @ResponseBody
     public WebApiRspDto configs(){
 
-       // Set<Object> sets = redisService.members(RedisKeys.ZK_REDIS_KEY);
-       // Set<Object> sets  = Collections.singleton(redisService.get(RedisKeys.ZK_REDIS_KEY));
         Set<Object> sets = redisService.members(RedisKeys.ZK_REDIS_KEY);
         return WebApiRspDto.success(sets);
     }
@@ -107,16 +105,14 @@ public class ZkConfigController {
    }
 
    //
-   @RequestMapping(value = "env", method = RequestMethod.GET)
-   @ResponseBody
-   public WebApiRspDto env(){
-
-       return WebApiRspDto.success("LOCAL");
-   }
     @RequestMapping(value = "/createDubboModel", method = RequestMethod.POST)
     @ResponseBody
     public String createDubboModel(@RequestBody Map<String,Object> map) throws IOException {
         String zk = String.valueOf(map.get("zookeeper"));
+        Set<Object> members = redisService.members(zk);
+        if (!members.isEmpty()){
+            return "";
+        }
         String g = String.valueOf(map.get("groupId"));
         String v = String.valueOf(map.get("serviceVersion"));
         String a = String.valueOf(map.get("createBy"));

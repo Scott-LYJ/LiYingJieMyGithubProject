@@ -10,10 +10,7 @@ package com.dcits.scott.common;
 import java.io.Serializable;
 
 /**
- *
- * 
- * @author chenhailong
- * @date 2018年7月17日 下午6:53:14 
+ * 序列化
  */
 public class CommonDO implements Serializable {
 

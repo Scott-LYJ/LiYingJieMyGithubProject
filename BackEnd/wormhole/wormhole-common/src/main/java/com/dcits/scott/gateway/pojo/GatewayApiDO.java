@@ -12,33 +12,10 @@ import org.apache.solr.client.solrj.beans.Field;
 
 /**
  *
- * 网关API-DO对象
- * @author chenhailong
- * @date 2019年2月14日 上午10:39:25
+ * API-DO对象
  */
 public class GatewayApiDO extends CommonDO {
   private static final long serialVersionUID = -3240563338269708158L;
-  
-  /**
-   * 0=普通接口，body转换成json对象传递后端，url参数按照自定义传给后端
-   */
-  public static final Integer SPECIAL_TYPE_0 = 0;
-  /**
-   * 1=流式接口，body解析成String传给后端
-   */
-  public static final Integer SPECIAL_TYPE_1 = 1;
-  /**
-   * 2=键值接口，当前没有用到，废弃
-   */
-  public static final Integer SPECIAL_TYPE_2 = 2;
-  /**
-   * 3=三方回调接口，body解析成String 合并 url参数放入到map中，统一传给后端
-   */
-  public static final Integer SPECIAL_TYPE_3 = 3;
-
-  public static final String SERVER_VERSION_ONLINE = "1.0.0.online";
-  
-  public static final String SERVER_VERSION_DEV = "1.0.0.dev";
 
   
   /**
@@ -209,7 +186,6 @@ public class GatewayApiDO extends CommonDO {
   /**
    * 输入参数
    */
-//  private List<GatewayServiceRequestDO> paramList;
 
   public String getGroupName() {
     return groupName;
@@ -511,26 +487,5 @@ public class GatewayApiDO extends CommonDO {
     return version;
   }
 
-  /**
-   * @mbg.generated
-   */
-//  public void setVersion(Integer version) {
-//    this.version = version;
-//  }
-//
-//  public List<GatewayServiceRequestDO> getParamList() {
-//    return paramList;
-//  }
-//
-//  public void setParamList(List<GatewayServiceRequestDO> paramList) {
-//    this.paramList = paramList;
-//  }
-//
-//  public String getGroupName() {
-//    return groupName;
-//  }
-//
-//  public void setGroupName(String groupName) {
-//    this.groupName = groupName;
-//  }
+
 }

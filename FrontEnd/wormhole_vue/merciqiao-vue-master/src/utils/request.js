@@ -30,6 +30,23 @@ const service = axios.create({
   timeout: 1200*10*1000, // 请求超时时间10min
   headers:{"ajax-type":true}
 });
+//
+service.interceptors.request.use(
+  config => {
+    console.log('>>>请求url:', config.url);
+    var headers = config.headers;
+
+    if (sessionStorage.getItem("token")) {
+      headers.token = sessionStorage.getItem("token");
+    }
+    console.log(headers)
+
+    return config;
+  },
+  error => {
+    console.log('>>>请求异常:', error.message);
+    return Promise.reject(error);
+  });
 
 // response 拦截器
 service.interceptors.response.use(

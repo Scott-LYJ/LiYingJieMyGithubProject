@@ -7,26 +7,27 @@ import com.dcits.scott.auth.common.ProtoService;
 import java.util.List;
 import java.util.Map;
 
-public interface AuthUserService  {
+public interface AuthUserService extends ProtoService<AuthUser>  {
     //test
     String testMybatis(Integer id);
     //登录认证
     AuthUser loginAuthentication(AuthUser authUser);
-    //查询用户列表
-    List<AuthUser> querySysUserList(Map<String,Object> map);
+//    //查询用户列表
+//    List<AuthUser> querySysUserList(Map<String,Object> map);
 
-    Integer  selectCount();
+//    Integer  selectCount();
 
-    void delSysUserByUserId(Map<String,Object> map);
+//    void delSysUserByUserId(Map<String,Object> map);
 
+//    Integer addUser(AuthUser authUser);
 
-    Integer addUser(AuthUser authUser);
+//    void updateUser(AuthUser authUser);
 
-    void updateUser(AuthUser authUser);
-
-    List<AuthUser> selectByList(Map<String,Object> map1);
+//    List<AuthUser> selectByList(Map<String,Object> map1);
 
     AuthUser selectPasswordByName(AuthUser authUser);
 
-    AuthUser selectByPrimaryKey(Integer createrid);
+    List<AuthUser> selectByList(Map<String,Object> map1);
+
+//    AuthUser selectByPrimaryKey(Integer createrid);
 }
