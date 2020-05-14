@@ -481,6 +481,13 @@
       //查看接口
       //查看分组和接口
       toTest(row){
+        const loading = this.$loading({
+          lock: true,
+          text: '正在创建或加载模板请稍后......',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+
         console.log(row)
         //
         this.toTestForm.zookeeper=row.zookeeper
@@ -524,6 +531,7 @@
             let index = this.toTestForm.interfaceName.lastIndexOf("/");
             let provider = this.toTestForm.interfaceName.substr(index+1)
             console.log("provider",provider)
+            loading.close();
             this.$router.push({
               path: '/TestInterface',
               query:{zk: this.toTestForm.zookeeper,

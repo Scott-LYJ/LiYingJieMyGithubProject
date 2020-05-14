@@ -59,8 +59,8 @@
                   &nbsp;
                   &nbsp;
                   &nbsp;
-                  &nbsp;
-                  &nbsp;
+
+
                   <i class="el-icon-time"></i><span >{{project.cdt}}</span>
                 </el-form-item>
                 <el-form-item  style="margin-top:-10px">

@@ -83,26 +83,6 @@ var menuDevList = [
                 index: 'routedev',
                 title: '个人信息修改'
             },
-          {
-            index: 'apidocumentdetail',
-            title: '接口文档信息'
-          },
-          {
-            index: 'apidocumentdetail2',
-            title: '接口文档信息'
-          },
-          {
-            index: 'pinglun',
-            title: '评论'
-          },
-          {
-            index: 'testWebSocket',
-            title: 'test'
-          },
-          {
-            index: 'echats',
-            title: 'echarts'
-          },
         ]
     }
 ]

@@ -266,9 +266,9 @@
         <span class="author-time" v-text="dateStr(item.time)"></span>
       </div>
       <div class="icon-btn">
-        <span @click="showReplyInput(i,item.name,item.id,item.commentNum)" v-if="otherFunction.discuss"><i  class="iconfont el-icon-s-comment"></i>{{item.commentNum}}</span>
-        <i class="iconfont el-icon-caret-top" @click="likeUp(item,item.like)" v-if="otherFunction.thumbsUp"></i>{{item.like}}
-        <i class="iconfont el-icon-caret-bottom" @click="likeDown(item,item.unLike)" v-if="otherFunction.thumbsDown"></i>{{item.unLike}}
+        <span @click="showReplyInput(i,item.name,item.id,item.commentNum)" ><i  class="iconfont el-icon-s-comment"></i>{{item.commentNum}}</span>
+        <i class="iconfont el-icon-caret-top" @click="likeUp(item,item.like)"></i>{{item.like}}
+        <i class="iconfont el-icon-caret-bottom" @click="likeDown(item,item.unLike)" ></i>{{item.unLike}}
       </div>
       <div class="talk-box">
         <p>
@@ -481,6 +481,17 @@
         }).then((resultData)=>{
           console.log(resultData)
           let data =  resultData.data[0];
+          if (resultData.data.length==0){
+            this.$confirm('此接口未编写接口文档', '提示', {
+              confirmButtonText: '返回',
+              type: 'warning'
+            }).then(() => {
+              this.$router.back(-1)
+            }).catch(() => {
+              this.$router.back(-1)
+            });
+            return
+          }else{
           this.sid=data.sid;
           this._id=data._id;
           this.otherFunction=data.otherFunction
@@ -500,66 +511,83 @@
           console.log(resultData.data)
           this.comments = data.comments
           console.log(this.comments)
+          }
         });
       },
       methods:{
-        likeUp(item,like){
-          item.like = like+1;
-          let param = {
-            sid:this.sid,
-            upContent : this.upContent,
-            downContent:this.downContent,
-            apiDetails:this.apiDetails,
-            otherFunction:this.otherFunction,
-            requestParamList:this.requestParamsForm.tableData,
-            responseParamList : this.responseParamsForm.tableData,
-            responseCodeList:this.responseCodesForm.tableData,
-            comments:this.comments
-          }
-          console.log(param)
-          //
-          this.$ajax({
-            method: "post",
-            url: "/test/apiDocument/"+this._id,
-            data: param
-          }).then(res => {
+        likeUp(item,like) {
+          if (item.liked === false) {
+            item.like = like - 1;
+            item.liked = true
+            return;
+          } else {
+            console.log(item)
+            console.log(item + "  " + like)
+            item.like = like + 1;
+            let param = {
+              sid: this.sid,
+              upContent: this.upContent,
+              downContent: this.downContent,
+              apiDetails: this.apiDetails,
+              otherFunction: this.otherFunction,
+              requestParamList: this.requestParamsForm.tableData,
+              responseParamList: this.responseParamsForm.tableData,
+              responseCodeList: this.responseCodesForm.tableData,
+              comments: this.comments
+            }
+            console.log(param)
+            //
+            this.$ajax({
+              method: "post",
+              url: "/test/apiDocument/" + this._id,
+              data: param
+            }).then(res => {
 
-            this.$message({
-              message: "成功",
-              type: "success"
+              this.$message({
+                message: "成功",
+                type: "success"
+              });
+              item.liked=false
+              // this.$emit('update', this.update)
             });
-            // this.$emit('update', this.update)
-          });
 
+          }
         },
-        likeDown(item,unlike){
-          item.unLike=unlike+1;
-          let param = {
-            sid:this.sid,
-            upContent : this.upContent,
-            downContent:this.downContent,
-            apiDetails:this.apiDetails,
-            otherFunction:this.otherFunction,
-            requestParamList:this.requestParamsForm.tableData,
-            responseParamList : this.responseParamsForm.tableData,
-            responseCodeList:this.responseCodesForm.tableData,
-            comments:this.comments
-          }
-          console.log(param)
-          //
-          this.$ajax({
-            method: "post",
-            url: "/test/apiDocument/"+this._id,
-            data: param
-          }).then(res => {
+        likeDown(item,unlike) {
+          if (item.unLiked === false) {
+            item.unLike = unlike - 1;
+            item.unLiked = true
+            return;
+          } else {
+            item.unLike = unlike + 1;
+            let param = {
+              sid: this.sid,
+              upContent: this.upContent,
+              downContent: this.downContent,
+              apiDetails: this.apiDetails,
+              otherFunction: this.otherFunction,
+              requestParamList: this.requestParamsForm.tableData,
+              responseParamList: this.responseParamsForm.tableData,
+              responseCodeList: this.responseCodesForm.tableData,
+              comments: this.comments
+            }
+            console.log(param)
+            //
+            this.$ajax({
+              method: "post",
+              url: "/test/apiDocument/" + this._id,
+              data: param
+            }).then(res => {
 
-            this.$message({
-              message: "成功",
-              type: "success"
+              this.$message({
+                message: "成功",
+                type: "success"
+              });
+              // this.$emit('update', this.update)
+              item.unLiked=false
             });
-            // this.$emit('update', this.update)
-          });
 
+          }
         },
         cancleCommentReply(i,index){
           this.comments[i].inputShow = false
@@ -608,6 +636,7 @@
             a.comment =this.replyComment
             a.headImg = this.myHeader
             a.time = timeNow
+            a.id=timeNow
             a.commentNum = 0
             a.like = 0
             a.unLike = 0
@@ -670,7 +699,7 @@
             let timeNow = new Date().getTime();
             let time= this.dateStr(timeNow);
             a.from= this.myName
-            a.fromId=this.myId
+            a.fromId=timeNow
             a.to = this.to
             console.log("a.to",a.to)
             a.toId=this.toId
@@ -682,7 +711,9 @@
             a.like = 0
             a.unLike=0
             this.comments[i].reply.push(a)
+            console.log(a)
             console.log("index",this.index+"  "+i)
+            console.log(this.comments[this.index].reply)
             for (var i=0;i<this.comments[this.index].reply.length;i++){
               if(this.comments[this.index].reply[i].fromId==a.toId){
                 this.comments[this.index].reply[i].commentNum=this.comments[this.index].reply[i].commentNum+1

@@ -152,7 +152,7 @@ public class UserController {
         AuthUser authUser  = new AuthUser();
         if (map.get("picture")!=null){
             AuthUser authUser1 = authUserService.selectById(Integer.parseInt(String.valueOf(map.get("id"))));
-            dfsClient.delFile(authUser1.getAvatar());
+            if(!"null".equals(authUser1.getAvatar())) dfsClient.delFile(authUser1.getAvatar());
         }
         String isLocked = String.valueOf(map.get("isLocked"));
         if ("0".equals(isLocked)){
@@ -204,7 +204,7 @@ public class UserController {
         if (psd.trim().equals(authUser1.getPassword().trim())){
             return new Result<>(Result.OK,"校验成功","");
         }
-        else return new Result<>(Result.ERROR,"校验失败","yes");
+        return new Result<>(Result.ERROR,"校验失败","yes");
     }
     public Result<String> checkPasswordError(Map<String,Object> map,Throwable e){
         return new Result<>(Result.ERROR,"校验失败出现异常",e.getMessage());

@@ -72,4 +72,8 @@ public class LocalStore {
 
 
     }
+
+    public static void putTemplete(String requestPath, RequestTemplate template){
+        CACHED_TEMPLATES.put(requestPath,template);
+    }
 }

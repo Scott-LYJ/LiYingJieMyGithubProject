@@ -3,7 +3,9 @@
         <div class="login">
             <el-form :model="formLogin" :rules="rules" ref="formLogin">
                 <el-form-item>
-                    <h2 class="title">WormHoleApi</h2>
+
+
+                  <h1 class="title" >WormHoleApi</h1>
                 </el-form-item>
                 <el-form-item prop="loginName">
                     <el-input v-model="formLogin.loginName"  placeholder="账号"><template slot="prepend"><i class="el-icon-user"></i></template></el-input>
@@ -169,16 +171,18 @@ export default {
         });
         apis.shiroApi.loginIn(this.formLogin)
           .then(data=>{
+            console.log(data)
             //监听事件
             if (data && data.data) {
-              var json = data.data.result.data.data;
-              console.log('json',json);
+
               if (data.data.result.status == 'SUCCESS') {
+                var json = data.data.result.data.data;
+                console.log('json',json);
                 this.$common.setSessionStorage('token', data.data.token);
                 console.log('token',this.$common.getSessionStorage('token'))
                 this.$common.setSessionStorage('username',json.userInfo.name);
                 this.$common.setSessionStorage('id',json.userInfo.id);
-
+                console.log(this.$common.getSessionStorage("id"))
                 this.$common.setSessionStorage('cdt',formatDate(new Date(json.userInfo.cdt), 'yyyy-MM-dd hh:mm'));
                 this.$common.setSessionStorage('udt',formatDate(new Date(json.userInfo.udt), 'yyyy-MM-dd hh:mm'));
                 this.$common.setSessionStorage('phone',json.userInfo.phone);
@@ -217,6 +221,10 @@ export default {
                 apis.shiroApi.loginLog(loginLog);
 
                 return;
+              }else{
+                var json = data.data.result
+                this.$message.error('错了哦:'+json.message);
+                loading.close();
               }
 
             }

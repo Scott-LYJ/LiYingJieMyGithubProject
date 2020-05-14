@@ -137,9 +137,11 @@ public class ProjectController {
     @HystrixCommand(fallbackMethod = "updateProjectError",ignoreExceptions = HystrixBadRequestException.class)
     @PostMapping("/updateProject")
     public Result<String> updateProject(@RequestBody Map<String,Object> map) throws Exception {
-        if (map.get("avatar")!=null){
+        if (map.get("avatar")!=null && (""!=String.valueOf(map.get("avatar")))){
             GatewayProjectDO gatewayProjectDO= gatewayProjectService.selectByIntId(Integer.parseInt(String.valueOf(map.get("id"))));
-            dfsClient.delFile(gatewayProjectDO.getAvatar());
+            if (gatewayProjectDO.getAvatar()!=null&&(!"".equals(gatewayProjectDO.getAvatar()))){
+                dfsClient.delFile(gatewayProjectDO.getAvatar());
+            }
         }
         gatewayProjectService.updateByMap(map);
         return new Result<>(Result.OK,"更新成功");

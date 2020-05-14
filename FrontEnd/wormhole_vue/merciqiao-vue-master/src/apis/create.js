@@ -42,7 +42,7 @@ export function upload(params) {
 
 export function refresh(params) {
     return request({
-        url:'/testInterface/refresh',
+        url:'/test/testInterface/refresh',
         method:'get',
         params
     })

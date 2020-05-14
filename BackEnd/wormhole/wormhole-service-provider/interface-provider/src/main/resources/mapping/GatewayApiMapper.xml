@@ -826,7 +826,7 @@
     	) b on a.id = b.api_id 
     </if>
     
-    ORDER BY a.`NAME` asc, a.`CDT` DESC 
+    ORDER BY  a.`CDT` DESC
     <if test="size != null or skip != null"> LIMIT #{skip}, #{size} </if>
   </select>
 </mapper>

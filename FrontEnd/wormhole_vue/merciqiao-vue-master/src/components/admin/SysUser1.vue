@@ -62,9 +62,9 @@
             </el-table-column>
             <el-table-column prop="udt" :label="$t('SysUser.udt')" >
             </el-table-column>
-              <el-table-column  fixed="right" :label="$t('SysUser.operation')" width="150">
+              <el-table-column  fixed="right" :label="$t('SysUser.operation')" width="200">
                <template slot-scope="scope">
-                    			   	<el-button type="primary" plain size="small" @click="handleRole(scope.$index,scope.row)" v-has="'/auth/user/roleShow'">{{$t("SysUser.role")}}</el-button>
+                        <el-button type="primary" plain size="small" @click="handleRole(scope.$index,scope.row)" v-has="'/auth/user/roleShow'">{{$t("SysUser.role")}}</el-button>
                       	<el-button size="small" @click="handleEdit(scope.$index,scope.row)" v-has="'/auth/user/update'">{{$t("SysUser.edit")}}</el-button>
 			        	</template>
             </el-table-column>
@@ -153,20 +153,24 @@
         </el-form-item>
         <br/>
         <el-form-item :label="$t('SysUser.name')" prop="name">
-					<el-input v-model="selectForm.name" auto-complete="off" :disabled="true"></el-input>
+          {{selectForm.name}}
+					<!--<el-input v-model="selectForm.name" auto-complete="off" :disabled="true"></el-input>-->
 				</el-form-item>
         <br/>
         	<el-form-item :label="$t('SysUser.password')" prop="password">
-					<el-input v-model="selectForm.password" auto-complete="off" :disabled="true"></el-input>
+            {{selectForm.password}}
+					<!--<el-input v-model="selectForm.password" auto-complete="off" :disabled="true"></el-input>-->
 				</el-form-item>
         <br/>
         <el-form-item :label="$t('SysUser.address')" prop="address" >
-					<el-input v-model="selectForm.address" auto-complete="off" :disabled="true" style="width:200px" ></el-input>
+					<!--<el-input v-model="selectForm.address" auto-complete="off" :disabled="true" style="width:200px" ></el-input>-->
+          {{selectForm.address}}
 
 				</el-form-item>
          &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
         <el-form-item :label="$t('SysUser.phone')" prop="phone">
-					<el-input v-model="selectForm.phone" auto-complete="off" :disabled="true"></el-input>
+					<!--<el-input v-model="selectForm.phone" auto-complete="off" :disabled="true"></el-input>-->
+          {{selectForm.phone}}
 				</el-form-item>
         <br/>
          <el-form-item :label="$t('SysUser.cdt')" prop="cdt">
@@ -348,12 +352,12 @@
         ],
         password: [
           { required: true, message: "请输入登录密码", trigger: "blur" },
-          { min: 0, max: 24, message: '长度在 0 到 24 个字符', trigger: 'blur' }
+          { min: 0, max: 35, message: '长度在 0 到 35 个字符', trigger: 'blur' }
 
         ],
         repassword: [
            { required: true, message: "请再次输入登录密码", trigger: "blur"},
-          { min: 0, max: 24, message: '长度在 0 到 24 个字符', trigger: 'blur' }
+          { min: 0, max: 35, message: '长度在 0 到 35 个字符', trigger: 'blur' }
 
         ],
         phone: [
@@ -458,9 +462,10 @@
       });
 
       console.log(file)
-      if (file.response.status='200') {
+      if (file.response.status='ok') {
         console.log(file.response.message)
         this.addForm.picture = file.response.data; //将返回的文件储存路径赋值picture字段
+        console.log(this.addForm.picture)
       }
     },
     //新增

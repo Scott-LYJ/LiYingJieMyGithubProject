@@ -1,19 +1,26 @@
 <template>
+  <section>
+    <div class="table"> <!-- 页面表格begin -->
+      <div class="crumbs"> <!-- 页面标题begin -->
+        <el-breadcrumb separator="/">
+          <el-breadcrumb-item><i class="el-icon-tickets"></i>项目管理</el-breadcrumb-item>
+        </el-breadcrumb>
+      </div> <!-- 页面标题end-->
     <div class="container messageboard">
         <!-- 查询区----start -->
         <el-form :label-position="labelPosition" :label-width="labelWidth" :inline="true" ref="formSearch" :model="formSearch" class="demo-form-inline">
             <el-form-item label="项目id" prop="id">
-                <el-input v-model="formSearch.id" placeholder="模糊匹配"></el-input>
+                <el-input v-model="formSearch.id" placeholder="模糊匹配"  size="mini"></el-input>
             </el-form-item>
             <el-form-item label="项目名称" prop="name">
-                <el-input v-model="formSearch.name" placeholder="名称"></el-input>
+                <el-input v-model="formSearch.name" placeholder="名称"  size="mini"></el-input>
             </el-form-item>
 
             <el-form-item label="创建者id" prop="createrid">
-                <el-input type="number" v-model="formSearch.createrid" placeholder="编号"></el-input>
+                <el-input type="number" v-model="formSearch.createrid" placeholder="编号" size="mini"></el-input>
             </el-form-item>
             <br/>
-            <el-form-item label="创建时间" prop="cdt">
+            <el-form-item label="创建时间" prop="cdt"  size="mini">
                 <el-date-picker
                     v-model="formSearch.cdt"
                     type="daterange"
@@ -22,9 +29,9 @@
                     end-placeholder="结束日期">
                 </el-date-picker>
             </el-form-item>
-            <el-form-item label=" " style="margin-left:50px;">
-                <el-button type="primary" @click="onSearch">查询</el-button>
-                <el-button type="warning" plain @click="onReset">重置</el-button>
+            <el-form-item label=" " style="margin-left:50px;" >
+                <el-button type="primary" @click="onSearch"  size="mini">查询</el-button>
+                <el-button type="warning" plain @click="onReset"  size="mini">重置</el-button>
             </el-form-item>
         </el-form>
         <!-- 查询区----end -->
@@ -62,7 +69,7 @@
             </el-table-column>
             <el-table-column prop="cdt" label="创建日期" :formatter="this.$common.timestampToTime" width="180" sortable>
             </el-table-column>
-            <el-table-column label="操作" fixed="right" min-width="250">
+            <el-table-column label="操作" fixed="right" min-width="300">
                 <template slot-scope="scope">
                   <el-button size="mini" plain type="primary" @click="toGroupAndApi( scope.row)" v-has="'/project/groupAndApi/show'">接口/分组</el-button>
                     <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-has="'/project/update'">编辑</el-button>
@@ -130,6 +137,8 @@
         <!-- 编辑弹框---end -->
 
     </div>
+    </div>
+  </section>
 </template>
 
 <style lang="scss">

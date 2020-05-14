@@ -1,9 +1,10 @@
 package com.dcits.scott.wormholeserviceconsumer.interfacecontroller.testinterface;
 
 import com.alibaba.fastjson.JSON;
-import com.dcits.scott.dubbo.DubboInterfaceModel;
-import com.dcits.scott.dubbo.DubboModel;
+import com.dcits.scott.dubbo.*;
+import com.dcits.scott.gateway.pojo.GatewayServiceRequestDO;
 import com.dcits.scott.other.redis.RedisService;
+import com.dcits.scott.project.gatewayservicerequest.GatewayServiceRequestService;
 import com.dcits.scott.support.entity.InterfaceMetaInfo;
 import com.dcits.scott.support.result.WebApiRspDto;
 import com.dcits.scott.util.CommonUtil;
@@ -13,18 +14,19 @@ import com.dcits.scott.wormholeserviceconsumer.interfacecontroller.createinterfa
 import com.dcits.scott.wormholeserviceconsumer.interfacecontroller.testinterface.function.DubboAppCreator;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/testInterface")
 public class TestInterface {
     @Reference
     RedisService redisService;
+    @Reference
+    GatewayServiceRequestService gatewayServiceRequestService;
 
     /**
      * 返回已经注册的服务名称
@@ -109,42 +111,52 @@ public class TestInterface {
     @RequestMapping(value = "refresh",method = RequestMethod.GET)
     @ResponseBody
     public WebApiRspDto refreshService(@RequestParam("zk") String zk,
-                                       @RequestParam("zkServiceName") String serviceName){
+                                       @RequestParam("path") String path,
+                                       @RequestParam("apiId") String apiId) throws IOException {
 
-        if(serviceName == null || serviceName.isEmpty()){
+        if(path == null || path.isEmpty()){
 
             return WebApiRspDto.error("必须选择一个服务名称",-1);
         }
 
-        String modelKey = CommonUtil.getDubboModelKey(zk, serviceName);
+        String modelKey = CommonUtil.getDubboModelKey(zk, path);
 
-        Object modelObj = redisService.mapGet(RedisKeys.DUBBO_MODEL_KEY, modelKey);
+        Object object = redisService.mapGet(RedisKeys.CACHED_TEMPLATES, "cache_templates");
+        Object o=null;
+        try {
+            o = SerializeUtils.serializeToObject((String) object);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Map<String,RequestTemplate> requestTemplateMap = (Map<String, RequestTemplate>)o;
+        RequestTemplate requestTemplate = requestTemplateMap.get(path);
 
-        DubboModel dubboModel = JSON.parseObject((String) modelObj,DubboModel.class);
+        List<GatewayServiceRequestDO> gatewayServiceRequestDOList = gatewayServiceRequestService.selectByApiId(Long.parseLong(apiId));
+        List<com.dcits.scott.dubbo.RequestParam> matcherParams=new ArrayList<>();
+        for (GatewayServiceRequestDO gatewayServiceRequestDO : gatewayServiceRequestDOList) {
+            com.dcits.scott.dubbo.RequestParam requestParam = new com.dcits.scott.dubbo.RequestParam();
+            requestParam.setParaType(gatewayServiceRequestDO.getTypeName());
+            requestParam.setParaName(gatewayServiceRequestDO.getName());
+            requestParam.setDescription(gatewayServiceRequestDO.getDescription());
+            requestParam.setExample(gatewayServiceRequestDO.getExample());
+            matcherParams.add(requestParam);
+        }
+        requestTemplate.setMatcherParams(matcherParams);
+        LocalStore.putTemplete(path,requestTemplate);
 
-        String g = dubboModel.getGroupId();
-
-        String a = dubboModel.getArtifactId();
-
-        String v = dubboModel.getVersion();
-
-        String versionDirName = v.replaceAll("\\.","_");
 
         String errorContent = "操作成功";
-        Map<String, InterfaceMetaInfo> interfaceMetaInfoMap = ZkServiceFactory.get(zk).allProviders.get(serviceName);
-        dubboModel = DubboAppCreator.create(zk,serviceName,g,a,v,interfaceMetaInfoMap);
+
         try {
-            buildRequestDubboTemplate(dubboModel);
+            redisService.mapPut(RedisKeys.CACHED_TEMPLATES,"cache_templates", SerializeUtils.serialize(LocalStore.CACHED_TEMPLATES));
         } catch (Exception exp) {
             return WebApiRspDto.error(errorContent+"\n"+exp.getMessage());        }
 
         return WebApiRspDto.success(errorContent);
     }
-    private void buildRequestDubboTemplate(DubboModel model) throws IOException {
 
-        persistent(model);
-
-    }
 
 
     private void persistent(DubboModel dubboModel) throws IOException {

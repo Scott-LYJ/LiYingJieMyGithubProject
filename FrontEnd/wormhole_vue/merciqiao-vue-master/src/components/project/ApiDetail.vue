@@ -52,7 +52,6 @@
         prop="authVersion">
       </el-table-column>
       <el-table-column
-        fixed="right"
         label="授予"
         width="200">
         <template slot-scope="scope">

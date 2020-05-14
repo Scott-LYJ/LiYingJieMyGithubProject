@@ -161,7 +161,7 @@
           phone:"",
           cdt:"",
           udt:"",
-          avatar:this.userIcon,
+          picture:this.userIcon,
         },
         labelPosition: "right", //lable对齐方式
         labelWidth: "80px", //lable宽度
@@ -265,7 +265,7 @@
         }).then(res => {
           this.addLoading = false;
           console.log(res)
-          if (res.data.status=="200") {
+          if (res.data.status=="ok") {
             this.$message({
               message: "验证成功",
               type: "success"
@@ -377,6 +377,7 @@
       let udt = this.$common.getSessionStorage("udt")
       this.editUser.cdt=cdt
       this.editUser.udt=udt
+      console.log(this.editUser)
       //图片处理
       //this.userIcon = this.$common.getSessionStorage('icon');
     }

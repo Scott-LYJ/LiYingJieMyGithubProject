@@ -449,26 +449,46 @@
         return false;
       },
       refreshService(){
+        //
         if(!this.pageArray[this.pageIndex].zk ||
-          !this.pageArray[this.pageIndex].serviceName){
-          this.$message.error('必须选择:zk和serviceName');
+          !this.pageArray[this.pageIndex].serviceName ||
+          !this.pageArray[this.pageIndex].provider ||
+          !this.pageArray[this.pageIndex].methodName){
+
+          this.$message(
+            {
+              message: "必须选择一个方法进行访问!",
+              type: 'error',
+              duration: 1 * 1000
+            }
+          );
           return;
         }
+
+        let providerName = this.pageArray[this.pageIndex].provider;
+        let infKey = this.pageArray[this.pageIndex].providerNameMap[providerName];
+
+        let path = "/"+this.pageArray[this.pageIndex].serviceName +"/"+
+          encodeURI(infKey)+"/"+this.pageArray[this.pageIndex].methodName;
+        this.pageArray[this.pageIndex].response = '';
+
         let encodedZk = encodeURI(this.pageArray[this.pageIndex].zk);
 
         let params = {
           "zk":encodedZk,
-          "zkServiceName":this.pageArray[this.pageIndex].serviceName
+          "path":path,
+          "apiId":this.$route.query.id
         };
 
         const loading = this.$loading({
           lock: true,
-          text: '正在刷新服务中,需要下载依赖的jar比较耗时,请耐心等待......',
+          text: '正在刷新服务中,比较耗时,请耐心等待......',
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         });
 
         refresh(params).then(res => {
+          console.log(res)
           if (res.status == 200) {
 
             if(res.data.code == 0){
@@ -476,10 +496,6 @@
                 'message': '刷新成功!',
                 'type': 'success'
               });
-              //刷新页面
-              setTimeout(() => {
-                window.location.reload();
-              }, 500);
 
             }else{
               this.$message.error({
@@ -735,6 +751,8 @@
             this.formatContent();
             loading.close();
           }
+        }).catch(res=>{
+          loading.close();
         });
       },
       saveNewTemplate(){

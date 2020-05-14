@@ -489,9 +489,17 @@
         },
         //
         comments:[{
+          name:this.$common.getSessionStorage("username"),
+          id:this.$common.setSessionStorage("id"),
+          headImg:this.$common.getSessionStorage("avatar"),
+          comment:"欢迎大家积极反馈",
+          time:new Date().getTime(),
+          commentNum:0,
+          like:0,
+          unLike:0,
+          inputShow:false,
           reply:[
-
-      ],
+          ],
         }
       ],
         //
@@ -641,6 +649,7 @@
           responseCodeList: this.responseCodesForm.tableData,
           comments: this.comments,
         }
+        console.log(param)
         // let param={
         //   apiDocument:this.apiDocument
         // }
@@ -719,7 +728,6 @@
     },
     mounted(){
       this.apiDetails=this.$route.query.apiDetails;
-
     },
   }
 </script>

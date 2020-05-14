@@ -1,6 +1,7 @@
 package com.dcits.scott.wormholeserviceconsumer.config.shiroconfig;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -89,6 +90,8 @@ public class ShiroConfig {
     public RedisCacheManager cacheManager() {
         RedisCacheManager redisCacheManager = new RedisCacheManager();
         redisCacheManager.setRedisManager(redisManager());
+        // 必须要设置主键名称，shiro-redis 插件用过这个缓存用户信息
+        redisCacheManager.setPrincipalIdFieldName("userId");
         return redisCacheManager;
     }
     /**
@@ -102,9 +105,7 @@ public class ShiroConfig {
         redisManager.setHost("192.168.81.128");
         redisManager.setPort(6379);
         redisManager.setPassword("li774143844");
-        redisManager.setExpire(1800);// 配置缓存过期时间
         redisManager.setTimeout(0);
-        // redisManager.setPassword(password);
         return redisManager;
     }
     /**
@@ -112,9 +113,15 @@ public class ShiroConfig {
      * 使用的是shiro-redis开源插件
      */
     @Bean
-    public DefaultWebSessionManager sessionManager() {
+    public SessionManager sessionManager() {
         MySessionManager sessionManager = new MySessionManager();
         sessionManager.setSessionDAO(redisSessionDAO());
+//        sessionManager.setSessionIdCookie(cookie());
+//        sessionManager.setSessionIdCookieEnabled(true);
+//        SimpleCookie cookie = new SimpleCookie("WEBJSESSIONID");
+//        cookie.setHttpOnly(true);
+//        cookie.setMaxAge(60 * 60 * 1000);
+//        sessionManager.setSessionIdCookie(cookie);
         return sessionManager;
     }
     /**
@@ -125,8 +132,11 @@ public class ShiroConfig {
     public RedisSessionDAO redisSessionDAO() {
         RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
         redisSessionDAO.setRedisManager(redisManager());
+        redisSessionDAO.setSessionIdGenerator(sessionIdGenerator());
+        redisSessionDAO.setExpire(1800);
         return redisSessionDAO;
     }
+
 
     //创建realm对象需要自定义
     @Bean
@@ -188,7 +198,8 @@ public class ShiroConfig {
     }
     /***
      * 授权所用配置
-     *
+     *开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
+     * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
      * @return
      */
     @Bean

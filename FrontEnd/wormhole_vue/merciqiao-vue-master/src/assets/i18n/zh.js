@@ -5,7 +5,7 @@
 
 module.exports = {
     home:{
-        'title' : '后台管理系统',
+        'title' : 'WormHoleAPI管理系统',
     },
     footer:{
         'title':'京ICP备18050367号-1 qq群:73110051(无广告)',
@@ -17,7 +17,7 @@ module.exports = {
         'address':'地址',
         'phone':'电话号码',
         'cdt':'创建日期',
-        'udt':'最近修改日期',
+        'udt':'修改日期',
         'search':'搜索',
         'add':'新增',
         'delete':'删除',

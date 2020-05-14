@@ -14,14 +14,27 @@
 .science-blue .sidebar-el-menu {
 
   background-image: url('../../../static/img/th.jpg') !important;
-}
-.science-blue .sidebar-el-menu .el-menu-item {
 
-  background-color: #5f9fc9!important;
- }
-.science-blue .left-sidebar .el-menu {
-  background-color: #5f9fc9;
 }
+/*
+ * 3、内容背景
+ */
+.science-blue .content {
+
+  /*background-image: url('../../../static/img/timg.gif') !important;*/
+  /*background-position: center center;*/
+  /*background-size: cover;*/
+  /*background-repeat: no-repeat;*/
+  /*width: 100%;*/
+  /*height: 1000px;*/
+}
+/*.science-blue .sidebar-el-menu .el-menu-item {*/
+
+  /*background-color: #5f9fc9!important;*/
+ /*}*/
+/*.science-blue .left-sidebar .el-menu {*/
+  /*background-color: #5f9fc9;*/
+/*}*/
 .science-blue .left-sidebar .el-menu-item i {
   color: #fff;
 }

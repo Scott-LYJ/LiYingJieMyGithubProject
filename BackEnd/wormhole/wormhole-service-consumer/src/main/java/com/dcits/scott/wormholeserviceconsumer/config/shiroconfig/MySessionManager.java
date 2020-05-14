@@ -42,11 +42,12 @@ public class MySessionManager extends DefaultWebSessionManager {
                     request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID, id);
                     request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_IS_VALID, Boolean.TRUE);
                     return id;
-
         }
         else {
             //否则按默认规则从cookie取sessionId
+           id= (String) super.getSessionId(request, response);
             return super.getSessionId(request, response);
+
         }
     }
 

@@ -246,7 +246,7 @@
                     url: "/test/logout",
                   }).then((resultData) => {
 
-                    console.log(resultData)
+                    console.log("关闭连接")
                     this.$common.removeSessionStorage('token');
                     this.$router.push('/login');
                   });
@@ -317,22 +317,23 @@
         created(){
           console.log("header初始化")
 
-          // if (this.$common.getSessionStorage("message")!=null){
-          //   console.log("2222")
-          //   if(document.body.clientWidth < 1366){
-          //     this.collapseChage();
-          //   }
-          // }else {
+          if (this.$common.getSessionStorage("message")!=null){
+            console.log("2222")
+            if(document.body.clientWidth < 1366){
+              this.collapseChage();
+            }
+          }else {
             console.log("3333")
-          this.websock = new WebSocket("ws://localhost:8085/websocket/"+this.$common.getSessionStorage("id"));
-          this.websock.onopen = this.websocketonopen;
-          this.websock.onerror = this.websocketonerror;
-          this.websock.onmessage = this.websocketonmessage;
-          this.websock.onclose = this.websocketclose;
-          console.log("websocket")
-          this.$common.setSessionStorage("message",this.websock)
-          if(document.body.clientWidth < 1366){
-            this.collapseChage();
+            this.websock = new WebSocket("ws://localhost:8085/websocket/" + this.$common.getSessionStorage("id"));
+            this.websock.onopen = this.websocketonopen;
+            this.websock.onerror = this.websocketonerror;
+            this.websock.onmessage = this.websocketonmessage;
+            this.websock.onclose = this.websocketclose;
+            console.log("websocket")
+            this.$common.setSessionStorage("message", this.websock)
+            if (document.body.clientWidth < 1366) {
+              this.collapseChage();
+            }
           }
         }
         // }

@@ -3,7 +3,7 @@
     <br/>
     <br/>
     <br/>
-    <el-form ref="dubboDetailForm" v-show="show1" :model="dubboDetailForm" label-width="80px" id="isEnable">
+    <el-form ref="dubboDetailForm" v-show="show1" :model="dubboDetailForm" label-width="80px" id="isEnable" width="500px">
       <el-form-item label="zk名称">
         <el-select v-model="dubboDetailForm.zk" placeholder="必填，访问的ZK地址" filterable @change="changeZk">
           <el-option v-for="(option,index) in pageTotal.zkList" v-bind:value="option" :key="index" :label="option">
@@ -48,7 +48,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSave">保存</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="onSwitch">切换</el-button>
       </el-form-item>
     </el-form>
 
@@ -216,10 +216,12 @@
             console.log("sssssssssss")
           },
           onSwitch(){
-              if (this.show1=true){
+            console.log(this.show1+"   "+this.show2)
+              if (this.show1==true){
+                console.log()
                 this.show1=false;
                 this.show2=true;
-              }else if (this.show1=false){
+              }else if (this.show1==false){
                 this.show1=true;
                 this.show2=false;
                 getZkList().then((res)=>{

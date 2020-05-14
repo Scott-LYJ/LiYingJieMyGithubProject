@@ -53,16 +53,16 @@ public class AuthUser extends ProtoBean {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getCdt() {
-       return DateUtil.getFormatDate(cdt);
+    public Date getCdt() {
+       return cdt;
     }
 
     public void setCdt(Date cdt) {
         this.cdt = cdt;
     }
 
-    public String getUdt() {
-        return DateUtil.getFormatDate(udt);
+    public Date getUdt() {
+        return udt;
     }
 
     public void setUdt(Date udt) {
