@@ -27,7 +27,7 @@
     "jspdf": "^1.5.3",
     "live2d4vue": "^0.1.0",
     "mockjs": "^1.0.1-beta3",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "vue": "^2.5.2",
     "vue-clipboard2": "^0.3.1",
     "vue-codemirror": "^4.0.6",
